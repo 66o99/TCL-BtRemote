@@ -132,4 +132,8 @@
     <string name="alt">Alt</string>
     <string name="alt_gr">Alt Gr</string>
     <string name="menu">Menú</string>
+    <string name="closed_captions">Subtítulos cerrados</string>
+    <string name="keyboard_tr">Turco</string>
+    <string name="use_the_gyroscope_to_control_the_mouse">Utilice el giroscopio para controlar el ratón</string>
+    <string name="keyboard_el">Griego</string>
 </resources>
