@@ -85,6 +85,7 @@
     <string name="keyboard_br">Brésilien</string>
     <string name="keyboard_el">Grec</string>
     <string name="keyboard_tr">Turc</string>
+    <string name="keyboard_he">Hébreu</string>
     <string name="send">Envoyer</string>
     <string name="enter">Entrer</string>
     <string name="escape">Echap</string>
