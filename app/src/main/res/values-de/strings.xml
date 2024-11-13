@@ -133,4 +133,7 @@
     <string name="alt_gr">Alt Gr</string>
     <string name="menu">Menü</string>
     <string name="closed_captions">Untertitel</string>
+    <string name="use_the_gyroscope_to_control_the_mouse">Gyroskop nutzen um die Maus zu konrollieren</string>
+    <string name="keyboard_el">Griechisch</string>
+    <string name="keyboard_tr">Türkisch</string>
 </resources>

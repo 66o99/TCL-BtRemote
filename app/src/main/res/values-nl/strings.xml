@@ -133,4 +133,7 @@
     <string name="alt_gr">AltGr</string>
     <string name="menu">Menu</string>
     <string name="closed_captions">Ondertiteling</string>
+    <string name="keyboard_el">Grieks</string>
+    <string name="use_the_gyroscope_to_control_the_mouse">Versnellingsmeter gebruiken om muis te bedienen</string>
+    <string name="keyboard_tr">Turks</string>
 </resources>
