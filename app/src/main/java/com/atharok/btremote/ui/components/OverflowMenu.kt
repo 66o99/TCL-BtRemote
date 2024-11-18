@@ -1,13 +1,10 @@
 package com.atharok.btremote.ui.components
 
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.rounded.List
 import androidx.compose.material.icons.rounded.BrightnessHigh
 import androidx.compose.material.icons.rounded.BrightnessLow
-import androidx.compose.material.icons.rounded.ClosedCaption
 import androidx.compose.material.icons.rounded.HelpOutline
 import androidx.compose.material.icons.rounded.LinkOff
-import androidx.compose.material.icons.rounded.PowerSettingsNew
 import androidx.compose.material.icons.rounded.Settings
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
@@ -113,51 +110,6 @@ private fun DefaultDropdownMenuItem(
             interactionSource = it
         )
     }
-}
-
-@Composable
-fun PowerDropdownMenuItem(
-    touchDown: () -> Unit,
-    touchUp: () -> Unit,
-    modifier: Modifier = Modifier
-) {
-    DefaultDropdownMenuItem(
-        touchDown = touchDown,
-        touchUp = touchUp,
-        image = Icons.Rounded.PowerSettingsNew,
-        title = stringResource(id = R.string.power),
-        modifier = modifier
-    )
-}
-
-@Composable
-fun MenuDropdownMenuItem(
-    touchDown: () -> Unit,
-    touchUp: () -> Unit,
-    modifier: Modifier = Modifier
-) {
-    DefaultDropdownMenuItem(
-        touchDown = touchDown,
-        touchUp = touchUp,
-        image = Icons.AutoMirrored.Rounded.List,
-        title = stringResource(id = R.string.menu),
-        modifier = modifier
-    )
-}
-
-@Composable
-fun ClosedCaptionDropdownMenuItem(
-    touchDown: () -> Unit,
-    touchUp: () -> Unit,
-    modifier: Modifier = Modifier
-) {
-    DefaultDropdownMenuItem(
-        touchDown = touchDown,
-        touchUp = touchUp,
-        image = Icons.Rounded.ClosedCaption,
-        title = stringResource(id = R.string.closed_captions),
-        modifier = modifier
-    )
 }
 
 @Composable

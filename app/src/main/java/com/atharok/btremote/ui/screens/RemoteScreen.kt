@@ -48,29 +48,21 @@ import com.atharok.btremote.presentation.viewmodel.SettingsViewModel
 import com.atharok.btremote.ui.components.AppScaffold
 import com.atharok.btremote.ui.components.BrightnessDecDropdownMenuItem
 import com.atharok.btremote.ui.components.BrightnessIncDropdownMenuItem
-import com.atharok.btremote.ui.components.ClosedCaptionDropdownMenuItem
 import com.atharok.btremote.ui.components.DirectionButtonsAction
 import com.atharok.btremote.ui.components.DisconnectDropdownMenuItem
 import com.atharok.btremote.ui.components.FadeAnimatedContent
 import com.atharok.btremote.ui.components.HelpDropdownMenuItem
 import com.atharok.btremote.ui.components.KeyboardAction
 import com.atharok.btremote.ui.components.LoadingDialog
-import com.atharok.btremote.ui.components.MenuDropdownMenuItem
 import com.atharok.btremote.ui.components.MoreOverflowMenu
 import com.atharok.btremote.ui.components.MouseAction
-import com.atharok.btremote.ui.components.PowerDropdownMenuItem
 import com.atharok.btremote.ui.components.SettingsDropdownMenuItem
-import com.atharok.btremote.ui.views.DialPadLayout
 import com.atharok.btremote.ui.views.RemoteScreenHelpModalBottomSheet
 import com.atharok.btremote.ui.views.keyboard.AdvancedKeyboardLayoutView
 import com.atharok.btremote.ui.views.keyboard.VirtualKeyboardView
 import com.atharok.btremote.ui.views.mouse.MousePadLayout
-import com.atharok.btremote.ui.views.remoteButtons.BackRemoteButton
+import com.atharok.btremote.ui.views.remote.RemoteView
 import com.atharok.btremote.ui.views.remoteButtons.DirectionalButtons
-import com.atharok.btremote.ui.views.remoteButtons.HomeRemoteButton
-import com.atharok.btremote.ui.views.remoteButtons.MultimediaButtons
-import com.atharok.btremote.ui.views.remoteButtons.MuteRemoteButton
-import com.atharok.btremote.ui.views.remoteButtons.VolumeVerticalRemoteButtons
 
 private enum class NavigationToggle {
     DIRECTION,
@@ -125,9 +117,10 @@ fun RemoteScreen(
                 )
             },
             remoteLayout = {
-                RemoteLayout(
+                RemoteView(
                     sendRemoteKeyReport = sendRemoteKeyReport,
-                    sendNumberKeyReport = sendKeyboardKeyReport
+                    sendNumberKeyReport = sendKeyboardKeyReport,
+                    modifier = Modifier.padding(dimensionResource(id = R.dimen.remote_button_padding))
                 )
             },
             navigationLayout = {
@@ -259,12 +252,18 @@ private fun RemoteLandscapeView(
             modifier = Modifier
                 .widthIn(max = with(LocalDensity.current) { (0.5f * rowSize.width).toDp() })
                 .align(Alignment.CenterVertically)
+                .padding(
+                    start = dimensionResource(id = R.dimen.padding_medium),
+                    top = dimensionResource(id = R.dimen.padding_medium),
+                    bottom = dimensionResource(id = R.dimen.padding_medium)
+                ),
         ) {
             navigationLayout()
         }
 
         Box(
-            modifier = Modifier.align(Alignment.CenterVertically),
+            modifier = Modifier
+                .align(Alignment.CenterVertically),
             contentAlignment = Alignment.Center
         ) {
             remoteLayout()
@@ -298,85 +297,16 @@ private fun RemotePortraitView(
         }
 
         Box(
-            modifier = Modifier.align(Alignment.CenterHorizontally),
+            modifier = Modifier
+                .align(Alignment.CenterHorizontally)
+                .padding(
+                    start = dimensionResource(id = R.dimen.padding_medium),
+                    end = dimensionResource(id = R.dimen.padding_medium),
+                    bottom = dimensionResource(id = R.dimen.padding_medium)
+                ),
             contentAlignment = Alignment.Center
         ) {
             navigationLayout()
-        }
-    }
-}
-
-@Composable
-fun RemoteLayout(
-    sendRemoteKeyReport: (bytes: ByteArray) -> Unit,
-    sendNumberKeyReport: (bytes: ByteArray) -> Unit
-) {
-    Column(
-        modifier = Modifier,
-    ) {
-        MultimediaButtons(
-            sendRemoteKey = sendRemoteKeyReport,
-            modifier = Modifier
-                .fillMaxWidth()
-                .weight(1f)
-                .padding(dimensionResource(id = R.dimen.padding_standard))
-        )
-
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .weight(3f),
-            horizontalArrangement = Arrangement.Absolute.SpaceBetween
-        ) {
-
-            // Volume
-            Column(
-                modifier = Modifier.weight(1f),
-            ) {
-                VolumeVerticalRemoteButtons(
-                    sendReport = sendRemoteKeyReport,
-                    modifier = Modifier
-                        .weight(2f)
-                        .padding(dimensionResource(id = R.dimen.padding_standard))
-                        .align(Alignment.Start)
-                )
-
-                MuteRemoteButton(
-                    sendReport = sendRemoteKeyReport,
-                    modifier = Modifier
-                        .weight(1f)
-                        .padding(dimensionResource(id = R.dimen.padding_standard))
-                )
-            }
-
-            // Dial Pad
-            DialPadLayout(
-                sendRemoteKeyReport = sendRemoteKeyReport,
-                sendNumberKeyReport = sendNumberKeyReport,
-                modifier = Modifier.weight(4f)
-            )
-        }
-
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .weight(1f),
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-
-            BackRemoteButton(
-                sendReport = sendRemoteKeyReport,
-                modifier = Modifier
-                    .weight(1f)
-                    .padding(dimensionResource(id = R.dimen.padding_standard))
-            )
-
-            HomeRemoteButton(
-                sendReport = sendRemoteKeyReport,
-                modifier = Modifier
-                    .weight(1f)
-                    .padding(dimensionResource(id = R.dimen.padding_standard))
-            )
         }
     }
 }
@@ -393,9 +323,7 @@ private fun NavigationLayout(
             NavigationToggle.DIRECTION -> {
                 DirectionalButtons(
                     sendRemoteKeyReport = sendRemoteKeyReport,
-                    modifier = Modifier
-                        .aspectRatio(1f)
-                        .padding(dimensionResource(id = R.dimen.padding_standard))
+                    modifier = Modifier.aspectRatio(1f)
                 )
             }
 
@@ -414,7 +342,7 @@ private fun NavigationLayout(
                     shouldInvertMouseScrollingDirection = shouldInvertMouseScrollingDirection,
                     useGyroscope = useGyroscope,
                     sendMouseInput = sendMouseKeyReport,
-                    modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_standard))
+                    modifier = Modifier
                 )
             }
         }
@@ -519,30 +447,6 @@ private fun TopBarActions(
     )
 
     MoreOverflowMenu { closeDropdownMenu: () -> Unit ->
-        PowerDropdownMenuItem(
-            touchDown = {
-                sendRemoteKeyReport(RemoteInput.REMOTE_INPUT_POWER)
-            },
-            touchUp = {
-                sendRemoteKeyReport(REMOTE_INPUT_NONE)
-            }
-        )
-        MenuDropdownMenuItem(
-            touchDown = {
-                sendRemoteKeyReport(RemoteInput.REMOTE_INPUT_MENU)
-            },
-            touchUp = {
-                sendRemoteKeyReport(REMOTE_INPUT_NONE)
-            }
-        )
-        ClosedCaptionDropdownMenuItem(
-            touchDown = {
-                sendRemoteKeyReport(RemoteInput.REMOTE_INPUT_CLOSED_CAPTIONS)
-            },
-            touchUp = {
-                sendRemoteKeyReport(REMOTE_INPUT_NONE)
-            }
-        )
         BrightnessIncDropdownMenuItem(
             touchDown = {
                 sendRemoteKeyReport(RemoteInput.REMOTE_INPUT_BRIGHTNESS_INC)
