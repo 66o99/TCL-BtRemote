@@ -123,6 +123,7 @@ fun ComposeRoot(
                                     }
                                 },
                                 disconnectDevice = { hidViewModel.disconnectDevice() },
+                                unpairDevice = { bluetoothViewModel.unpairDevice(it) },
                                 openRemoteScreen = {
                                     navController.navigateTo(AppNavDestination.BluetoothRemoteDestination.route)
                                 },

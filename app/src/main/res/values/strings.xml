@@ -35,6 +35,8 @@
     <string name="unpair_device">Unpair device</string>
     <string name="unpair">Unpair</string>
     <string name="unpair_device_warning_message">This device will be completely unpaired from your device. Do you really want to continue?</string>
+    <string name="unpair_device_successful">The device has been successfully dissociated.</string>
+    <string name="unpair_device_failure">Failure! The device could not be dissociated.</string>
 
     <!-- Bluetooth Pairing -->
     <string name="pairing_a_device">Pairing a device</string>
@@ -148,6 +150,9 @@
     <string name="connected_on">Connected on %1$s</string>
 
     <!-- Help messages -->
+    <string name="information">Information</string>
+    <string name="help_info_message">If you experience any issues, please check the help section.</string>
+
     <string name="help">Help</string>
 
     <string name="help_select_device_from_list">Select the device you wish to connect with from the list of paired devices.</string>

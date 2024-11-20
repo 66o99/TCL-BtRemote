@@ -30,4 +30,6 @@ class BluetoothUseCase(private val bluetoothRepository: BluetoothRepository) {
     fun startDiscovery(): Boolean = bluetoothRepository.startDiscovery()
 
     fun cancelDiscovery(): Boolean = bluetoothRepository.cancelDiscovery()
+
+    fun unpairDevice(address: String): Boolean = bluetoothRepository.unpairDevice(address)
 }

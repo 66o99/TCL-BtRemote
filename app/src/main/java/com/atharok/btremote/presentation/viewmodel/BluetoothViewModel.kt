@@ -5,11 +5,14 @@ import androidx.lifecycle.viewModelScope
 import com.atharok.btremote.common.extensions.capitalizeFirstChar
 import com.atharok.btremote.domain.entity.DeviceEntity
 import com.atharok.btremote.domain.usecases.BluetoothUseCase
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
+import kotlin.coroutines.EmptyCoroutineContext
 
 class BluetoothViewModel(
     private val useCase: BluetoothUseCase
@@ -35,7 +38,9 @@ class BluetoothViewModel(
     private val _devicesEntity: MutableStateFlow<List<DeviceEntity>> = MutableStateFlow(listOf())
     val devicesEntityObserver: StateFlow<List<DeviceEntity>> = _devicesEntity
 
-    fun findBondedDevices() = viewModelScope.launch {
+    fun findBondedDevices(
+        context: CoroutineContext = EmptyCoroutineContext
+    ) = viewModelScope.launch(context = context) {
         _devicesEntity.value = useCase.getBondedDevices().sortedBy { it.name.capitalizeFirstChar() }
     }
 
@@ -60,5 +65,15 @@ class BluetoothViewModel(
     fun cancelDiscovery() {
         useCase.cancelDiscovery()
         _isDiscovering.value = false
+    }
+
+    // ---- Unpair device ----
+
+    fun unpairDevice(address: String): Boolean {
+        val success = useCase.unpairDevice(address)
+        if(success) {
+            findBondedDevices(context = Dispatchers.Main)
+        }
+        return success
     }
 }

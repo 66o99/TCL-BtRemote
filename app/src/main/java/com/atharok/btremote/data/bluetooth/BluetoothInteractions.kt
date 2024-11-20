@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
 import androidx.core.app.ActivityCompat
+import com.atharok.btremote.common.extensions.unpair
 import com.atharok.btremote.common.utils.checkBluetoothConnectPermission
 import com.atharok.btremote.common.utils.checkBluetoothScanPermission
 import com.atharok.btremote.domain.entity.DeviceEntity
@@ -105,4 +106,8 @@ class BluetoothInteractions(
             adapter?.cancelDiscovery() ?: false
         } else false
     }
+
+    // ---- Unpair ----
+
+    fun unpairDevice(address: String): Boolean = adapter?.getRemoteDevice(address)?.unpair() ?: false
 }

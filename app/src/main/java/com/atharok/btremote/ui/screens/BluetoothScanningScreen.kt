@@ -3,6 +3,7 @@ package com.atharok.btremote.ui.screens
 import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothHidDevice
 import androidx.activity.compose.BackHandler
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -101,56 +102,10 @@ private fun BluetoothScanningScreen(
     openSettings: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    StatefulBluetoothScanningScreen(
-        isBluetoothEnabled = isBluetoothEnabled,
-        isBluetoothServiceStarted = isBluetoothServiceStarted,
-        bluetoothDeviceHidConnectionState = bluetoothDeviceHidConnectionState,
-        isDiscoveringFlow = isDiscoveringFlow,
-        navigateUp = navigateUp,
-        startDiscovery = startDiscovery,
-        cancelDiscovery = cancelDiscovery,
-        openRemoteScreen = openRemoteScreen
-    ) { isDiscovering: Boolean, devices: List<DeviceEntity> ->
-
-        var showHelpBottomSheet: Boolean by remember { mutableStateOf(false) }
-        StatelessBluetoothScanningScreen(
-            isDiscovering = isDiscovering,
-            devices = devices,
-            navigateUp = navigateUp,
-            openSettings = openSettings,
-            startDiscovery = startDiscovery,
-            connectToDevice = connectToDevice,
-            showHelpBottomSheet = showHelpBottomSheet,
-            onShowHelpBottomSheetChanged = { showHelpBottomSheet = it },
-            modifier = modifier
-        )
-
-        if (bluetoothDeviceHidConnectionState.state == BluetoothHidDevice.STATE_CONNECTING) {
-            LoadingDialog(
-                title = stringResource(id = R.string.connection),
-                message = stringResource(
-                    id = R.string.bluetooth_device_connecting_message,
-                    bluetoothDeviceHidConnectionState.deviceName
-                ),
-                buttonText = stringResource(id = android.R.string.cancel),
-                onButtonClick = disconnectDevice
-            )
-        }
-    }
-}
-
-@Composable
-private fun StatefulBluetoothScanningScreen(
-    isBluetoothEnabled: Boolean,
-    isBluetoothServiceStarted: Boolean,
-    bluetoothDeviceHidConnectionState: DeviceHidConnectionState,
-    isDiscoveringFlow: StateFlow<Boolean>,
-    navigateUp: () -> Unit,
-    startDiscovery: () -> Unit,
-    cancelDiscovery: () -> Unit,
-    openRemoteScreen: (deviceName: String) -> Unit,
-    contents: @Composable (isDiscovering: Boolean, devices: List<DeviceEntity>) -> Unit
-) {
+    val context = LocalContext.current
+    val devices = remember { mutableStateListOf<DeviceEntity>() }
+    val isDiscovering: Boolean by isDiscoveringFlow.collectAsStateWithLifecycle()
+    var showHelpBottomSheet: Boolean by remember { mutableStateOf(false) }
 
     DisposableEffect(isBluetoothEnabled) {
         if(!isBluetoothEnabled) {
@@ -181,8 +136,6 @@ private fun StatefulBluetoothScanningScreen(
 
     BackHandler(enabled = true, onBack = navigateUp)
 
-    val devices = remember { mutableStateListOf<DeviceEntity>() }
-
     OnLifecycleEvent { _, event ->
         when(event) {
             Lifecycle.Event.ON_START -> startDiscovery()
@@ -190,8 +143,6 @@ private fun StatefulBluetoothScanningScreen(
             else -> {}
         }
     }
-
-    val context = LocalContext.current
 
     SystemBroadcastReceiver(systemAction = BluetoothDevice.ACTION_FOUND) { intent ->
         if(intent?.action == BluetoothDevice.ACTION_FOUND) {
@@ -211,19 +162,31 @@ private fun StatefulBluetoothScanningScreen(
         }
     }
 
-    val isDiscovering: Boolean by isDiscoveringFlow.collectAsStateWithLifecycle()
-
-    contents(isDiscovering, devices.toList())
+    StatelessBluetoothScanningScreen(
+        isDiscovering = isDiscovering,
+        devices = devices,
+        bluetoothDeviceHidConnectionState = bluetoothDeviceHidConnectionState,
+        navigateUp = navigateUp,
+        openSettings = openSettings,
+        startDiscovery = startDiscovery,
+        connectToDevice = connectToDevice,
+        disconnectDevice = disconnectDevice,
+        showHelpBottomSheet = showHelpBottomSheet,
+        onShowHelpBottomSheetChanged = { showHelpBottomSheet = it },
+        modifier = modifier
+    )
 }
 
 @Composable
 private fun StatelessBluetoothScanningScreen(
     isDiscovering: Boolean,
     devices: List<DeviceEntity>,
+    bluetoothDeviceHidConnectionState: DeviceHidConnectionState,
     navigateUp: () -> Unit,
     openSettings: () -> Unit,
     startDiscovery: () -> Unit,
     connectToDevice: (DeviceEntity) -> Unit,
+    disconnectDevice: () -> Unit,
     showHelpBottomSheet: Boolean,
     onShowHelpBottomSheetChanged: (Boolean) -> Unit,
     modifier: Modifier = Modifier
@@ -249,10 +212,26 @@ private fun StatelessBluetoothScanningScreen(
             contentPadding = innerPadding
         )
 
-        HelpBottomSheet(
-            showHelpBottomSheet = showHelpBottomSheet,
-            onShowHelpBottomSheetChanged = onShowHelpBottomSheetChanged
-        )
+        // Dialog / ModalBottomSheet
+        when {
+            bluetoothDeviceHidConnectionState.state == BluetoothHidDevice.STATE_CONNECTING -> {
+                LoadingDialog(
+                    title = stringResource(id = R.string.connection),
+                    message = stringResource(
+                        id = R.string.bluetooth_device_connecting_message,
+                        bluetoothDeviceHidConnectionState.deviceName
+                    ),
+                    buttonText = stringResource(id = android.R.string.cancel),
+                    onButtonClick = disconnectDevice
+                )
+            }
+            showHelpBottomSheet -> {
+                BluetoothScanningScreenHelpModalBottomSheet(
+                    onDismissRequest = { onShowHelpBottomSheetChanged(false) },
+                    modifier = modifier
+                )
+            }
+        }
     }
 }
 
@@ -272,17 +251,16 @@ private fun DiscoveredDevicesListView(
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(dimensionResource(id = R.dimen.padding_standard))
                     .padding(
-                        start = dimensionResource(id = R.dimen.padding_small),
-                        top = dimensionResource(id = R.dimen.padding_small)
+                        horizontal = dimensionResource(id = R.dimen.padding_large),
+                        vertical = dimensionResource(id = R.dimen.remote_button_padding)
                     )
             ) {
                 if(isDiscovering || devices.isNotEmpty()) {
                     Row(
                         modifier = Modifier,
                         verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.padding_standard))
+                        horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.large_icon_size))
                     ) {
                         TextNormalSecondary(
                             text = stringResource(id = R.string.available_devices),
@@ -307,28 +285,11 @@ private fun DiscoveredDevicesListView(
                 name = device.name,
                 macAddress = device.macAddress,
                 icon = device.imageVector,
-                onClick = { onItemClick(device) },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(
-                        horizontal = dimensionResource(id = R.dimen.padding_standard),
-                        vertical = dimensionResource(id = R.dimen.padding_small)
-                    )
+                    .clickable { onItemClick(device) }
+                    .padding(dimensionResource(id = R.dimen.padding_large))
             )
         }
-    }
-}
-
-@Composable
-private fun HelpBottomSheet(
-    showHelpBottomSheet: Boolean,
-    onShowHelpBottomSheetChanged: (Boolean) -> Unit,
-    modifier: Modifier = Modifier
-) {
-    if(showHelpBottomSheet) {
-        BluetoothScanningScreenHelpModalBottomSheet(
-            onDismissRequest = { onShowHelpBottomSheetChanged(false) },
-            modifier = modifier
-        )
     }
 }

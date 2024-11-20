@@ -77,6 +77,29 @@ fun DevicesSelectionScreenHelpModalBottomSheet(
                 append(stringResource(id = R.string.help_device_failed_connection_message_3))
             }
         )
+
+        // Remote control buttons
+        Section(
+            title = stringResource(id = R.string.help_remote_control_buttons_are_not_working_title),
+            message = buildString {
+                append(stringResource(id = R.string.help_remote_control_buttons_are_not_working_message))
+                append("\n\n")
+                append(stringResource(id = R.string.help_remote_control_buttons_are_not_working_check_1))
+                append("\n")
+                append(stringResource(id = R.string.help_remote_control_buttons_are_not_working_check_2))
+                append("\n")
+                append(stringResource(id = R.string.help_remote_control_buttons_are_not_working_check_3))
+                append("\n")
+                append(stringResource(id = R.string.help_device_failed_connection_check_6))
+            },
+            modifier = Modifier.padding(top = dimensionResource(id = R.dimen.padding_standard))
+        )
+
+        // Keyboard
+        Section(
+            title = stringResource(id = R.string.keyboard),
+            message = stringResource(id = R.string.help_keyboard_wrong_character_sent_message)
+        )
     }
 }
 

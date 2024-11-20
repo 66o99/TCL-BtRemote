@@ -100,7 +100,7 @@ fun TextMedium(
         modifier = modifier,
         color = color,
         style = Typography.titleMedium,
-        fontWeight = FontWeight.SemiBold,
+        fontWeight = FontWeight.Medium,
         textAlign = textAlign
     )
 }

@@ -3,6 +3,7 @@ package com.atharok.btremote.ui.components
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.BrightnessHigh
 import androidx.compose.material.icons.rounded.BrightnessLow
+import androidx.compose.material.icons.rounded.Delete
 import androidx.compose.material.icons.rounded.HelpOutline
 import androidx.compose.material.icons.rounded.LinkOff
 import androidx.compose.material.icons.rounded.Settings
@@ -25,12 +26,12 @@ import com.atharok.btremote.ui.views.remoteButtons.StatefulRemoteButton
 
 @Composable
 private fun OverflowMenu(
-    topBarAction: @Composable (showMenu: () -> Unit) -> Unit,
+    item: @Composable (showMenu: () -> Unit) -> Unit,
     content: @Composable (closeDropdownMenu: () -> Unit) -> Unit
 ) {
     var showMenu by remember { mutableStateOf(false) }
 
-    topBarAction { showMenu = !showMenu }
+    item { showMenu = !showMenu }
 
     DropdownMenu(
         expanded = showMenu,
@@ -49,7 +50,7 @@ fun MoreOverflowMenu(
     content: @Composable (closeDropdownMenu: () -> Unit) -> Unit
 ) {
     OverflowMenu(
-        topBarAction = {
+        item = {
             MoreAction(
                 showMenu = it,
                 modifier = modifier
@@ -62,7 +63,7 @@ fun MoreOverflowMenu(
 // ---- DropdownMenuItem ----
 
 @Composable
-private fun DefaultDropdownMenuItem(
+private fun DropdownMenuItemTemplate(
     onClick: () -> Unit,
     image: ImageVector,
     title: String,
@@ -84,7 +85,7 @@ private fun DefaultDropdownMenuItem(
 }
 
 @Composable
-private fun DefaultDropdownMenuItem(
+private fun DropdownMenuItemTemplate(
     touchDown: () -> Unit,
     touchUp: () -> Unit,
     image: ImageVector,
@@ -118,7 +119,7 @@ fun BrightnessIncDropdownMenuItem(
     touchUp: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    DefaultDropdownMenuItem(
+    DropdownMenuItemTemplate(
         touchDown = touchDown,
         touchUp = touchUp,
         image = Icons.Rounded.BrightnessHigh,
@@ -133,7 +134,7 @@ fun BrightnessDecDropdownMenuItem(
     touchUp: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    DefaultDropdownMenuItem(
+    DropdownMenuItemTemplate(
         touchDown = touchDown,
         touchUp = touchUp,
         image = Icons.Rounded.BrightnessLow,
@@ -147,7 +148,7 @@ fun DisconnectDropdownMenuItem(
     disconnect: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    DefaultDropdownMenuItem(
+    DropdownMenuItemTemplate(
         onClick = disconnect,
         image = Icons.Rounded.LinkOff,
         title = stringResource(id = R.string.disconnect),
@@ -160,7 +161,7 @@ fun HelpDropdownMenuItem(
     showHelp: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    DefaultDropdownMenuItem(
+    DropdownMenuItemTemplate(
         onClick = showHelp,
         image = Icons.Rounded.HelpOutline,
         title = stringResource(id = R.string.help),
@@ -173,10 +174,23 @@ fun SettingsDropdownMenuItem(
     showSettingsScreen: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    DefaultDropdownMenuItem(
+    DropdownMenuItemTemplate(
         onClick = showSettingsScreen,
         image = Icons.Rounded.Settings,
         title = stringResource(id = R.string.settings),
+        modifier = modifier
+    )
+}
+
+@Composable
+fun UnpairDropdownMenuItem(
+    unpair: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    DropdownMenuItemTemplate(
+        onClick = unpair,
+        image = Icons.Rounded.Delete,
+        title = stringResource(id = R.string.unpair),
         modifier = modifier
     )
 }

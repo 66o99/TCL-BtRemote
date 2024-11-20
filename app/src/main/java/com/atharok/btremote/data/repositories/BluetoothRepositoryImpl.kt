@@ -32,4 +32,6 @@ class BluetoothRepositoryImpl(
     override fun startDiscovery(): Boolean = bluetoothInteractions.startDiscoveryDevices()
 
     override fun cancelDiscovery(): Boolean = bluetoothInteractions.cancelDiscoveryDevices()
+
+    override fun unpairDevice(address: String): Boolean = bluetoothInteractions.unpairDevice(address)
 }

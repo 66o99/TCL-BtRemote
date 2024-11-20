@@ -17,6 +17,7 @@ fun AppScaffold(
     modifier: Modifier = Modifier,
     navigateUp: @Composable () -> Unit = {},
     topBarActions: @Composable RowScope.() -> Unit = {},
+    snackbarHost: @Composable () -> Unit = {},
     content: @Composable (PaddingValues) -> Unit
 ) {
     val scrollBehavior: TopAppBarScrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
@@ -26,6 +27,7 @@ fun AppScaffold(
         scrollBehavior = scrollBehavior,
         navigateUp = navigateUp,
         topBarActions = topBarActions,
+        snackbarHost = snackbarHost,
         content = content
     )
 }
@@ -38,6 +40,7 @@ fun AppScaffold(
     scrollBehavior: TopAppBarScrollBehavior? = null,
     navigateUp: @Composable () -> Unit = {},
     topBarActions: @Composable RowScope.() -> Unit = {},
+    snackbarHost: @Composable () -> Unit = {},
     content: @Composable (PaddingValues) -> Unit
 ) {
     Scaffold(
@@ -49,7 +52,8 @@ fun AppScaffold(
                 actions = topBarActions,
                 scrollBehavior = scrollBehavior
             )
-        }
+        },
+        snackbarHost = snackbarHost
     ) { innerPadding ->
         content(innerPadding)
     }

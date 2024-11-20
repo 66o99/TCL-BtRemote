@@ -12,4 +12,5 @@ interface BluetoothRepository {
     fun getBondedDevices(): List<DeviceEntity>
     fun startDiscovery(): Boolean
     fun cancelDiscovery(): Boolean
+    fun unpairDevice(address: String): Boolean
 }
