@@ -42,6 +42,7 @@ import com.atharok.btremote.ui.components.LoadingDialog
 import com.atharok.btremote.ui.components.PairingNewDeviceAction
 import com.atharok.btremote.ui.components.SettingsAction
 import com.atharok.btremote.ui.components.SimpleDialog
+import com.atharok.btremote.ui.components.TextMedium
 import com.atharok.btremote.ui.components.TextNormalSecondary
 import com.atharok.btremote.ui.views.DeviceItemView
 import com.atharok.btremote.ui.views.DevicesSelectionScreenHelpModalBottomSheet
@@ -276,24 +277,27 @@ private fun InfoView(
     modifier: Modifier = Modifier
 ) {
     DefaultElevatedCard(modifier = modifier) {
-        Row(
+        Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(dimensionResource(id = R.dimen.padding_medium)),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.padding_medium))
+                .padding(dimensionResource(id = R.dimen.padding_large)),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.Start
         ) {
-            Icon(
-                imageVector = AppIcons.Info,
-                contentDescription = stringResource(R.string.information)
-            )
-
-            Column(
-                modifier = Modifier.fillMaxSize(),
-                verticalArrangement = Arrangement.SpaceBetween
+            Row(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(bottom = dimensionResource(id = R.dimen.padding_standard)),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.remote_button_padding))
             ) {
-                TextNormalSecondary(text = stringResource(R.string.help_info_message))
+                Icon(
+                    imageVector = AppIcons.Info,
+                    contentDescription = stringResource(R.string.information)
+                )
+                TextMedium(text = stringResource(R.string.information))
             }
+            TextNormalSecondary(text = stringResource(R.string.help_info_message))
         }
     }
 }
