@@ -10,6 +10,7 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import com.atharok.btremote.common.extensions.dataStore
 import com.atharok.btremote.common.utils.MOUSE_SPEED_DEFAULT_VALUE
 import com.atharok.btremote.common.utils.isDynamicColorsAvailable
+import com.atharok.btremote.domain.entity.RemoteNavigationEntity
 import com.atharok.btremote.domain.entity.ThemeEntity
 import com.atharok.btremote.domain.entity.remoteInput.keyboard.KeyboardLanguage
 import kotlinx.coroutines.flow.Flow
@@ -30,6 +31,7 @@ class SettingsDataStore(private val context: Context) {
         private const val MUST_CLEAR_INPUT_FIELD_KEY = "must_clear_input_field_key"
         private const val USE_ADVANCED_KEYBOARD_KEY = "use_advanced_keyboard_key"
         private const val USE_MINIMALIST_REMOTE_KEY = "use_minimalist_remote_key"
+        private const val REMOTE_NAVIGATION_KEY = "remote_navigation_key"
     }
 
     private val themeKey = stringPreferencesKey(THEME_KEY)
@@ -42,6 +44,7 @@ class SettingsDataStore(private val context: Context) {
     private val mustClearInputFieldKey = booleanPreferencesKey(MUST_CLEAR_INPUT_FIELD_KEY)
     private val useAdvancedKeyboardKey = booleanPreferencesKey(USE_ADVANCED_KEYBOARD_KEY)
     private val useMinimalistRemoteKey = booleanPreferencesKey(USE_MINIMALIST_REMOTE_KEY)
+    private val remoteNavigationKey = stringPreferencesKey(REMOTE_NAVIGATION_KEY)
 
     private fun Flow<Preferences>.catchException(): Flow<Preferences> = this.catch {
         if (it is IOException) {
@@ -209,6 +212,26 @@ class SettingsDataStore(private val context: Context) {
     suspend fun saveUseMinimalistRemote(useAdvancedKeyboard: Boolean) {
         context.dataStore.edit {
             it[useMinimalistRemoteKey] = useAdvancedKeyboard
+        }
+    }
+
+    val remoteNavigationFlow: Flow<RemoteNavigationEntity> by lazy {
+        context.dataStore.data
+            .catchException()
+            .map { preferences ->
+                preferences[remoteNavigationKey] ?: RemoteNavigationEntity.D_PAD.name
+            }.map {
+                try {
+                    RemoteNavigationEntity.valueOf(it)
+                } catch (e: IllegalArgumentException) {
+                    RemoteNavigationEntity.D_PAD
+                }
+            }
+    }
+
+    suspend fun saveRemoteNavigation(remoteNavigationEntity: RemoteNavigationEntity) {
+        context.dataStore.edit {
+            it[remoteNavigationKey] = remoteNavigationEntity.name
         }
     }
 }

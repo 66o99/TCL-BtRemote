@@ -62,6 +62,7 @@ fun MousePad(
                                     )
                                 }
                             }
+                            inputChanges.forEach { it.consume() }
                         }
                     }
                 }
@@ -93,7 +94,7 @@ private fun doTap(
         inputChange.changedToDown() -> tapTimestamp = currentTime
         inputChange.changedToUp() -> {
             val position = inputChange.position
-            val previousPosition= inputChange.previousPosition
+            val previousPosition = inputChange.previousPosition
             if(currentTime - tapTimestamp < 200 && position.x == previousPosition.x && position.y == previousPosition.y) {
                 updateMouseInput(MouseAction.PAD_TAP)
             }

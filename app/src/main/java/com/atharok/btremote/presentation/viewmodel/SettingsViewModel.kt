@@ -2,6 +2,7 @@ package com.atharok.btremote.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.atharok.btremote.domain.entity.RemoteNavigationEntity
 import com.atharok.btremote.domain.entity.ThemeEntity
 import com.atharok.btremote.domain.entity.remoteInput.keyboard.KeyboardLanguage
 import com.atharok.btremote.domain.usecases.SettingsUseCase
@@ -60,5 +61,10 @@ class SettingsViewModel(
     val useMinimalistRemote: Flow<Boolean> get() = useCase.useMinimalistRemote()
     fun saveUseMinimalistRemote(useMinimalistRemote: Boolean) = viewModelScope.launch {
         useCase.saveUseMinimalistRemote(useMinimalistRemote)
+    }
+
+    val remoteNavigation: Flow<RemoteNavigationEntity> get() = useCase.getRemoteNavigation()
+    fun saveRemoteNavigation(remoteNavigationEntity: RemoteNavigationEntity) = viewModelScope.launch {
+        useCase.saveRemoteNavigation(remoteNavigationEntity)
     }
 }

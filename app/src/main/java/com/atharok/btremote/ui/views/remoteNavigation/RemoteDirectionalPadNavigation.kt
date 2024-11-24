@@ -1,4 +1,4 @@
-package com.atharok.btremote.ui.views.remoteButtons
+package com.atharok.btremote.ui.views.remoteNavigation
 
 import androidx.compose.foundation.LocalIndication
 import androidx.compose.foundation.clickable
@@ -28,6 +28,8 @@ import com.atharok.btremote.common.utils.AppIcons
 import com.atharok.btremote.common.utils.ArcShape
 import com.atharok.btremote.common.utils.REMOTE_INPUT_NONE
 import com.atharok.btremote.domain.entity.remoteInput.RemoteInput
+import com.atharok.btremote.ui.views.remoteButtons.RemoteButtonSurface
+import com.atharok.btremote.ui.views.remoteButtons.StatefulRemoteButton
 
 private val TopArcShape = ArcShape(-45f, -90f)
 private val BottomArcShape = ArcShape(45f, 90f)
@@ -35,7 +37,7 @@ private val LeftArcShape = ArcShape(135f, 90f)
 private val RightArcShape = ArcShape(-45f, 90f)
 
 @Composable
-fun DirectionalButtons(
+fun RemoteDirectionalPadNavigation(
     sendRemoteKeyReport: (bytes: ByteArray) -> Unit,
     modifier: Modifier = Modifier,
     elevation: Dp = dimensionResource(id = R.dimen.elevation_1)
@@ -57,7 +59,7 @@ fun DirectionalButtons(
                 shape = TopArcShape,
                 elevation = elevation
             ) {
-                DirectionalButton(sendReport = sendRemoteKeyReport, bytes = RemoteInput.REMOTE_INPUT_MENU_UP)
+                DPadButton(sendReport = sendRemoteKeyReport, bytes = RemoteInput.REMOTE_INPUT_MENU_UP)
             }
 
             // ---- Bottom ----
@@ -66,7 +68,7 @@ fun DirectionalButtons(
                 shape = BottomArcShape,
                 elevation = elevation
             ) {
-                DirectionalButton(sendReport = sendRemoteKeyReport, bytes = RemoteInput.REMOTE_INPUT_MENU_DOWN)
+                DPadButton(sendReport = sendRemoteKeyReport, bytes = RemoteInput.REMOTE_INPUT_MENU_DOWN)
             }
 
             // ---- Left ----
@@ -75,7 +77,7 @@ fun DirectionalButtons(
                 shape = LeftArcShape,
                 elevation = elevation
             ) {
-                DirectionalButton(sendReport = sendRemoteKeyReport, bytes = RemoteInput.REMOTE_INPUT_MENU_LEFT)
+                DPadButton(sendReport = sendRemoteKeyReport, bytes = RemoteInput.REMOTE_INPUT_MENU_LEFT)
             }
 
             // ---- Right ----
@@ -84,7 +86,7 @@ fun DirectionalButtons(
                 shape = RightArcShape,
                 elevation = elevation
             ) {
-                DirectionalButton(sendReport = sendRemoteKeyReport, bytes = RemoteInput.REMOTE_INPUT_MENU_RIGHT)
+                DPadButton(sendReport = sendRemoteKeyReport, bytes = RemoteInput.REMOTE_INPUT_MENU_RIGHT)
             }
 
             // ---- Center ----
@@ -93,7 +95,7 @@ fun DirectionalButtons(
                 shape = CircleShape,
                 elevation = elevation
             ) {
-                DirectionalButton(sendReport = sendRemoteKeyReport, bytes = RemoteInput.REMOTE_INPUT_MENU_PICK)
+                DPadButton(sendReport = sendRemoteKeyReport, bytes = RemoteInput.REMOTE_INPUT_MENU_PICK)
             }
 
         }
@@ -165,7 +167,7 @@ fun DirectionalButtons(
 }
 
 @Composable
-private fun DirectionalButton(
+private fun DPadButton(
     bytes: ByteArray,
     sendReport: (bytes: ByteArray) -> Unit
 ) {

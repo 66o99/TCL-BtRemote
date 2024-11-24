@@ -1,5 +1,6 @@
 package com.atharok.btremote.domain.repositories
 
+import com.atharok.btremote.domain.entity.RemoteNavigationEntity
 import com.atharok.btremote.domain.entity.ThemeEntity
 import com.atharok.btremote.domain.entity.remoteInput.keyboard.KeyboardLanguage
 import kotlinx.coroutines.flow.Flow
@@ -34,4 +35,7 @@ interface SettingsRepository {
 
     fun useMinimalistRemote(): Flow<Boolean>
     suspend fun saveUseMinimalistRemote(useMinimalistRemote: Boolean)
+
+    fun getRemoteNavigation(): Flow<RemoteNavigationEntity>
+    suspend fun saveRemoteNavigation(remoteNavigationEntity: RemoteNavigationEntity)
 }

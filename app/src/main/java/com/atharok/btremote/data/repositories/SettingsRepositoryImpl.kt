@@ -1,6 +1,7 @@
 package com.atharok.btremote.data.repositories
 
 import com.atharok.btremote.data.dataStore.SettingsDataStore
+import com.atharok.btremote.domain.entity.RemoteNavigationEntity
 import com.atharok.btremote.domain.entity.ThemeEntity
 import com.atharok.btremote.domain.entity.remoteInput.keyboard.KeyboardLanguage
 import com.atharok.btremote.domain.repositories.SettingsRepository
@@ -58,5 +59,11 @@ class SettingsRepositoryImpl(
     override fun useMinimalistRemote(): Flow<Boolean> = settingsDataStore.useMinimalistRemoteFlow
     override suspend fun saveUseMinimalistRemote(useMinimalistRemote: Boolean) {
         settingsDataStore.saveUseMinimalistRemote(useMinimalistRemote)
+    }
+
+    override fun getRemoteNavigation(): Flow<RemoteNavigationEntity> = settingsDataStore.remoteNavigationFlow
+
+    override suspend fun saveRemoteNavigation(remoteNavigationEntity: RemoteNavigationEntity) {
+        settingsDataStore.saveRemoteNavigation(remoteNavigationEntity)
     }
 }

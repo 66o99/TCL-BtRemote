@@ -68,6 +68,11 @@
     <string name="user_interface">Interface</string>
     <string name="use_minimalist_interface">Utiliser l\'interface minimaliste</string>
     <string name="minimalist_interface_info">N\'affiche pas les boutons des chaînes de télévision</string>
+    <string name="navigation_mode">Mode de navigation</string>
+    <string name="d_pad">D-Pad</string>
+    <string name="d_pad_description">Navigation avec les flèches directionnelles</string>
+    <string name="touchpad">Pavé tactile</string>
+    <string name="touchpad_description">Navigation par gestes tactiles</string>
     <string name="about">À propos</string>
     <string name="language">Langue</string>
     <string name="third_party_library">Bibliothèques tierces</string>

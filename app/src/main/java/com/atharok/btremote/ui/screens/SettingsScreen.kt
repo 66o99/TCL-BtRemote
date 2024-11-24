@@ -18,9 +18,12 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.MultiChoiceSegmentedButtonRow
+import androidx.compose.material3.SegmentedButton
 import androidx.compose.material3.Slider
 import androidx.compose.material3.Switch
 import androidx.compose.runtime.Composable
@@ -43,6 +46,7 @@ import com.atharok.btremote.common.utils.MOUSE_SPEED_DEFAULT_VALUE
 import com.atharok.btremote.common.utils.SOURCE_CODE_LINK
 import com.atharok.btremote.common.utils.WEB_SITE_LINK
 import com.atharok.btremote.common.utils.isDynamicColorsAvailable
+import com.atharok.btremote.domain.entity.RemoteNavigationEntity
 import com.atharok.btremote.domain.entity.ThemeEntity
 import com.atharok.btremote.domain.entity.remoteInput.keyboard.KeyboardLanguage
 import com.atharok.btremote.presentation.viewmodel.SettingsViewModel
@@ -287,6 +291,17 @@ fun SettingsScreen(
                     )
             )
 
+            RemoteNavigationItem(
+                remoteNavigationFlow = settingsViewModel.remoteNavigation,
+                onRemoteNavigationChange = { settingsViewModel.saveRemoteNavigation(it) },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(
+                        horizontal = horizontalPadding,
+                        vertical = verticalPadding
+                    )
+            )
+
             HorizontalDivider(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -443,6 +458,61 @@ private fun KeyboardLanguageItem(
         dialogMessage = stringResource(id = R.string.keyboard_language_info),
         modifier = modifier
     )
+}
+
+@Composable
+private fun RemoteNavigationItem(
+    remoteNavigationFlow: Flow<RemoteNavigationEntity>,
+    onRemoteNavigationChange: (RemoteNavigationEntity) -> Unit,
+    modifier: Modifier = Modifier
+) {
+    val remoteNavigation: RemoteNavigationEntity by remoteNavigationFlow
+        .collectAsStateWithLifecycle(initialValue = RemoteNavigationEntity.D_PAD)
+
+    Column(
+        modifier = modifier
+    ) {
+        TextNormal(
+            text = stringResource(id = R.string.navigation_mode),
+            modifier = Modifier.fillMaxSize()
+        )
+
+        TextNormalSecondary(
+            text = stringResource(id = remoteNavigation.description),
+            modifier = Modifier.fillMaxSize().padding(bottom = dimensionResource(R.dimen.padding_small))
+        )
+
+        MultiChoiceSegmentedButtonRow(
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            SegmentedButton(
+                checked = remoteNavigation == RemoteNavigationEntity.D_PAD,
+                onCheckedChange = { onRemoteNavigationChange(RemoteNavigationEntity.D_PAD) },
+                shape = RoundedCornerShape(
+                    topStartPercent = 50,
+                    topEndPercent = 0,
+                    bottomEndPercent = 0,
+                    bottomStartPercent = 50,
+                )
+            ) {
+                TextNormal(text = stringResource(id = R.string.d_pad))
+            }
+
+            SegmentedButton(
+                checked = remoteNavigation == RemoteNavigationEntity.TOUCHPAD,
+                onCheckedChange = { onRemoteNavigationChange(RemoteNavigationEntity.TOUCHPAD) },
+                shape = RoundedCornerShape(
+                    topStartPercent = 0,
+                    topEndPercent = 50,
+                    bottomEndPercent = 50,
+                    bottomStartPercent = 0,
+                )
+            ) {
+                TextNormal(text = stringResource(id = R.string.touchpad))
+            }
+        }
+    }
+
 }
 
 // --- Reusable components ----

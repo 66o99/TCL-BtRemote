@@ -40,6 +40,7 @@ import com.atharok.btremote.common.utils.MOUSE_SPEED_DEFAULT_VALUE
 import com.atharok.btremote.common.utils.REMOTE_INPUT_NONE
 import com.atharok.btremote.common.utils.getKeyboardLayout
 import com.atharok.btremote.domain.entity.DeviceHidConnectionState
+import com.atharok.btremote.domain.entity.RemoteNavigationEntity
 import com.atharok.btremote.domain.entity.remoteInput.MouseAction
 import com.atharok.btremote.domain.entity.remoteInput.RemoteInput
 import com.atharok.btremote.domain.entity.remoteInput.keyboard.KeyboardLanguage
@@ -64,7 +65,8 @@ import com.atharok.btremote.ui.views.mouse.MousePadLayout
 import com.atharok.btremote.ui.views.remote.MinimalistRemoteView
 import com.atharok.btremote.ui.views.remote.RemoteView
 import com.atharok.btremote.ui.views.remote.buttonsLayouts.TVChannelDialog
-import com.atharok.btremote.ui.views.remoteButtons.DirectionalButtons
+import com.atharok.btremote.ui.views.remoteNavigation.RemoteDirectionalPadNavigation
+import com.atharok.btremote.ui.views.remoteNavigation.RemoteSwipeNavigation
 
 private enum class NavigationToggle {
     DIRECTION,
@@ -98,6 +100,9 @@ fun RemoteScreen(
 
     val useMinimalistRemote: Boolean by settingsViewModel.useMinimalistRemote
         .collectAsStateWithLifecycle(initialValue = false)
+
+    val remoteNavigationMode: RemoteNavigationEntity by settingsViewModel.remoteNavigation
+        .collectAsStateWithLifecycle(initialValue = RemoteNavigationEntity.D_PAD)
 
     BackHandler(enabled = true, onBack = closeApp)
 
@@ -168,6 +173,7 @@ fun RemoteScreen(
         navigationLayout = {
             NavigationLayout(
                 settingsViewModel = settingsViewModel,
+                remoteNavigationMode = remoteNavigationMode,
                 sendRemoteKeyReport = sendRemoteKeyReport,
                 sendMouseKeyReport = sendMouseKeyReport,
                 navigationToggle = navigationToggle
@@ -328,6 +334,7 @@ private fun RemotePortraitView(
 @Composable
 private fun NavigationLayout(
     settingsViewModel: SettingsViewModel,
+    remoteNavigationMode: RemoteNavigationEntity,
     sendRemoteKeyReport: (bytes: ByteArray) -> Unit,
     sendMouseKeyReport: (input: MouseAction, x: Float, y: Float, wheel: Float) -> Unit,
     navigationToggle: NavigationToggle
@@ -335,14 +342,20 @@ private fun NavigationLayout(
     FadeAnimatedContent(targetState = navigationToggle) {
         when(it) {
             NavigationToggle.DIRECTION -> {
-                DirectionalButtons(
-                    sendRemoteKeyReport = sendRemoteKeyReport,
-                    modifier = Modifier.aspectRatio(1f)
-                )
+                if(remoteNavigationMode == RemoteNavigationEntity.D_PAD) {
+                    RemoteDirectionalPadNavigation(
+                        sendRemoteKeyReport = sendRemoteKeyReport,
+                        modifier = Modifier.aspectRatio(1f)
+                    )
+                } else {
+                    RemoteSwipeNavigation(
+                        sendRemoteKeyReport = sendRemoteKeyReport,
+                        modifier = Modifier
+                    )
+                }
             }
 
             NavigationToggle.MOUSE -> {
-
                 val mouseSpeed: Float by settingsViewModel.mouseSpeed
                     .collectAsStateWithLifecycle(initialValue = MOUSE_SPEED_DEFAULT_VALUE)
 

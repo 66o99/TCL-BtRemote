@@ -1,5 +1,6 @@
 package com.atharok.btremote.domain.usecases
 
+import com.atharok.btremote.domain.entity.RemoteNavigationEntity
 import com.atharok.btremote.domain.entity.ThemeEntity
 import com.atharok.btremote.domain.entity.remoteInput.keyboard.KeyboardLanguage
 import com.atharok.btremote.domain.repositories.SettingsRepository
@@ -55,5 +56,11 @@ class SettingsUseCase(private val repository: SettingsRepository) {
     fun useMinimalistRemote(): Flow<Boolean> = repository.useMinimalistRemote()
     suspend fun saveUseMinimalistRemote(useMinimalistRemote: Boolean) {
         repository.saveUseMinimalistRemote(useMinimalistRemote)
+    }
+
+    fun getRemoteNavigation(): Flow<RemoteNavigationEntity> = repository.getRemoteNavigation()
+
+    suspend fun saveRemoteNavigation(remoteNavigationEntity: RemoteNavigationEntity) {
+        repository.saveRemoteNavigation(remoteNavigationEntity)
     }
 }

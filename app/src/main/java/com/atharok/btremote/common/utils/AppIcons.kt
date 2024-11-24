@@ -38,6 +38,7 @@ import androidx.compose.material.icons.rounded.MoreVert
 import androidx.compose.material.icons.rounded.Mouse
 import androidx.compose.material.icons.rounded.MusicVideo
 import androidx.compose.material.icons.rounded.OpenInBrowser
+import androidx.compose.material.icons.rounded.OpenWith
 import androidx.compose.material.icons.rounded.Palette
 import androidx.compose.material.icons.rounded.Pause
 import androidx.compose.material.icons.rounded.PlayArrow
@@ -101,6 +102,7 @@ object AppIcons {
     val Pick get() = Icons.Outlined.Circle
 
     val Controller get() = Icons.Rounded.ControlCamera
+    val Gesture get() = Icons.Rounded.OpenWith
     val Disconnect get() = Icons.Rounded.LinkOff
 
     // ---- Bluetooth ----
