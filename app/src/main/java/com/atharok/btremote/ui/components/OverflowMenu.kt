@@ -188,3 +188,16 @@ fun UnpairDropdownMenuItem(
         modifier = modifier
     )
 }
+
+@Composable
+fun AutoConnectDropdownMenuItem(
+    autoConnect: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    DropdownMenuItemTemplate(
+        onClick = autoConnect,
+        image = AppIcons.EnabledAutoConnect,
+        title = stringResource(id = R.string.automatic_connect),
+        modifier = modifier
+    )
+}

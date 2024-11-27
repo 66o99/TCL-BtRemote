@@ -2,6 +2,7 @@ package com.atharok.btremote.domain.repositories
 
 import com.atharok.btremote.domain.entity.DeviceHidConnectionState
 import com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard.VirtualKeyboardLayout
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.StateFlow
 
 interface BluetoothHidProfileRepository {
@@ -25,4 +26,8 @@ interface BluetoothHidProfileRepository {
     fun sendReport(id: Int, bytes: ByteArray): Boolean
 
     fun sendTextReport(text: String, virtualKeyboardLayout: VirtualKeyboardLayout): Boolean
+
+    fun getAutoConnectDeviceAddressFlow(): Flow<String>
+
+    suspend fun saveAutoConnectDeviceAddress(address: String)
 }

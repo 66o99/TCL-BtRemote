@@ -37,6 +37,10 @@
     <string name="unpair_device_warning_message">This device will be completely unpaired from your device. Do you really want to continue?</string>
     <string name="unpair_device_successful">The device has been successfully dissociated.</string>
     <string name="unpair_device_failure">Failure! The device could not be dissociated.</string>
+    <string name="automatic_connect">Automatic Connection</string>
+    <string name="enabled_automatic_connection_message">Do you want to automatically connect to this device on app startup?</string>
+    <string name="disabled_automatic_connection_message">Do you want to disable the automatic connection?</string>
+    <string name="automatic_shorten">Auto</string>
 
     <!-- Bluetooth Pairing -->
     <string name="pairing_a_device">Pairing a device</string>

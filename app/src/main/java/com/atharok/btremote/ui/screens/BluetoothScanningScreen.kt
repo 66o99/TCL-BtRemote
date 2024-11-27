@@ -59,7 +59,7 @@ fun BluetoothScanningScreen(
     isDiscoveringFlow: StateFlow<Boolean>,
     startDiscovery: () -> Unit,
     cancelDiscovery: () -> Unit,
-    connectToDevice: (DeviceEntity) -> Unit,
+    connectToDevice: (String) -> Unit,
     disconnectDevice: () -> Unit,
     openRemoteScreen: (deviceName: String) -> Unit,
     openSettings: () -> Unit,
@@ -96,7 +96,7 @@ private fun BluetoothScanningScreen(
     isDiscoveringFlow: StateFlow<Boolean>,
     startDiscovery: () -> Unit,
     cancelDiscovery: () -> Unit,
-    connectToDevice: (DeviceEntity) -> Unit,
+    connectToDevice: (String) -> Unit,
     disconnectDevice: () -> Unit,
     openRemoteScreen: (deviceName: String) -> Unit,
     openSettings: () -> Unit,
@@ -185,7 +185,7 @@ private fun StatelessBluetoothScanningScreen(
     navigateUp: () -> Unit,
     openSettings: () -> Unit,
     startDiscovery: () -> Unit,
-    connectToDevice: (DeviceEntity) -> Unit,
+    connectToDevice: (String) -> Unit,
     disconnectDevice: () -> Unit,
     showHelpBottomSheet: Boolean,
     onShowHelpBottomSheetChanged: (Boolean) -> Unit,
@@ -207,7 +207,7 @@ private fun StatelessBluetoothScanningScreen(
         DiscoveredDevicesListView(
             isDiscovering = isDiscovering,
             devices = devices,
-            onItemClick = connectToDevice,
+            connectToDevice = connectToDevice,
             modifier = Modifier,
             contentPadding = innerPadding
         )
@@ -239,7 +239,7 @@ private fun StatelessBluetoothScanningScreen(
 private fun DiscoveredDevicesListView(
     isDiscovering: Boolean,
     devices: List<DeviceEntity>,
-    onItemClick: (DeviceEntity) -> Unit,
+    connectToDevice: (String) -> Unit,
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues = PaddingValues(0.dp)
 ) {
@@ -287,7 +287,7 @@ private fun DiscoveredDevicesListView(
                 icon = device.imageVector,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .clickable { onItemClick(device) }
+                    .clickable { connectToDevice(device.macAddress) }
                     .padding(dimensionResource(id = R.dimen.padding_large))
             )
         }

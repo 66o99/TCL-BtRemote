@@ -36,6 +36,7 @@ import androidx.compose.material.icons.rounded.Key
 import androidx.compose.material.icons.rounded.Keyboard
 import androidx.compose.material.icons.rounded.KeyboardArrowDown
 import androidx.compose.material.icons.rounded.KeyboardArrowUp
+import androidx.compose.material.icons.rounded.Link
 import androidx.compose.material.icons.rounded.LinkOff
 import androidx.compose.material.icons.rounded.Lock
 import androidx.compose.material.icons.rounded.MoreVert
@@ -129,6 +130,7 @@ object AppIcons: KoinComponent {
     val BluetoothDisabled get() = Icons.Rounded.BluetoothDisabled
     val BluetoothPairing get() = Icons.AutoMirrored.Rounded.BluetoothSearching
     val BluetoothUnpair get() = Icons.Rounded.Delete
+    val EnabledAutoConnect get() = Icons.Rounded.Link
 
     // ---- BT Category ----
 

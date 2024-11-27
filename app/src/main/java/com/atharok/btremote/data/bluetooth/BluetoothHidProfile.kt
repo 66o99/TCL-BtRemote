@@ -8,19 +8,33 @@ import android.bluetooth.BluetoothProfile
 import android.bluetooth.BluetoothProfile.ServiceListener
 import android.content.Context
 import androidx.annotation.RequiresPermission
+import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.emptyPreferences
+import androidx.datastore.preferences.core.stringPreferencesKey
+import com.atharok.btremote.common.extensions.dataStore
 import com.atharok.btremote.common.utils.KEYBOARD_REPORT_ID
 import com.atharok.btremote.common.utils.REMOTE_INPUT_NONE
 import com.atharok.btremote.common.utils.checkBluetoothConnectPermission
 import com.atharok.btremote.domain.entity.DeviceHidConnectionState
 import com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard.VirtualKeyboardLayout
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.runBlocking
+import java.io.IOException
 
 class BluetoothHidProfile(
     private val context: Context,
     private val adapter: BluetoothAdapter?,
     private val hidSettings: BluetoothHidDeviceAppSdpSettings
 ) {
+
+    companion object {
+        private const val DATA_STORE_AUTO_CONNECT_DEVICE_ADDRESS_KEY = "auto_connect_device_address_key"
+    }
 
     private var bluetoothHidDevice: BluetoothHidDevice? = null
 
@@ -33,6 +47,7 @@ class BluetoothHidProfile(
     // ---- HID Profile ----
 
     fun startBluetoothHidProfile() {
+        collectAutoConnectDeviceAddress()
         adapter?.getProfileProxy(context, serviceListener, BluetoothProfile.HID_DEVICE)
     }
 
@@ -75,6 +90,9 @@ class BluetoothHidProfile(
         override fun onAppStatusChanged(pluggedDevice: BluetoothDevice?, registered: Boolean) {
             super.onAppStatusChanged(pluggedDevice, registered)
             _isBluetoothHidProfileRegistered.value = registered
+            if(registered && autoConnectDeviceAddress != "") {
+                connectDevice(autoConnectDeviceAddress)
+            }
         }
 
         override fun onConnectionStateChanged(device: BluetoothDevice?, state: Int) {
@@ -175,5 +193,40 @@ class BluetoothHidProfile(
             }
         }
         return success
+    }
+
+    // ---- Auto Connect ----
+
+    // Auto Connect : Initialization before starting the HID service
+
+    private var autoConnectDeviceAddress: String = ""
+
+    private fun collectAutoConnectDeviceAddress() = runBlocking {
+        autoConnectDeviceAddress = autoConnectDeviceAddressFlow.first()
+    }
+
+    // Auto Connect : DataStore
+
+    private val autoConnectDeviceAddressKey = stringPreferencesKey(DATA_STORE_AUTO_CONNECT_DEVICE_ADDRESS_KEY)
+
+    val autoConnectDeviceAddressFlow: Flow<String> by lazy {
+        context.dataStore.data
+            .catch {
+                if (it is IOException) {
+                    it.printStackTrace()
+                    emit(emptyPreferences())
+                } else {
+                    throw it
+                }
+            }
+            .map { preferences ->
+                preferences[autoConnectDeviceAddressKey] ?: ""
+            }
+    }
+
+    suspend fun saveAutoConnectDeviceAddress(macAddress: String) {
+        context.dataStore.edit {
+            it[autoConnectDeviceAddressKey] = macAddress
+        }
     }
 }

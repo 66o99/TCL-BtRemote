@@ -33,6 +33,10 @@
     <string name="unpair_device_warning_message">Ce périphérique sera complètement dissocié de votre appareil. Voulez-vous vraiment continuer ?</string>
     <string name="unpair_device_successful">L\'appareil a été correctement dissocié.</string>
     <string name="unpair_device_failure">Échec ! L\'appareil n\'a pas pu être dissocié.</string>
+    <string name="automatic_connect">Connexion automatique</string>
+    <string name="enabled_automatic_connection_message">Souhaitez-vous vous connecter automatiquement à cet appareil au démarrage de l\'application ?</string>
+    <string name="disabled_automatic_connection_message">Voulez-vous supprimer la connexion automatique ?</string>
+    <string name="automatic_shorten">Auto</string>
     <!-- Bluetooth Pairing -->
     <string name="pairing_a_device">Associer un appareil</string>
     <string name="available_devices">Appareils disponibles</string>

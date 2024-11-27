@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -16,7 +17,9 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.stringResource
 import com.atharok.btremote.R
+import com.atharok.btremote.ui.components.AutoConnectDropdownMenuItem
 import com.atharok.btremote.ui.components.MoreOverflowMenu
 import com.atharok.btremote.ui.components.TextMedium
 import com.atharok.btremote.ui.components.TextNormalSecondary
@@ -59,6 +62,8 @@ fun DeviceItemView(
     name: String,
     macAddress: String,
     icon: ImageVector,
+    isAutoConnectDeviceAddress: Boolean,
+    autoConnect: () -> Unit,
     unpair: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -71,8 +76,32 @@ fun DeviceItemView(
             name, macAddress, icon, Modifier.weight(1f)
         )
 
+        if(isAutoConnectDeviceAddress) {
+            Surface(
+                modifier = Modifier.padding(
+                    horizontal = dimensionResource(id = R.dimen.padding_small)
+                ),
+                shape = CircleShape,
+                tonalElevation = dimensionResource(id = R.dimen.elevation_3)
+            ) {
+                TextNormalSecondary(
+                    text = stringResource(id = R.string.automatic_shorten),
+                    modifier = Modifier.padding(
+                        horizontal = dimensionResource(id = R.dimen.padding_large),
+                        vertical = dimensionResource(id = R.dimen.padding_small)
+                    )
+                )
+            }
+        }
+
         Box(contentAlignment = Alignment.CenterEnd) {
             MoreOverflowMenu { closeDropdownMenu: () -> Unit ->
+                AutoConnectDropdownMenuItem(
+                    autoConnect = {
+                        autoConnect()
+                        closeDropdownMenu()
+                    }
+                )
                 UnpairDropdownMenuItem(
                     unpair = {
                         unpair()

@@ -3,16 +3,18 @@ package com.atharok.btremote.presentation.viewmodel
 import android.content.Context
 import android.content.Intent
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.atharok.btremote.common.utils.KEYBOARD_REPORT_ID
 import com.atharok.btremote.common.utils.MOUSE_REPORT_ID
 import com.atharok.btremote.common.utils.REMOTE_REPORT_ID
-import com.atharok.btremote.domain.entity.DeviceEntity
 import com.atharok.btremote.domain.entity.DeviceHidConnectionState
 import com.atharok.btremote.domain.entity.remoteInput.MouseAction
 import com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard.VirtualKeyboardLayout
 import com.atharok.btremote.domain.usecases.BluetoothHidUseCase
 import com.atharok.btremote.presentation.services.BluetoothHidService
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
 import kotlin.math.roundToInt
 
 class BluetoothHidViewModel(
@@ -37,7 +39,7 @@ class BluetoothHidViewModel(
         return useCase.isBluetoothHidProfileRegistered()
     }
 
-    fun connectDevice(device: DeviceEntity): Boolean = useCase.connectDevice(device.macAddress)
+    fun connectDevice(macAddress: String): Boolean = useCase.connectDevice(macAddress)
 
     fun disconnectDevice(): Boolean = useCase.disconnectDevice()
 
@@ -68,5 +70,10 @@ class BluetoothHidViewModel(
 
     private fun sendReport(id: Int, bytes: ByteArray): Boolean {
         return useCase.sendReport(id, bytes)
+    }
+
+    fun getAutoConnectDeviceAddressFlow(): Flow<String> = useCase.getAutoConnectDeviceAddressFlow()
+    fun saveAutoConnectDeviceAddress(address: String) = viewModelScope.launch {
+        useCase.saveAutoConnectDeviceAddress(address)
     }
 }

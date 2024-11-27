@@ -4,6 +4,7 @@ import com.atharok.btremote.data.bluetooth.BluetoothHidProfile
 import com.atharok.btremote.domain.entity.DeviceHidConnectionState
 import com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard.VirtualKeyboardLayout
 import com.atharok.btremote.domain.repositories.BluetoothHidProfileRepository
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.StateFlow
 
 class BluetoothHidProfileRepositoryImpl(private val hidProfile: BluetoothHidProfile): BluetoothHidProfileRepository {
@@ -44,5 +45,11 @@ class BluetoothHidProfileRepositoryImpl(private val hidProfile: BluetoothHidProf
 
     override fun sendTextReport(text: String, virtualKeyboardLayout: VirtualKeyboardLayout): Boolean {
         return hidProfile.sendTextReport(text, virtualKeyboardLayout)
+    }
+
+    override fun getAutoConnectDeviceAddressFlow(): Flow<String> = hidProfile.autoConnectDeviceAddressFlow
+
+    override suspend fun saveAutoConnectDeviceAddress(address: String) {
+        hidProfile.saveAutoConnectDeviceAddress(address)
     }
 }

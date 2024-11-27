@@ -116,14 +116,18 @@ fun ComposeRoot(
                                 stopHidService = { hidViewModel.stopService(context) },
                                 devicesFlow = bluetoothViewModel.devicesEntityObserver,
                                 findBondedDevices = { bluetoothViewModel.findBondedDevices() },
-                                connectDevice = { device ->
-                                    if(!hidViewModel.connectDevice(device)) {
+                                connectDevice = { macAddress ->
+                                    if(!hidViewModel.connectDevice(macAddress)) {
                                         hidViewModel.disconnectDevice()
-                                        hidViewModel.connectDevice(device)
+                                        hidViewModel.connectDevice(macAddress)
                                     }
                                 },
                                 disconnectDevice = { hidViewModel.disconnectDevice() },
                                 unpairDevice = { bluetoothViewModel.unpairDevice(it) },
+                                autoConnectionDeviceAddressFlow= hidViewModel.getAutoConnectDeviceAddressFlow(),
+                                saveAutoConnectionDeviceAddress = {
+                                    hidViewModel.saveAutoConnectDeviceAddress(it)
+                                },
                                 openRemoteScreen = {
                                     navController.navigateTo(AppNavDestination.BluetoothRemoteDestination.route)
                                 },
@@ -151,9 +155,9 @@ fun ComposeRoot(
                                 isDiscoveringFlow = bluetoothViewModel.isDiscovering,
                                 startDiscovery = { bluetoothViewModel.startDiscovery() },
                                 cancelDiscovery = { bluetoothViewModel.cancelDiscovery() },
-                                connectToDevice = { device ->
+                                connectToDevice = { macAddress ->
                                     bluetoothViewModel.cancelDiscovery()
-                                    hidViewModel.connectDevice(device)
+                                    hidViewModel.connectDevice(macAddress)
                                 },
                                 disconnectDevice = { hidViewModel.disconnectDevice() },
                                 openRemoteScreen = {
