@@ -137,4 +137,12 @@
     <string name="use_the_gyroscope_to_control_the_mouse">Versnellingsmeter gebruiken om muis te bedienen</string>
     <string name="keyboard_tr">Turks</string>
     <string name="keyboard_he">Hebreeuws</string>
+    <string name="unpair_device_failure">Het apparaat kan niet worden ontkoppeld.</string>
+    <string name="automatic_connect">Automatisch verbinden</string>
+    <string name="disabled_automatic_connection_message">Wil je automatisch verbinden uitschakelen?</string>
+    <string name="automatic_shorten">Automatisch</string>
+    <string name="pairing_from_the_remote_device">Koppelen vanaf extern apparaat</string>
+    <string name="name_of_this_device">Naam van dit apparaat: %1$s.</string>
+    <string name="unpair_device_successful">Het apparaat is ontkoppeld.</string>
+    <string name="enabled_automatic_connection_message">Wil je automatisch verbinding maken met dit apparaat na het openen van de app?</string>
 </resources>
