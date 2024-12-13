@@ -16,6 +16,7 @@ import com.atharok.btremote.data.repositories.BluetoothRepositoryImpl
 import com.atharok.btremote.data.repositories.GyroscopeSensorRepositoryImpl
 import com.atharok.btremote.data.repositories.SettingsRepositoryImpl
 import com.atharok.btremote.data.sensor.GyroscopeSensor
+import com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard.BGAdvancedKeyboardLayout
 import com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard.BRAdvancedKeyboardLayout
 import com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard.CSAdvancedKeyboardLayout
 import com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard.DEAdvancedKeyboardLayout
@@ -29,6 +30,7 @@ import com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard.
 import com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard.TRAdvancedKeyboardLayout
 import com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard.UKAdvancedKeyboardLayout
 import com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard.USAdvancedKeyboardLayout
+import com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard.BGVirtualKeyboardLayout
 import com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard.BRVirtualKeyboardLayout
 import com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard.CSVirtualKeyboardLayout
 import com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard.DEVirtualKeyboardLayout
@@ -101,6 +103,7 @@ private val androidModule: Module = module {
     single { ElVirtualKeyboardLayout() }
     single { TRVirtualKeyboardLayout() }
     single { HEVirtualKeyboardLayout() }
+    single { BGVirtualKeyboardLayout() }
 
     single { USAdvancedKeyboardLayout(context = androidContext()) }
     single { UKAdvancedKeyboardLayout(context = androidContext()) }
@@ -115,6 +118,7 @@ private val androidModule: Module = module {
     single { ElAdvancedKeyboardLayout(context = androidContext()) }
     single { TRAdvancedKeyboardLayout(context = androidContext()) }
     single { HEAdvancedKeyboardLayout(context = androidContext()) }
+    single { BGAdvancedKeyboardLayout(context = androidContext()) }
 
     factory<Locale> {
         androidContext().resources.configuration.locales[0]
