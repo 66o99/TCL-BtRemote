@@ -180,4 +180,5 @@
     <string name="minimalist_interface_info">Zeige die TV-Kanal-Knöpfe nicht an</string>
     <string name="bluetooth_address_prompt">Bitte gebe die Bluetooth-Adresse des entfernten Geräts ein:</string>
     <string name="tv">TV</string>
+    <string name="keyboard_bg">Bulgarisch</string>
 </resources>
