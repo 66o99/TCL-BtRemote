@@ -180,4 +180,5 @@
     <string name="pairing_from_a_remote_device_step_3_content_1">Se o pareamento for bem-sucedido, o dispositivo Android deve se conectar automaticamente ao dispositivo remoto. Porém, esta conexão não usa o protocolo HID (Dispositivo de Interface Humana), o que previne o controle remoto de funcionar. Para resolver este problema:</string>
     <string name="d_pad_description">Navegação via controles direcionais</string>
     <string name="touchpad">Touchpad</string>
+    <string name="keyboard_bg">Língua búlgara</string>
 </resources>
