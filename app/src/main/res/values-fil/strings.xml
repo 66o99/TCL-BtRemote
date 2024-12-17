@@ -172,4 +172,13 @@
     <string name="use_minimalist_interface">Gamitin ang minimalist na interface</string>
     <string name="minimalist_interface_info">Hindi pinapakita ang mga TV channel na button</string>
     <string name="pairing_from_a_remote_device_step_4_content">Kung sinundan mo ang mga nakaraang hakbang, matagumpay ang pagpapares, at nadiskonekta ang parehong device, maari mong piliin ang \"%1$s\" na button. Dapat lumabas ang remote device sa listahan ng mga nakapares na device. Piliin iyan para i-establish ang koneksyon sa pamamagitan ng HID protocol.</string>
+    <string name="navigation_mode">Mode ng Navigation</string>
+    <string name="d_pad">D-Pad</string>
+    <string name="d_pad_description">Navigation sa pamamagitan ng mga direksyonal na kontrol</string>
+    <string name="touchpad">Touchpad</string>
+    <string name="touchpad_description">Navigation sa pamamagitan ng mga touch gesture</string>
+    <string name="keyboard_bg">Bulgarian</string>
+    <string name="tv">TV</string>
+    <string name="information">Impormasyon</string>
+    <string name="help_info_message">Kung makaranas ka ng anumang mga isyu, mangyaring suriin ang seksyon ng tulong.</string>
 </resources>
