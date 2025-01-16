@@ -67,6 +67,8 @@ fun DevicesSelectionScreenHelpModalBottomSheet(
                 append("\n")
                 append(stringResource(id = R.string.help_device_failed_connection_check_4))
                 append("\n\n")
+                append(stringResource(id = R.string.help_device_failed_connection_message_4))
+                append("\n\n")
                 append(stringResource(id = R.string.help_device_failed_connection_message_2))
                 append("\n\n")
                 append(stringResource(id = R.string.help_device_failed_connection_check_5))
@@ -90,6 +92,8 @@ fun DevicesSelectionScreenHelpModalBottomSheet(
                 append(stringResource(id = R.string.help_remote_control_buttons_are_not_working_check_3))
                 append("\n")
                 append(stringResource(id = R.string.help_device_failed_connection_check_6))
+                append("\n\n")
+                append(stringResource(id = R.string.help_remote_control_buttons_are_not_working_message_2))
             },
             modifier = Modifier.padding(top = dimensionResource(id = R.dimen.padding_medium))
         )
@@ -150,6 +154,8 @@ fun BluetoothScanningScreenHelpModalBottomSheet(
                 append(stringResource(id = R.string.help_device_failed_connection_check_3))
                 append("\n")
                 append(stringResource(id = R.string.help_device_failed_connection_check_4))
+                append("\n\n")
+                append(stringResource(id = R.string.help_device_failed_connection_message_4))
             }
         )
     }
@@ -178,6 +184,8 @@ fun RemoteScreenHelpModalBottomSheet(
                 append(stringResource(id = R.string.help_remote_control_buttons_are_not_working_check_3))
                 append("\n")
                 append(stringResource(id = R.string.help_remote_control_buttons_are_not_working_check_4))
+                append("\n\n")
+                append(stringResource(id = R.string.help_remote_control_buttons_are_not_working_message_2))
             },
             modifier = Modifier.padding(top = dimensionResource(id = R.dimen.padding_medium))
         )
