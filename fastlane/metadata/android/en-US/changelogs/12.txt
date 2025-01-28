@@ -1,0 +1,10 @@
+Full list of changes here: https://gitlab.com/Atharok/BtRemote/-/releases
+
+- Updated translations.
+- Improved notification.
+- Added some buttons in the notification.
+- HID profile configuration fix: the app can now connect to a Windows device. If you've already paired your device with Windows, you'll need to unpair and re-pair both devices to reset the HID profile.
+- Added new help messages.
+- Minor improvements.
+- Updated SDK to API 35 (Android 15).
+- Updated dependencies.
