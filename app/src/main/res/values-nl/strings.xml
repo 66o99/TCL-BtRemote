@@ -145,4 +145,6 @@
     <string name="name_of_this_device">Naam van dit apparaat: %1$s.</string>
     <string name="unpair_device_successful">Het apparaat is ontkoppeld.</string>
     <string name="enabled_automatic_connection_message">Wil je automatisch verbinding maken met dit apparaat na het openen van de app?</string>
+    <string name="open">Openen</string>
+    <string name="pairing_from_a_remote_device_intro_title">Instelhulp voor het koppelen van een apparaat vanaf elders</string>
 </resources>

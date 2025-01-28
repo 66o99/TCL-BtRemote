@@ -67,13 +67,13 @@
     <string name="keyboard">Клавиатура</string>
     <string name="keyboard_language">Язык клавиатуры</string>
     <string name="keyboard_language_info">Убедитесь, что выбранный язык клавиатуры соответствует языку, настроенному на удаленном устройстве.</string>
-    <string name="keyboard_us">English (United States)</string>
-    <string name="keyboard_uk">English (United Kingdom)</string>
-    <string name="keyboard_es">Spanish</string>
-    <string name="keyboard_fr">French</string>
-    <string name="keyboard_de">German</string>
-    <string name="keyboard_ru">Russian</string>
-    <string name="keyboard_cs">Czech</string>
+    <string name="keyboard_us">Английский (Соединенные Штаты)</string>
+    <string name="keyboard_uk">Английский (Великобритания)</string>
+    <string name="keyboard_es">Испанский</string>
+    <string name="keyboard_fr">Французский</string>
+    <string name="keyboard_de">Немецкий</string>
+    <string name="keyboard_ru">Русский</string>
+    <string name="keyboard_cs">Чешский</string>
     <string name="send">Отправить</string>
     <string name="enter">Войти</string>
     <string name="escape">Выйти</string>
@@ -170,7 +170,7 @@
     <string name="keyboard_el">Греческий</string>
     <string name="keyboard_he">Иврит</string>
     <string name="information">Информация</string>
-    <string name="help_info_message">Если у вас возникли какие-либо проблемы, пожалуйста, посетите раздел справки.</string>
+    <string name="help_info_message">Если у вас возникли какие-либо проблемы, пожалуйста, посетите раздел помощи.</string>
     <string name="tv">ТВ</string>
     <string name="unpair_device_warning_message">Это устройство будет полностью отсоединено от вашего устройства. Вы действительно хотите продолжить?</string>
     <string name="unpair">Отсоединить</string>
@@ -204,4 +204,6 @@
     <string name="use_minimalist_interface">Используйте минималистичный интерфейс</string>
     <string name="help_device_failed_connection_message_4">Если на вашем устройстве включены параметры разработчика, возможно, также активирован параметр \'Отключить профиль устройства Bluetooth HID\'. Если этот параметр доступен в параметрах разработчика на вашем устройстве, вам необходимо отключить его, чтобы обеспечить надлежащую функциональность подключения.</string>
     <string name="help_remote_control_buttons_are_not_working_message_2">Каждое приложение, использующее протокол HID, может использовать свой профиль. Если вы ранее сопрягали устройства с помощью другого приложения, вам может потребоваться повторное сопряжение, чтобы сбросить профиль. Без этой процедуры кнопки могут работать неправильно или передавать неверные значения.</string>
+    <string name="open">Открыть</string>
+    <string name="connected_off">Нет подключенных устройств</string>
 </resources>
