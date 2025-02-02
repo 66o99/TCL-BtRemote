@@ -76,12 +76,10 @@ class BluetoothHidService : Service() {
 
     override fun onDestroy() {
         stopBluetoothHidProfile()
-        job?.cancel()
         super.onDestroy()
     }
 
     override fun onTaskRemoved(rootIntent: Intent?) {
-        stopBluetoothHidProfile()
         stopSelf()
         super.onTaskRemoved(rootIntent)
     }
@@ -205,6 +203,8 @@ class BluetoothHidService : Service() {
     }
 
     private fun stopBluetoothHidProfile() {
+        job?.cancel()
+        job = null
         useCase.stopHidProfile()
         unregisterReceiver()
     }
@@ -217,7 +217,6 @@ class BluetoothHidService : Service() {
                 BluetoothAdapter.ACTION_STATE_CHANGED -> {
                     val bluetoothState = intent.getIntExtra(BluetoothAdapter.EXTRA_STATE, BluetoothAdapter.ERROR)
                     if (bluetoothState == BluetoothAdapter.STATE_OFF) {
-                        stopBluetoothHidProfile()
                         stopSelf() // Stop service if bluetooth is disabled
                     }
                 }
@@ -234,7 +233,7 @@ class BluetoothHidService : Service() {
         try {
             unregisterReceiver(bluetoothStateChangeReceiver)
         } catch (e: java.lang.RuntimeException) {
-            Log.i("unregisterReceiver()", "Receiver already unregister")
+            Log.e("unregisterReceiver()", "Receiver already unregister: ${e.message ?: e.toString()}")
         }
     }
 }
