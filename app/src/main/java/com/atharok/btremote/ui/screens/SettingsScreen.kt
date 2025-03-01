@@ -1,12 +1,12 @@
 package com.atharok.btremote.ui.screens
 
-import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.provider.Settings
+import androidx.activity.compose.LocalActivity
 import androidx.annotation.StringRes
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -55,7 +55,6 @@ import com.atharok.btremote.ui.components.ListDialog
 import com.atharok.btremote.ui.components.NavigateUpAction
 import com.atharok.btremote.ui.components.TextNormal
 import com.atharok.btremote.ui.components.TextNormalSecondary
-import kotlinx.coroutines.flow.Flow
 
 @Composable
 fun SettingsScreen(
@@ -82,9 +81,25 @@ fun SettingsScreen(
             val horizontalPadding = dimensionResource(id = R.dimen.padding_max)
             val verticalPadding = dimensionResource(id = R.dimen.padding_large)
 
+            // Appearance
+            val theme: ThemeEntity by settingsViewModel.theme.collectAsStateWithLifecycle(initialValue = ThemeEntity.SYSTEM)
+            val useBlackColorForDarkTheme: Boolean by settingsViewModel.useBlackColorForDarkTheme.collectAsStateWithLifecycle(initialValue = false)
+            val useFullScreen: Boolean by settingsViewModel.useFullScreen.collectAsStateWithLifecycle(initialValue = false)
+            // Remote
+            val useMinimalistRemote: Boolean by settingsViewModel.useMinimalistRemote.collectAsStateWithLifecycle(initialValue = false)
+            val remoteNavigation: RemoteNavigationEntity by settingsViewModel.remoteNavigation.collectAsStateWithLifecycle(initialValue = RemoteNavigationEntity.D_PAD)
+            // Mouse
+            val mouseSpeed by settingsViewModel.mouseSpeed.collectAsStateWithLifecycle(initialValue = MOUSE_SPEED_DEFAULT_VALUE)
+            val shouldInvertMouseScrollingDirection: Boolean by settingsViewModel.shouldInvertMouseScrollingDirection.collectAsStateWithLifecycle(initialValue = false)
+            val useGyroscope: Boolean by settingsViewModel.useGyroscope.collectAsStateWithLifecycle(initialValue = false)
+            // Keyboard
+            val keyboardLanguage: KeyboardLanguage by settingsViewModel.keyboardLanguage.collectAsStateWithLifecycle(initialValue = KeyboardLanguage.ENGLISH_US)
+            val mustClearInputField: Boolean by settingsViewModel.mustClearInputField.collectAsStateWithLifecycle(initialValue = true)
+            val useAdvancedKeyboard: Boolean by settingsViewModel.useAdvancedKeyboard.collectAsStateWithLifecycle(initialValue = false)
+
             // ---- Appearance ----
 
-            TitleItem(
+            SettingsTitle(
                 text = stringResource(id = R.string.appearance),
                 icon = AppIcons.Appearance,
                 iconDescription = stringResource(id = R.string.appearance),
@@ -96,10 +111,13 @@ fun SettingsScreen(
                     )
             )
 
-            ThemeItem(
-                themeFlow = settingsViewModel.theme,
-                onThemeChange = { settingsViewModel.changeTheme(it) },
-                context = context,
+            SettingsListDialog(
+                title = R.string.theme,
+                dialogMessage = null,
+                value = theme,
+                onValueChange = { settingsViewModel.changeTheme(it) },
+                items = ThemeEntity.entries,
+                convertValueToString = { context.getString(it.stringRes) },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(
@@ -108,12 +126,11 @@ fun SettingsScreen(
                     )
             )
 
-            StatefulSettingsSwitchItem(
-                isEnabledFlow = settingsViewModel.useBlackColorForDarkTheme,
-                onEnabledFlowChange = { settingsViewModel.setUseBlackColorForDarkTheme(it) },
-                initialValue = false,
+            SettingsSwitch(
                 primaryText = stringResource(id = R.string.theme_black),
                 secondaryText = stringResource(id = R.string.theme_black_oled_info),
+                checked = useBlackColorForDarkTheme,
+                onCheckedChange = { settingsViewModel.setUseBlackColorForDarkTheme(it) },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(
@@ -123,12 +140,12 @@ fun SettingsScreen(
             )
 
             if(isDynamicColorsAvailable()) {
-                StatefulSettingsSwitchItem(
-                    isEnabledFlow = settingsViewModel.useDynamicColors,
-                    onEnabledFlowChange = { settingsViewModel.setUseDynamicColors(it) },
-                    initialValue = true,
+                val useDynamicColors: Boolean by settingsViewModel.useDynamicColors.collectAsStateWithLifecycle(initialValue = true)
+                SettingsSwitch(
                     primaryText = stringResource(id = R.string.dynamic_colors),
                     secondaryText = null,
+                    checked = useDynamicColors,
+                    onCheckedChange = { settingsViewModel.setUseDynamicColors(it) },
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(
@@ -138,12 +155,55 @@ fun SettingsScreen(
                 )
             }
 
-            StatefulSettingsSwitchItem(
-                isEnabledFlow = settingsViewModel.useFullScreen,
-                onEnabledFlowChange = { settingsViewModel.saveUseFullScreen(it) },
-                initialValue = false,
+            SettingsSwitch(
                 primaryText = stringResource(id = R.string.full_screen),
                 secondaryText = null,
+                checked = useFullScreen,
+                onCheckedChange = { settingsViewModel.saveUseFullScreen(it) },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(
+                        horizontal = horizontalPadding,
+                        vertical = verticalPadding
+                    )
+            )
+
+            HorizontalDivider(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = verticalPadding)
+            )
+
+            // ---- Remote ----
+
+            SettingsTitle(
+                text = stringResource(id = R.string.remote),
+                icon = AppIcons.RemoteControl,
+                iconDescription = stringResource(id = R.string.remote),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(
+                        horizontal = horizontalPadding,
+                        vertical = verticalPadding
+                    )
+            )
+
+            SettingsSwitch(
+                primaryText = stringResource(id = R.string.use_minimalist_interface),
+                secondaryText = stringResource(id = R.string.minimalist_interface_info),
+                checked = useMinimalistRemote,
+                onCheckedChange = { settingsViewModel.saveUseMinimalistRemote(it) },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(
+                        horizontal = horizontalPadding,
+                        vertical = verticalPadding
+                    )
+            )
+
+            SettingsRemoteNavigationSelector(
+                remoteNavigation = remoteNavigation,
+                onRemoteNavigationChange = { settingsViewModel.saveRemoteNavigation(it) },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(
@@ -160,7 +220,7 @@ fun SettingsScreen(
 
             // ---- Mouse ----
 
-            TitleItem(
+            SettingsTitle(
                 text = stringResource(id = R.string.mouse),
                 icon = AppIcons.Mouse,
                 iconDescription = stringResource(id = R.string.mouse),
@@ -172,9 +232,10 @@ fun SettingsScreen(
                     )
             )
 
-            MouseSpeedItem(
-                mouseSpeedFlow = settingsViewModel.mouseSpeed,
-                onMouseSpeedChange = { settingsViewModel.saveMouseSpeed(it) },
+            SettingsSlider(
+                value = mouseSpeed,
+                onValueChange = { settingsViewModel.saveMouseSpeed(it) },
+                info = stringResource(id = R.string.mouse_pointer_speed) + " (x$mouseSpeed)",
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(
@@ -183,12 +244,11 @@ fun SettingsScreen(
                     )
             )
 
-            StatefulSettingsSwitchItem(
-                isEnabledFlow = settingsViewModel.shouldInvertMouseScrollingDirection,
-                onEnabledFlowChange = { settingsViewModel.saveInvertMouseScrollingDirection(it) },
-                initialValue = false,
+            SettingsSwitch(
                 primaryText = stringResource(id = R.string.invert_mouse_scrolling_direction),
                 secondaryText = null,
+                checked = shouldInvertMouseScrollingDirection,
+                onCheckedChange = { settingsViewModel.saveInvertMouseScrollingDirection(it) },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(
@@ -197,12 +257,11 @@ fun SettingsScreen(
                     )
             )
 
-            StatefulSettingsSwitchItem(
-                isEnabledFlow = settingsViewModel.useGyroscope,
-                onEnabledFlowChange = { settingsViewModel.saveUseGyroscope(it) },
-                initialValue = false,
+            SettingsSwitch(
                 primaryText = stringResource(id = R.string.use_the_gyroscope_to_control_the_mouse),
                 secondaryText = null,
+                checked = useGyroscope,
+                onCheckedChange = { settingsViewModel.saveUseGyroscope(it) },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(
@@ -219,7 +278,7 @@ fun SettingsScreen(
             
             // ---- Keyboard and Input Field ----
 
-            TitleItem(
+            SettingsTitle(
                 text = stringResource(id = R.string.keyboard_and_input_field),
                 icon = AppIcons.Keyboard,
                 iconDescription = stringResource(id = R.string.keyboard),
@@ -231,10 +290,13 @@ fun SettingsScreen(
                     )
             )
 
-            KeyboardLanguageItem(
-                languageFlow = settingsViewModel.keyboardLanguage,
-                onLanguageChange = { settingsViewModel.changeKeyboardLanguage(it) },
-                context = context,
+            SettingsListDialog(
+                title = R.string.keyboard_language,
+                dialogMessage = stringResource(id = R.string.keyboard_language_info),
+                value = keyboardLanguage,
+                onValueChange = { settingsViewModel.changeKeyboardLanguage(it) },
+                items = KeyboardLanguage.entries.sortedBy { context.getString(it.language) },
+                convertValueToString = { context.getString(it.language) },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(
@@ -243,26 +305,11 @@ fun SettingsScreen(
                     )
             )
 
-            StatefulSettingsSwitchItem(
-                isEnabledFlow = settingsViewModel.mustClearInputField,
-                onEnabledFlowChange = { settingsViewModel.saveMustClearInputField(it) },
-                initialValue = true,
-                primaryText = stringResource(id = R.string.clear_input_field),
-                secondaryText = null,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(
-                        horizontal = horizontalPadding,
-                        vertical = verticalPadding
-                    )
-            )
-
-            StatefulSettingsSwitchItem(
-                isEnabledFlow = settingsViewModel.useAdvancedKeyboard,
-                onEnabledFlowChange = { settingsViewModel.saveUseAdvancedKeyboard(it) },
-                initialValue = false,
+            SettingsSwitch(
                 primaryText = stringResource(id = R.string.advanced_keyboard),
                 secondaryText = null,
+                checked = useAdvancedKeyboard,
+                onCheckedChange = { settingsViewModel.saveUseAdvancedKeyboard(it) },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(
@@ -271,50 +318,22 @@ fun SettingsScreen(
                     )
             )
 
-            HorizontalDivider(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(vertical = verticalPadding)
-            )
-
-            // ---- Interface ----
-
-            TitleItem(
-                text = stringResource(id = R.string.user_interface),
-                icon = AppIcons.UserInterface,
-                iconDescription = stringResource(id = R.string.user_interface),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(
-                        horizontal = horizontalPadding,
-                        vertical = verticalPadding
-                    )
-            )
-
-            StatefulSettingsSwitchItem(
-                isEnabledFlow = settingsViewModel.useMinimalistRemote,
-                onEnabledFlowChange = { settingsViewModel.saveUseMinimalistRemote(it) },
-                initialValue = false,
-                primaryText = stringResource(id = R.string.use_minimalist_interface),
-                secondaryText = stringResource(id = R.string.minimalist_interface_info),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(
-                        horizontal = horizontalPadding,
-                        vertical = verticalPadding
-                    )
-            )
-
-            RemoteNavigationItem(
-                remoteNavigationFlow = settingsViewModel.remoteNavigation,
-                onRemoteNavigationChange = { settingsViewModel.saveRemoteNavigation(it) },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(
-                        horizontal = horizontalPadding,
-                        vertical = verticalPadding
-                    )
-            )
+            AnimatedVisibility(
+                visible = !useAdvancedKeyboard
+            ) {
+                SettingsSwitch(
+                    primaryText = stringResource(id = R.string.clear_input_field),
+                    secondaryText = null,
+                    checked = mustClearInputField,
+                    onCheckedChange = { settingsViewModel.saveMustClearInputField(it) },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(
+                            horizontal = horizontalPadding,
+                            vertical = verticalPadding
+                        )
+                )
+            }
 
             HorizontalDivider(
                 modifier = Modifier
@@ -324,7 +343,7 @@ fun SettingsScreen(
 
             // ---- About ----
 
-            TitleItem(
+            SettingsTitle(
                 text = stringResource(id = R.string.about),
                 icon = AppIcons.Info,
                 iconDescription = stringResource(id = R.string.about),
@@ -337,12 +356,12 @@ fun SettingsScreen(
             )
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                val activity = LocalContext.current as Activity
-                TextItem(
+                val activity = LocalActivity.current
+                SettingsText(
                     text = stringResource(id = R.string.language),
                     modifier = Modifier
                         .clickable {
-                            activity.startActivity(
+                            activity?.startActivity(
                                 Intent(
                                     Settings.ACTION_APP_LOCALE_SETTINGS,
                                     Uri.fromParts("package", activity.packageName, null)
@@ -357,7 +376,7 @@ fun SettingsScreen(
                 )
             }
 
-            TextItem(
+            SettingsText(
                 text = stringResource(id = R.string.third_party_library),
                 modifier = Modifier
                     .clickable {
@@ -370,7 +389,7 @@ fun SettingsScreen(
                     )
             )
 
-            TextItem(
+            SettingsText(
                 text = stringResource(id = R.string.website),
                 modifier = Modifier
                     .clickable {
@@ -383,7 +402,7 @@ fun SettingsScreen(
                     )
             )
 
-            TextItem(
+            SettingsText(
                 text = stringResource(id = R.string.source_code),
                 modifier = Modifier
                     .clickable {
@@ -399,90 +418,14 @@ fun SettingsScreen(
     }
 }
 
-@Composable
-private fun ThemeItem(
-    themeFlow: Flow<ThemeEntity>,
-    onThemeChange: (ThemeEntity) -> Unit,
-    context: Context,
-    modifier: Modifier = Modifier
-) {
-    val theme: ThemeEntity by themeFlow
-        .collectAsStateWithLifecycle(initialValue = ThemeEntity.SYSTEM)
 
-    var isShowingDialog by remember { mutableStateOf(false) }
-
-    SettingsListDialogItem(
-        value = theme,
-        onValueChange = onThemeChange,
-        items = ThemeEntity.entries,
-        convertValueToString = { context.getString(it.stringRes) },
-        showDialog = isShowingDialog,
-        onShowDialogChange = { isShowingDialog = it },
-        title = R.string.theme,
-        dialogMessage = null,
-        modifier = modifier
-    )
-}
 
 @Composable
-private fun MouseSpeedItem(
-    mouseSpeedFlow: Flow<Float>,
-    onMouseSpeedChange: (Float) -> Unit,
-    modifier: Modifier = Modifier
-) {
-    val mouseSpeed by mouseSpeedFlow
-        .collectAsStateWithLifecycle(initialValue = MOUSE_SPEED_DEFAULT_VALUE)
-
-    Column(
-        modifier = modifier
-    ) {
-        TextNormal(
-            text = stringResource(id = R.string.mouse_pointer_speed) + " (x$mouseSpeed)",
-            modifier = Modifier.fillMaxWidth().padding(bottom = dimensionResource(R.dimen.padding_small))
-        )
-        Slider(
-            value = mouseSpeed,
-            onValueChange = onMouseSpeedChange,
-            valueRange = 1f..5f,
-            steps = 15,
-        )
-    }
-}
-
-@Composable
-private fun KeyboardLanguageItem(
-    languageFlow: Flow<KeyboardLanguage>,
-    onLanguageChange: (KeyboardLanguage) -> Unit,
-    context: Context,
-    modifier: Modifier = Modifier
-) {
-    val language: KeyboardLanguage by languageFlow
-        .collectAsStateWithLifecycle(initialValue = KeyboardLanguage.ENGLISH_US)
-
-    var isShowingDialog by remember { mutableStateOf(false) }
-
-    SettingsListDialogItem(
-        value = language,
-        onValueChange = onLanguageChange,
-        items = KeyboardLanguage.entries.sortedBy { context.getString(it.language) },
-        convertValueToString = { context.getString(it.language) },
-        showDialog = isShowingDialog,
-        onShowDialogChange = { isShowingDialog = it },
-        title = R.string.keyboard_language,
-        dialogMessage = stringResource(id = R.string.keyboard_language_info),
-        modifier = modifier
-    )
-}
-
-@Composable
-private fun RemoteNavigationItem(
-    remoteNavigationFlow: Flow<RemoteNavigationEntity>,
+private fun SettingsRemoteNavigationSelector(
+    remoteNavigation: RemoteNavigationEntity,
     onRemoteNavigationChange: (RemoteNavigationEntity) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val remoteNavigation: RemoteNavigationEntity by remoteNavigationFlow
-        .collectAsStateWithLifecycle(initialValue = RemoteNavigationEntity.D_PAD)
-
     Column(
         modifier = modifier
     ) {
@@ -532,7 +475,32 @@ private fun RemoteNavigationItem(
 // --- Reusable components ----
 
 @Composable
-fun <T> SettingsListDialogItem(
+private fun <T> SettingsListDialog(
+    @StringRes title: Int,
+    dialogMessage: String?,
+    value: T,
+    onValueChange: (T) -> Unit,
+    items: List<T>,
+    convertValueToString: (T) -> String,
+    modifier: Modifier = Modifier
+) {
+    var isShowingDialog by remember { mutableStateOf(false) }
+
+    StatelessSettingsListDialog(
+        value = value,
+        onValueChange = onValueChange,
+        items = items,
+        convertValueToString = convertValueToString,
+        showDialog = isShowingDialog,
+        onShowDialogChange = { isShowingDialog = it },
+        title = title,
+        dialogMessage = dialogMessage,
+        modifier = modifier
+    )
+}
+
+@Composable
+private fun <T> StatelessSettingsListDialog(
     value: T,
     onValueChange: (T) -> Unit,
     items: List<T>,
@@ -570,27 +538,7 @@ fun <T> SettingsListDialogItem(
 }
 
 @Composable
-private fun StatefulSettingsSwitchItem(
-    isEnabledFlow: Flow<Boolean>,
-    onEnabledFlowChange: (Boolean) -> Unit,
-    initialValue: Boolean,
-    primaryText: String,
-    secondaryText: String?,
-    modifier: Modifier = Modifier
-) {
-    val isEnabled: Boolean by isEnabledFlow.collectAsStateWithLifecycle(initialValue = initialValue)
-
-    StatelessSettingsSwitchItem(
-        primaryText = primaryText,
-        secondaryText = secondaryText,
-        checked = isEnabled,
-        onCheckedChange = onEnabledFlowChange,
-        modifier = modifier
-    )
-}
-
-@Composable
-private fun StatelessSettingsSwitchItem(
+private fun SettingsSwitch(
     primaryText: String,
     secondaryText: String?,
     checked: Boolean,
@@ -621,7 +569,30 @@ private fun StatelessSettingsSwitchItem(
 }
 
 @Composable
-private fun TitleItem(
+private fun SettingsSlider(
+    value: Float,
+    onValueChange: (Float) -> Unit,
+    info: String,
+    modifier: Modifier = Modifier
+) {
+    Column(
+        modifier = modifier
+    ) {
+        TextNormal(
+            text = info,
+            modifier = Modifier.fillMaxWidth().padding(bottom = dimensionResource(R.dimen.padding_small))
+        )
+        Slider(
+            value = value,
+            onValueChange = onValueChange,
+            valueRange = 1f..5f,
+            steps = 15,
+        )
+    }
+}
+
+@Composable
+private fun SettingsTitle(
     text: String,
     icon: ImageVector,
     iconDescription: String,
@@ -646,7 +617,7 @@ private fun TitleItem(
 }
 
 @Composable
-private fun TextItem(
+private fun SettingsText(
     text: String,
     modifier: Modifier = Modifier
 ) {

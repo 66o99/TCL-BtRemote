@@ -54,13 +54,13 @@ import androidx.compose.material.icons.rounded.Remove
 import androidx.compose.material.icons.rounded.Router
 import androidx.compose.material.icons.rounded.ScreenshotMonitor
 import androidx.compose.material.icons.rounded.Settings
+import androidx.compose.material.icons.rounded.SettingsRemote
 import androidx.compose.material.icons.rounded.SkipNext
 import androidx.compose.material.icons.rounded.SkipPrevious
 import androidx.compose.material.icons.rounded.Smartphone
 import androidx.compose.material.icons.rounded.SpaceBar
 import androidx.compose.material.icons.rounded.Toys
 import androidx.compose.material.icons.rounded.Usb
-import androidx.compose.material.icons.rounded.ViewCompact
 import androidx.compose.material.icons.rounded.Visibility
 import androidx.compose.material.icons.rounded.Watch
 import androidx.compose.ui.Modifier
@@ -103,13 +103,14 @@ object AppIcons: KoinComponent {
     val Visibility get() = Icons.Rounded.Visibility
     //val Done get() = Icons.Rounded.Done
     val Appearance get() = Icons.Rounded.Palette
-    val UserInterface get() = Icons.Rounded.ViewCompact
+    //val UserInterface get() = Icons.Rounded.ViewCompact
     val OpenInBrowser get() = Icons.Rounded.OpenInBrowser
     val Lock get() = Icons.Rounded.Lock
     val Key get() = Icons.Rounded.Key
 
     // ---- Remote ----
 
+    val RemoteControl get() = Icons.Rounded.SettingsRemote
     val Home get() = Icons.Rounded.Home
     val Menu get() = Icons.AutoMirrored.Rounded.List
     val Power get() = Icons.Rounded.PowerSettingsNew
