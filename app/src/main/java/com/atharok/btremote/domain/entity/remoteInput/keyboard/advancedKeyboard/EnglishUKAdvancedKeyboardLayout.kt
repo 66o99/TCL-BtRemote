@@ -3,7 +3,7 @@ package com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard
 import android.content.Context
 import com.atharok.btremote.domain.entity.remoteInput.keyboard.KeyboardKey
 
-class PTAdvancedKeyboardLayout(context: Context): AdvancedKeyboardLayout(context) {
+class EnglishUKAdvancedKeyboardLayout(context: Context): AdvancedKeyboardLayout(context) {
 
     override val line1: Array<AdvancedKeyboardKey> = arrayOf(
         TextAdvancedKeyboardKey(
@@ -16,22 +16,19 @@ class PTAdvancedKeyboardLayout(context: Context): AdvancedKeyboardLayout(context
             byte = KeyboardKey.ROW_1_KEY_02.byte,
             weight = 1f,
             text = "2",
-            textSecondary = "\"",
-            textTertiary = "@"
+            textSecondary = "\""
         ),
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_1_KEY_03.byte,
             weight = 1f,
             text = "3",
-            textSecondary = "#",
-            textTertiary = "£"
+            textSecondary = "£"
         ),
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_1_KEY_04.byte,
             weight = 1f,
             text = "4",
-            textSecondary = "$",
-            textTertiary = "§"
+            textSecondary = "$"
         ),
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_1_KEY_05.byte,
@@ -43,47 +40,43 @@ class PTAdvancedKeyboardLayout(context: Context): AdvancedKeyboardLayout(context
             byte = KeyboardKey.ROW_1_KEY_06.byte,
             weight = 1f,
             text = "6",
-            textSecondary = "&"
+            textSecondary = "^"
         ),
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_1_KEY_07.byte,
             weight = 1f,
             text = "7",
-            textSecondary = "/",
-            textTertiary = "{"
+            textSecondary = "&"
         ),
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_1_KEY_08.byte,
             weight = 1f,
             text = "8",
-            textSecondary = "(",
-            textTertiary = "["
+            textSecondary = "*"
         ),
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_1_KEY_09.byte,
             weight = 1f,
             text = "9",
-            textSecondary = ")",
-            textTertiary = "]"
+            textSecondary = "("
         ),
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_1_KEY_10.byte,
             weight = 1f,
             text = "0",
-            textSecondary = "=",
-            textTertiary = "}"
+            textSecondary = ")"
         ),
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_1_KEY_11.byte,
             weight = 1f,
-            text = "'",
-            textSecondary = "?"
+            text = "-",
+            textSecondary = "_"
         ),
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_1_KEY_12.byte,
             weight = 1f,
-            text = "«",
-            textSecondary = "»"
+            text = "=",
+            textSecondary = "+"
         )
     )
 
@@ -101,8 +94,7 @@ class PTAdvancedKeyboardLayout(context: Context): AdvancedKeyboardLayout(context
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_2_KEY_02.byte,
             weight = 1f,
-            text = "E",
-            textTertiary = "€"
+            text = "E"
         ),
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_2_KEY_03.byte,
@@ -142,14 +134,14 @@ class PTAdvancedKeyboardLayout(context: Context): AdvancedKeyboardLayout(context
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_2_KEY_10.byte,
             weight = 1f,
-            text = "+",
-            textSecondary = "*"
+            text = "[",
+            textSecondary = "{"
         ),
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_2_KEY_11.byte,
             weight = 1f,
-            text = "´",
-            textSecondary = "ˋ"
+            text = "]",
+            textSecondary = "}"
         )
     )
 
@@ -202,19 +194,20 @@ class PTAdvancedKeyboardLayout(context: Context): AdvancedKeyboardLayout(context
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_3_KEY_09.byte,
             weight = 1f,
-            text = "Ç"
+            text = ";",
+            textSecondary = ":"
         ),
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_3_KEY_10.byte,
             weight = 1f,
-            text = "º",
-            textSecondary = "ª"
+            text = "\'",
+            textSecondary = "@"
         ),
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_3_KEY_11.byte,
             weight = 1f,
-            text = "˜",
-            textSecondary = "ˆ"
+            text = "#",
+            textSecondary = "~"
         )
     )
 
@@ -222,14 +215,14 @@ class PTAdvancedKeyboardLayout(context: Context): AdvancedKeyboardLayout(context
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_1_KEY_00.byte,
             weight = 1f,
-            text = "\\",
-            textSecondary = "|"
+            text = "`",
+            textSecondary = "¬"
         ),
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_4_KEY_00.byte,
             weight = 1f,
-            text = "<",
-            textSecondary = ">"
+            text = "\\",
+            textSecondary = "|"
         ),
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_4_KEY_01.byte,
@@ -270,19 +263,19 @@ class PTAdvancedKeyboardLayout(context: Context): AdvancedKeyboardLayout(context
             byte = KeyboardKey.ROW_4_KEY_08.byte,
             weight = 1f,
             text = ",",
-            textSecondary = ";"
+            textSecondary = "<"
         ),
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_4_KEY_09.byte,
             weight = 1f,
             text = ".",
-            textSecondary = ":"
+            textSecondary = ">"
         ),
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_4_KEY_10.byte,
             weight = 1f,
-            text = "-",
-            textSecondary = "_"
+            text = "/",
+            textSecondary = "?"
         )
     )
 }

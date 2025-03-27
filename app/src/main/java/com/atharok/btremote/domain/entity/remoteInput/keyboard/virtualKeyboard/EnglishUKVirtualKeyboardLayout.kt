@@ -1,16 +1,15 @@
 package com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard
 
-
 import com.atharok.btremote.common.utils.REMOTE_INPUT_NONE
 import com.atharok.btremote.domain.entity.remoteInput.keyboard.KeyboardKey
 
-class ESVirtualKeyboardLayout: VirtualKeyboardLayout() {
+class EnglishUKVirtualKeyboardLayout: VirtualKeyboardLayout() {
 
     protected override val keyboardInputs: Map<Char, ByteArray> by lazy {
         mapOf(
             ' ' to KEYBOARD_KEY_SPACE_BAR,
 
-            'º' to byteArrayOf(0x00, KeyboardKey.ROW_1_KEY_00.byte),
+            '`' to byteArrayOf(0x00, KeyboardKey.ROW_1_KEY_00.byte),
             '1' to byteArrayOf(0x00, KeyboardKey.ROW_1_KEY_01.byte),
             '2' to byteArrayOf(0x00, KeyboardKey.ROW_1_KEY_02.byte),
             '3' to byteArrayOf(0x00, KeyboardKey.ROW_1_KEY_03.byte),
@@ -21,8 +20,8 @@ class ESVirtualKeyboardLayout: VirtualKeyboardLayout() {
             '8' to byteArrayOf(0x00, KeyboardKey.ROW_1_KEY_08.byte),
             '9' to byteArrayOf(0x00, KeyboardKey.ROW_1_KEY_09.byte),
             '0' to byteArrayOf(0x00, KeyboardKey.ROW_1_KEY_10.byte),
-            '\'' to byteArrayOf(0x00, KeyboardKey.ROW_1_KEY_11.byte),
-            '¡' to byteArrayOf(0x00, KeyboardKey.ROW_1_KEY_12.byte),
+            '-' to byteArrayOf(0x00, KeyboardKey.ROW_1_KEY_11.byte),
+            '=' to byteArrayOf(0x00, KeyboardKey.ROW_1_KEY_12.byte),
 
             'q' to byteArrayOf(0x00, KeyboardKey.ROW_2_KEY_00.byte),
             'w' to byteArrayOf(0x00, KeyboardKey.ROW_2_KEY_01.byte),
@@ -34,8 +33,8 @@ class ESVirtualKeyboardLayout: VirtualKeyboardLayout() {
             'i' to byteArrayOf(0x00, KeyboardKey.ROW_2_KEY_07.byte),
             'o' to byteArrayOf(0x00, KeyboardKey.ROW_2_KEY_08.byte),
             'p' to byteArrayOf(0x00, KeyboardKey.ROW_2_KEY_09.byte),
-            'ˋ' to byteArrayOf(0x00, KeyboardKey.ROW_2_KEY_10.byte),
-            '+' to byteArrayOf(0x00, KeyboardKey.ROW_2_KEY_11.byte),
+            '[' to byteArrayOf(0x00, KeyboardKey.ROW_2_KEY_10.byte),
+            ']' to byteArrayOf(0x00, KeyboardKey.ROW_2_KEY_11.byte),
 
             'a' to byteArrayOf(0x00, KeyboardKey.ROW_3_KEY_00.byte),
             's' to byteArrayOf(0x00, KeyboardKey.ROW_3_KEY_01.byte),
@@ -46,11 +45,11 @@ class ESVirtualKeyboardLayout: VirtualKeyboardLayout() {
             'j' to byteArrayOf(0x00, KeyboardKey.ROW_3_KEY_06.byte),
             'k' to byteArrayOf(0x00, KeyboardKey.ROW_3_KEY_07.byte),
             'l' to byteArrayOf(0x00, KeyboardKey.ROW_3_KEY_08.byte),
-            'ñ' to byteArrayOf(0x00, KeyboardKey.ROW_3_KEY_09.byte),
-            '´' to byteArrayOf(0x00, KeyboardKey.ROW_3_KEY_10.byte),
-            'ç' to byteArrayOf(0x00, KeyboardKey.ROW_3_KEY_11.byte),
+            ';' to byteArrayOf(0x00, KeyboardKey.ROW_3_KEY_09.byte),
+            '\'' to byteArrayOf(0x00, KeyboardKey.ROW_3_KEY_10.byte),
+            '#' to byteArrayOf(0x00, KeyboardKey.ROW_3_KEY_11.byte),
 
-            '<' to byteArrayOf(0x00, KeyboardKey.ROW_4_KEY_00.byte),
+            '\\' to byteArrayOf(0x00, KeyboardKey.ROW_4_KEY_00.byte),
             'z' to byteArrayOf(0x00, KeyboardKey.ROW_4_KEY_01.byte),
             'x' to byteArrayOf(0x00, KeyboardKey.ROW_4_KEY_02.byte),
             'c' to byteArrayOf(0x00, KeyboardKey.ROW_4_KEY_03.byte),
@@ -60,23 +59,23 @@ class ESVirtualKeyboardLayout: VirtualKeyboardLayout() {
             'm' to byteArrayOf(0x00, KeyboardKey.ROW_4_KEY_07.byte),
             ',' to byteArrayOf(0x00, KeyboardKey.ROW_4_KEY_08.byte),
             '.' to byteArrayOf(0x00, KeyboardKey.ROW_4_KEY_09.byte),
-            '-' to byteArrayOf(0x00, KeyboardKey.ROW_4_KEY_10.byte),
+            '/' to byteArrayOf(0x00, KeyboardKey.ROW_4_KEY_10.byte),
 
             // ---- Shift ----
 
-            'ª' to byteArrayOf(0x02, KeyboardKey.ROW_1_KEY_00.byte),
+            '¬' to byteArrayOf(0x02, KeyboardKey.ROW_1_KEY_00.byte),
             '!' to byteArrayOf(0x02, KeyboardKey.ROW_1_KEY_01.byte),
             '"' to byteArrayOf(0x02, KeyboardKey.ROW_1_KEY_02.byte),
-            '·' to byteArrayOf(0x02, KeyboardKey.ROW_1_KEY_03.byte),
+            '£' to byteArrayOf(0x02, KeyboardKey.ROW_1_KEY_03.byte),
             '$' to byteArrayOf(0x02, KeyboardKey.ROW_1_KEY_04.byte),
             '%' to byteArrayOf(0x02, KeyboardKey.ROW_1_KEY_05.byte),
-            '&' to byteArrayOf(0x02, KeyboardKey.ROW_1_KEY_06.byte),
-            '/' to byteArrayOf(0x02, KeyboardKey.ROW_1_KEY_07.byte),
-            '(' to byteArrayOf(0x02, KeyboardKey.ROW_1_KEY_08.byte),
-            ')' to byteArrayOf(0x02, KeyboardKey.ROW_1_KEY_09.byte),
-            '=' to byteArrayOf(0x02, KeyboardKey.ROW_1_KEY_10.byte),
-            '?' to byteArrayOf(0x02, KeyboardKey.ROW_1_KEY_11.byte),
-            '¿' to byteArrayOf(0x02, KeyboardKey.ROW_1_KEY_12.byte),
+            '^' to byteArrayOf(0x02, KeyboardKey.ROW_1_KEY_06.byte),
+            '&' to byteArrayOf(0x02, KeyboardKey.ROW_1_KEY_07.byte),
+            '*' to byteArrayOf(0x02, KeyboardKey.ROW_1_KEY_08.byte),
+            '(' to byteArrayOf(0x02, KeyboardKey.ROW_1_KEY_09.byte),
+            ')' to byteArrayOf(0x02, KeyboardKey.ROW_1_KEY_10.byte),
+            '_' to byteArrayOf(0x02, KeyboardKey.ROW_1_KEY_11.byte),
+            '+' to byteArrayOf(0x02, KeyboardKey.ROW_1_KEY_12.byte),
 
             'Q' to byteArrayOf(0x02, KeyboardKey.ROW_2_KEY_00.byte),
             'W' to byteArrayOf(0x02, KeyboardKey.ROW_2_KEY_01.byte),
@@ -88,8 +87,8 @@ class ESVirtualKeyboardLayout: VirtualKeyboardLayout() {
             'I' to byteArrayOf(0x02, KeyboardKey.ROW_2_KEY_07.byte),
             'O' to byteArrayOf(0x02, KeyboardKey.ROW_2_KEY_08.byte),
             'P' to byteArrayOf(0x02, KeyboardKey.ROW_2_KEY_09.byte),
-            'ˆ' to byteArrayOf(0x02, KeyboardKey.ROW_2_KEY_10.byte),
-            '*' to byteArrayOf(0x02, KeyboardKey.ROW_2_KEY_11.byte),
+            '{' to byteArrayOf(0x02, KeyboardKey.ROW_2_KEY_10.byte),
+            '}' to byteArrayOf(0x02, KeyboardKey.ROW_2_KEY_11.byte),
 
             'A' to byteArrayOf(0x02, KeyboardKey.ROW_3_KEY_00.byte),
             'S' to byteArrayOf(0x02, KeyboardKey.ROW_3_KEY_01.byte),
@@ -100,11 +99,11 @@ class ESVirtualKeyboardLayout: VirtualKeyboardLayout() {
             'J' to byteArrayOf(0x02, KeyboardKey.ROW_3_KEY_06.byte),
             'K' to byteArrayOf(0x02, KeyboardKey.ROW_3_KEY_07.byte),
             'L' to byteArrayOf(0x02, KeyboardKey.ROW_3_KEY_08.byte),
-            'Ñ' to byteArrayOf(0x02, KeyboardKey.ROW_3_KEY_09.byte),
-            '¨' to byteArrayOf(0x02, KeyboardKey.ROW_3_KEY_10.byte),
-            'Ç' to byteArrayOf(0x02, KeyboardKey.ROW_3_KEY_11.byte),
+            ':' to byteArrayOf(0x02, KeyboardKey.ROW_3_KEY_09.byte),
+            '@' to byteArrayOf(0x02, KeyboardKey.ROW_3_KEY_10.byte),
+            '~' to byteArrayOf(0x02, KeyboardKey.ROW_3_KEY_11.byte),
 
-            '>' to byteArrayOf(0x02, KeyboardKey.ROW_4_KEY_00.byte),
+            '|' to byteArrayOf(0x02, KeyboardKey.ROW_4_KEY_00.byte),
             'Z' to byteArrayOf(0x02, KeyboardKey.ROW_4_KEY_01.byte),
             'X' to byteArrayOf(0x02, KeyboardKey.ROW_4_KEY_02.byte),
             'C' to byteArrayOf(0x02, KeyboardKey.ROW_4_KEY_03.byte),
@@ -112,33 +111,43 @@ class ESVirtualKeyboardLayout: VirtualKeyboardLayout() {
             'B' to byteArrayOf(0x02, KeyboardKey.ROW_4_KEY_05.byte),
             'N' to byteArrayOf(0x02, KeyboardKey.ROW_4_KEY_06.byte),
             'M' to byteArrayOf(0x02, KeyboardKey.ROW_4_KEY_07.byte),
-            ';' to byteArrayOf(0x02, KeyboardKey.ROW_4_KEY_08.byte),
-            ':' to byteArrayOf(0x02, KeyboardKey.ROW_4_KEY_09.byte),
-            '_' to byteArrayOf(0x02, KeyboardKey.ROW_4_KEY_10.byte),
+            '<' to byteArrayOf(0x02, KeyboardKey.ROW_4_KEY_08.byte),
+            '>' to byteArrayOf(0x02, KeyboardKey.ROW_4_KEY_09.byte),
+            '?' to byteArrayOf(0x02, KeyboardKey.ROW_4_KEY_10.byte),
 
             // ---- Alt Gr ----
 
-            '\\' to byteArrayOf(0x40, KeyboardKey.ROW_1_KEY_00.byte),
-            '|' to byteArrayOf(0x40, KeyboardKey.ROW_1_KEY_01.byte),
-            '@' to byteArrayOf(0x40, KeyboardKey.ROW_1_KEY_02.byte),
-            '#' to byteArrayOf(0x40, KeyboardKey.ROW_1_KEY_03.byte),
-            '˜' to byteArrayOf(0x40, KeyboardKey.ROW_1_KEY_04.byte),
-            '€' to byteArrayOf(0x40, KeyboardKey.ROW_1_KEY_05.byte),
-            '¬' to byteArrayOf(0x40, KeyboardKey.ROW_1_KEY_06.byte),
+            '¦' to byteArrayOf(0x40, KeyboardKey.ROW_1_KEY_00.byte),
+            '€' to byteArrayOf(0x40, KeyboardKey.ROW_1_KEY_04.byte),
 
-            '€' to byteArrayOf(0x40, KeyboardKey.ROW_2_KEY_02.byte),
-            '[' to byteArrayOf(0x40, KeyboardKey.ROW_2_KEY_10.byte),
-            ']' to byteArrayOf(0x40, KeyboardKey.ROW_2_KEY_11.byte),
+            'ẃ' to byteArrayOf(0x40, KeyboardKey.ROW_2_KEY_01.byte),
+            'é' to byteArrayOf(0x40, KeyboardKey.ROW_2_KEY_02.byte),
+            'ý' to byteArrayOf(0x40, KeyboardKey.ROW_2_KEY_05.byte),
+            'ú' to byteArrayOf(0x40, KeyboardKey.ROW_2_KEY_06.byte),
+            'í' to byteArrayOf(0x40, KeyboardKey.ROW_2_KEY_07.byte),
+            'ó' to byteArrayOf(0x40, KeyboardKey.ROW_2_KEY_08.byte),
 
-            '{' to byteArrayOf(0x40, KeyboardKey.ROW_3_KEY_10.byte),
-            '}' to byteArrayOf(0x40, KeyboardKey.ROW_3_KEY_11.byte)
+            'á' to byteArrayOf(0x40, KeyboardKey.ROW_3_KEY_00.byte),
+
+            'ç' to byteArrayOf(0x40, KeyboardKey.ROW_4_KEY_03.byte),
+
+            // ---- Shift + Alt Gr ----
+
+            'Ẃ' to byteArrayOf(0x42, KeyboardKey.ROW_2_KEY_01.byte),
+            'É' to byteArrayOf(0x42, KeyboardKey.ROW_2_KEY_02.byte),
+            'Ý' to byteArrayOf(0x42, KeyboardKey.ROW_2_KEY_05.byte),
+            'Ú' to byteArrayOf(0x42, KeyboardKey.ROW_2_KEY_06.byte),
+            'Í' to byteArrayOf(0x42, KeyboardKey.ROW_2_KEY_07.byte),
+            'Ó' to byteArrayOf(0x42, KeyboardKey.ROW_2_KEY_08.byte),
+
+            'Á' to byteArrayOf(0x42, KeyboardKey.ROW_3_KEY_00.byte),
+
+            'Ç' to byteArrayOf(0x42, KeyboardKey.ROW_4_KEY_03.byte)
         )
     }
 
     protected override val extraInputs: Map<Char, ByteArray> by lazy {
         mapOf(
-            '^' to (keyboardInputs['ˆ'] ?: REMOTE_INPUT_NONE),
-            '~' to (keyboardInputs['˜'] ?: REMOTE_INPUT_NONE),
             '¹' to (keyboardInputs['1'] ?: REMOTE_INPUT_NONE),
             '²' to (keyboardInputs['2'] ?: REMOTE_INPUT_NONE),
             '³' to (keyboardInputs['3'] ?: REMOTE_INPUT_NONE),
@@ -149,7 +158,6 @@ class ESVirtualKeyboardLayout: VirtualKeyboardLayout() {
             '¢' to (keyboardInputs['c'] ?: REMOTE_INPUT_NONE),
 
             'À' to (keyboardInputs['A'] ?: REMOTE_INPUT_NONE),
-            'Á' to (keyboardInputs['A'] ?: REMOTE_INPUT_NONE),
             'Â' to (keyboardInputs['A'] ?: REMOTE_INPUT_NONE),
             'Ã' to (keyboardInputs['A'] ?: REMOTE_INPUT_NONE),
             'Ä' to (keyboardInputs['A'] ?: REMOTE_INPUT_NONE),
@@ -159,19 +167,17 @@ class ESVirtualKeyboardLayout: VirtualKeyboardLayout() {
             'Č' to (keyboardInputs['C'] ?: REMOTE_INPUT_NONE),
             'Ć' to (keyboardInputs['C'] ?: REMOTE_INPUT_NONE),
             'È' to (keyboardInputs['E'] ?: REMOTE_INPUT_NONE),
-            'É' to (keyboardInputs['E'] ?: REMOTE_INPUT_NONE),
             'Ê' to (keyboardInputs['E'] ?: REMOTE_INPUT_NONE),
             'Ë' to (keyboardInputs['E'] ?: REMOTE_INPUT_NONE),
             'Ě' to (keyboardInputs['E'] ?: REMOTE_INPUT_NONE),
             'Ę' to (keyboardInputs['E'] ?: REMOTE_INPUT_NONE),
             'Ì' to (keyboardInputs['I'] ?: REMOTE_INPUT_NONE),
-            'Í' to (keyboardInputs['I'] ?: REMOTE_INPUT_NONE),
             'Î' to (keyboardInputs['I'] ?: REMOTE_INPUT_NONE),
             'Ï' to (keyboardInputs['I'] ?: REMOTE_INPUT_NONE),
             'Ł' to (keyboardInputs['L'] ?: REMOTE_INPUT_NONE),
+            'Ñ' to (keyboardInputs['N'] ?: REMOTE_INPUT_NONE),
             'Ń' to (keyboardInputs['N'] ?: REMOTE_INPUT_NONE),
             'Ò' to (keyboardInputs['O'] ?: REMOTE_INPUT_NONE),
-            'Ó' to (keyboardInputs['O'] ?: REMOTE_INPUT_NONE),
             'Ô' to (keyboardInputs['O'] ?: REMOTE_INPUT_NONE),
             'Õ' to (keyboardInputs['O'] ?: REMOTE_INPUT_NONE),
             'Ö' to (keyboardInputs['O'] ?: REMOTE_INPUT_NONE),
@@ -181,17 +187,14 @@ class ESVirtualKeyboardLayout: VirtualKeyboardLayout() {
             'Š' to (keyboardInputs['S'] ?: REMOTE_INPUT_NONE),
             'Ś' to (keyboardInputs['S'] ?: REMOTE_INPUT_NONE),
             'Ù' to (keyboardInputs['U'] ?: REMOTE_INPUT_NONE),
-            'Ú' to (keyboardInputs['U'] ?: REMOTE_INPUT_NONE),
             'Û' to (keyboardInputs['U'] ?: REMOTE_INPUT_NONE),
             'Ü' to (keyboardInputs['U'] ?: REMOTE_INPUT_NONE),
-            'Ẃ' to (keyboardInputs['W'] ?: REMOTE_INPUT_NONE),
             'Ý' to (keyboardInputs['Y'] ?: REMOTE_INPUT_NONE),
             'Ž' to (keyboardInputs['Z'] ?: REMOTE_INPUT_NONE),
             'Ż' to (keyboardInputs['Z'] ?: REMOTE_INPUT_NONE),
             'Ź' to (keyboardInputs['Z'] ?: REMOTE_INPUT_NONE),
 
             'à' to (keyboardInputs['a'] ?: REMOTE_INPUT_NONE),
-            'á' to (keyboardInputs['a'] ?: REMOTE_INPUT_NONE),
             'â' to (keyboardInputs['a'] ?: REMOTE_INPUT_NONE),
             'ã' to (keyboardInputs['a'] ?: REMOTE_INPUT_NONE),
             'ä' to (keyboardInputs['a'] ?: REMOTE_INPUT_NONE),
@@ -201,19 +204,17 @@ class ESVirtualKeyboardLayout: VirtualKeyboardLayout() {
             'č' to (keyboardInputs['c'] ?: REMOTE_INPUT_NONE),
             'ć' to (keyboardInputs['c'] ?: REMOTE_INPUT_NONE),
             'è' to (keyboardInputs['e'] ?: REMOTE_INPUT_NONE),
-            'é' to (keyboardInputs['e'] ?: REMOTE_INPUT_NONE),
             'ê' to (keyboardInputs['e'] ?: REMOTE_INPUT_NONE),
             'ë' to (keyboardInputs['e'] ?: REMOTE_INPUT_NONE),
             'ě' to (keyboardInputs['e'] ?: REMOTE_INPUT_NONE),
             'ę' to (keyboardInputs['e'] ?: REMOTE_INPUT_NONE),
             'ì' to (keyboardInputs['i'] ?: REMOTE_INPUT_NONE),
-            'í' to (keyboardInputs['i'] ?: REMOTE_INPUT_NONE),
             'î' to (keyboardInputs['i'] ?: REMOTE_INPUT_NONE),
             'ï' to (keyboardInputs['i'] ?: REMOTE_INPUT_NONE),
             'ł' to (keyboardInputs['l'] ?: REMOTE_INPUT_NONE),
+            'ñ' to (keyboardInputs['n'] ?: REMOTE_INPUT_NONE),
             'ń' to (keyboardInputs['n'] ?: REMOTE_INPUT_NONE),
             'ò' to (keyboardInputs['o'] ?: REMOTE_INPUT_NONE),
-            'ó' to (keyboardInputs['o'] ?: REMOTE_INPUT_NONE),
             'ô' to (keyboardInputs['o'] ?: REMOTE_INPUT_NONE),
             'õ' to (keyboardInputs['o'] ?: REMOTE_INPUT_NONE),
             'ö' to (keyboardInputs['o'] ?: REMOTE_INPUT_NONE),
@@ -223,10 +224,8 @@ class ESVirtualKeyboardLayout: VirtualKeyboardLayout() {
             'š' to (keyboardInputs['s'] ?: REMOTE_INPUT_NONE),
             'ś' to (keyboardInputs['s'] ?: REMOTE_INPUT_NONE),
             'ù' to (keyboardInputs['u'] ?: REMOTE_INPUT_NONE),
-            'ú' to (keyboardInputs['u'] ?: REMOTE_INPUT_NONE),
             'û' to (keyboardInputs['u'] ?: REMOTE_INPUT_NONE),
             'ü' to (keyboardInputs['u'] ?: REMOTE_INPUT_NONE),
-            'ẃ' to (keyboardInputs['w'] ?: REMOTE_INPUT_NONE),
             'ý' to (keyboardInputs['y'] ?: REMOTE_INPUT_NONE),
             'ÿ' to (keyboardInputs['y'] ?: REMOTE_INPUT_NONE),
             'ž' to (keyboardInputs['z'] ?: REMOTE_INPUT_NONE),

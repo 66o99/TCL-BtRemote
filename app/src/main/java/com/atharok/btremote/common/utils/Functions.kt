@@ -7,34 +7,34 @@ import android.os.Build
 import androidx.core.app.ActivityCompat
 import com.atharok.btremote.domain.entity.remoteInput.keyboard.KeyboardLanguage
 import com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard.AdvancedKeyboardLayout
-import com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard.BGAdvancedKeyboardLayout
-import com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard.BRAdvancedKeyboardLayout
-import com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard.CSAdvancedKeyboardLayout
-import com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard.DEAdvancedKeyboardLayout
-import com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard.ESAdvancedKeyboardLayout
-import com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard.ElAdvancedKeyboardLayout
-import com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard.FRAdvancedKeyboardLayout
-import com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard.HEAdvancedKeyboardLayout
-import com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard.PLAdvancedKeyboardLayout
-import com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard.PTAdvancedKeyboardLayout
-import com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard.RUAdvancedKeyboardLayout
-import com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard.TRAdvancedKeyboardLayout
-import com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard.UKAdvancedKeyboardLayout
-import com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard.USAdvancedKeyboardLayout
-import com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard.BGVirtualKeyboardLayout
-import com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard.BRVirtualKeyboardLayout
-import com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard.CSVirtualKeyboardLayout
-import com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard.DEVirtualKeyboardLayout
-import com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard.ESVirtualKeyboardLayout
-import com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard.ElVirtualKeyboardLayout
-import com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard.FRVirtualKeyboardLayout
-import com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard.HEVirtualKeyboardLayout
-import com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard.PLVirtualKeyboardLayout
-import com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard.PTVirtualKeyboardLayout
-import com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard.RUVirtualKeyboardLayout
-import com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard.TRVirtualKeyboardLayout
-import com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard.UKVirtualKeyboardLayout
-import com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard.USVirtualKeyboardLayout
+import com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard.BulgarianAdvancedKeyboardLayout
+import com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard.PortugueseBRAdvancedKeyboardLayout
+import com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard.CzechAdvancedKeyboardLayout
+import com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard.GermanAdvancedKeyboardLayout
+import com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard.SpanishAdvancedKeyboardLayout
+import com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard.GreekAdvancedKeyboardLayout
+import com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard.FrenchAdvancedKeyboardLayout
+import com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard.HebrewAdvancedKeyboardLayout
+import com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard.PolishAdvancedKeyboardLayout
+import com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard.PortugueseAdvancedKeyboardLayout
+import com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard.RussianAdvancedKeyboardLayout
+import com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard.TurkishAdvancedKeyboardLayout
+import com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard.EnglishUKAdvancedKeyboardLayout
+import com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard.EnglishUSAdvancedKeyboardLayout
+import com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard.BulgarianVirtualKeyboardLayout
+import com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard.PortugueseBRVirtualKeyboardLayout
+import com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard.CzechVirtualKeyboardLayout
+import com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard.GermanVirtualKeyboardLayout
+import com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard.SpanishVirtualKeyboardLayout
+import com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard.GreekVirtualKeyboardLayout
+import com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard.FrenchVirtualKeyboardLayout
+import com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard.HebrewVirtualKeyboardLayout
+import com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard.PolishVirtualKeyboardLayout
+import com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard.PortugueseVirtualKeyboardLayout
+import com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard.RussianVirtualKeyboardLayout
+import com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard.TurkishVirtualKeyboardLayout
+import com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard.EnglishUKVirtualKeyboardLayout
+import com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard.EnglishUSVirtualKeyboardLayout
 import com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard.VirtualKeyboardLayout
 import org.koin.mp.KoinPlatform.getKoin
 
@@ -52,39 +52,39 @@ fun checkBluetoothScanPermission(context: Context): Boolean = when {
 
 fun getKeyboardLayout(language: KeyboardLanguage): VirtualKeyboardLayout {
     return when(language) {
-        KeyboardLanguage.ENGLISH_US -> getKoin().get<USVirtualKeyboardLayout>()
-        KeyboardLanguage.ENGLISH_UK -> getKoin().get<UKVirtualKeyboardLayout>()
-        KeyboardLanguage.SPANISH -> getKoin().get<ESVirtualKeyboardLayout>()
-        KeyboardLanguage.FRENCH -> getKoin().get<FRVirtualKeyboardLayout>()
-        KeyboardLanguage.GERMAN -> getKoin().get<DEVirtualKeyboardLayout>()
-        KeyboardLanguage.RUSSIAN -> getKoin().get<RUVirtualKeyboardLayout>()
-        KeyboardLanguage.CZECH -> getKoin().get<CSVirtualKeyboardLayout>()
-        KeyboardLanguage.POLISH -> getKoin().get<PLVirtualKeyboardLayout>()
-        KeyboardLanguage.PORTUGUESE -> getKoin().get<PTVirtualKeyboardLayout>()
-        KeyboardLanguage.BRAZILIAN -> getKoin().get<BRVirtualKeyboardLayout>()
-        KeyboardLanguage.GREEK -> getKoin().get<ElVirtualKeyboardLayout>()
-        KeyboardLanguage.TURKISH -> getKoin().get<TRVirtualKeyboardLayout>()
-        KeyboardLanguage.HEBREW -> getKoin().get<HEVirtualKeyboardLayout>()
-        KeyboardLanguage.BULGARIAN -> getKoin().get<BGVirtualKeyboardLayout>()
+        KeyboardLanguage.ENGLISH_US -> getKoin().get<EnglishUSVirtualKeyboardLayout>()
+        KeyboardLanguage.ENGLISH_UK -> getKoin().get<EnglishUKVirtualKeyboardLayout>()
+        KeyboardLanguage.SPANISH -> getKoin().get<SpanishVirtualKeyboardLayout>()
+        KeyboardLanguage.FRENCH -> getKoin().get<FrenchVirtualKeyboardLayout>()
+        KeyboardLanguage.GERMAN -> getKoin().get<GermanVirtualKeyboardLayout>()
+        KeyboardLanguage.RUSSIAN -> getKoin().get<RussianVirtualKeyboardLayout>()
+        KeyboardLanguage.CZECH -> getKoin().get<CzechVirtualKeyboardLayout>()
+        KeyboardLanguage.POLISH -> getKoin().get<PolishVirtualKeyboardLayout>()
+        KeyboardLanguage.PORTUGUESE -> getKoin().get<PortugueseVirtualKeyboardLayout>()
+        KeyboardLanguage.BRAZILIAN -> getKoin().get<PortugueseBRVirtualKeyboardLayout>()
+        KeyboardLanguage.GREEK -> getKoin().get<GreekVirtualKeyboardLayout>()
+        KeyboardLanguage.TURKISH -> getKoin().get<TurkishVirtualKeyboardLayout>()
+        KeyboardLanguage.HEBREW -> getKoin().get<HebrewVirtualKeyboardLayout>()
+        KeyboardLanguage.BULGARIAN -> getKoin().get<BulgarianVirtualKeyboardLayout>()
     }
 }
 
 fun getAdvancedKeyboardLayout(language: KeyboardLanguage): AdvancedKeyboardLayout {
     return when(language) {
-        KeyboardLanguage.ENGLISH_US -> getKoin().get<USAdvancedKeyboardLayout>()
-        KeyboardLanguage.ENGLISH_UK -> getKoin().get<UKAdvancedKeyboardLayout>()
-        KeyboardLanguage.SPANISH -> getKoin().get<ESAdvancedKeyboardLayout>()
-        KeyboardLanguage.FRENCH -> getKoin().get<FRAdvancedKeyboardLayout>()
-        KeyboardLanguage.GERMAN -> getKoin().get<DEAdvancedKeyboardLayout>()
-        KeyboardLanguage.RUSSIAN -> getKoin().get<RUAdvancedKeyboardLayout>()
-        KeyboardLanguage.CZECH -> getKoin().get<CSAdvancedKeyboardLayout>()
-        KeyboardLanguage.POLISH -> getKoin().get<PLAdvancedKeyboardLayout>()
-        KeyboardLanguage.PORTUGUESE -> getKoin().get<PTAdvancedKeyboardLayout>()
-        KeyboardLanguage.BRAZILIAN -> getKoin().get<BRAdvancedKeyboardLayout>()
-        KeyboardLanguage.GREEK -> getKoin().get<ElAdvancedKeyboardLayout>()
-        KeyboardLanguage.TURKISH -> getKoin().get<TRAdvancedKeyboardLayout>()
-        KeyboardLanguage.HEBREW -> getKoin().get<HEAdvancedKeyboardLayout>()
-        KeyboardLanguage.BULGARIAN -> getKoin().get<BGAdvancedKeyboardLayout>()
+        KeyboardLanguage.ENGLISH_US -> getKoin().get<EnglishUSAdvancedKeyboardLayout>()
+        KeyboardLanguage.ENGLISH_UK -> getKoin().get<EnglishUKAdvancedKeyboardLayout>()
+        KeyboardLanguage.SPANISH -> getKoin().get<SpanishAdvancedKeyboardLayout>()
+        KeyboardLanguage.FRENCH -> getKoin().get<FrenchAdvancedKeyboardLayout>()
+        KeyboardLanguage.GERMAN -> getKoin().get<GermanAdvancedKeyboardLayout>()
+        KeyboardLanguage.RUSSIAN -> getKoin().get<RussianAdvancedKeyboardLayout>()
+        KeyboardLanguage.CZECH -> getKoin().get<CzechAdvancedKeyboardLayout>()
+        KeyboardLanguage.POLISH -> getKoin().get<PolishAdvancedKeyboardLayout>()
+        KeyboardLanguage.PORTUGUESE -> getKoin().get<PortugueseAdvancedKeyboardLayout>()
+        KeyboardLanguage.BRAZILIAN -> getKoin().get<PortugueseBRAdvancedKeyboardLayout>()
+        KeyboardLanguage.GREEK -> getKoin().get<GreekAdvancedKeyboardLayout>()
+        KeyboardLanguage.TURKISH -> getKoin().get<TurkishAdvancedKeyboardLayout>()
+        KeyboardLanguage.HEBREW -> getKoin().get<HebrewAdvancedKeyboardLayout>()
+        KeyboardLanguage.BULGARIAN -> getKoin().get<BulgarianAdvancedKeyboardLayout>()
     }
 }
 

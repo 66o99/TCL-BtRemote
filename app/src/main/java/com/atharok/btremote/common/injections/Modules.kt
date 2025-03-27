@@ -16,34 +16,34 @@ import com.atharok.btremote.data.repositories.BluetoothRepositoryImpl
 import com.atharok.btremote.data.repositories.GyroscopeSensorRepositoryImpl
 import com.atharok.btremote.data.repositories.SettingsRepositoryImpl
 import com.atharok.btremote.data.sensor.GyroscopeSensor
-import com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard.BGAdvancedKeyboardLayout
-import com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard.BRAdvancedKeyboardLayout
-import com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard.CSAdvancedKeyboardLayout
-import com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard.DEAdvancedKeyboardLayout
-import com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard.ESAdvancedKeyboardLayout
-import com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard.ElAdvancedKeyboardLayout
-import com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard.FRAdvancedKeyboardLayout
-import com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard.HEAdvancedKeyboardLayout
-import com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard.PLAdvancedKeyboardLayout
-import com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard.PTAdvancedKeyboardLayout
-import com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard.RUAdvancedKeyboardLayout
-import com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard.TRAdvancedKeyboardLayout
-import com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard.UKAdvancedKeyboardLayout
-import com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard.USAdvancedKeyboardLayout
-import com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard.BGVirtualKeyboardLayout
-import com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard.BRVirtualKeyboardLayout
-import com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard.CSVirtualKeyboardLayout
-import com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard.DEVirtualKeyboardLayout
-import com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard.ESVirtualKeyboardLayout
-import com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard.ElVirtualKeyboardLayout
-import com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard.FRVirtualKeyboardLayout
-import com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard.HEVirtualKeyboardLayout
-import com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard.PLVirtualKeyboardLayout
-import com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard.PTVirtualKeyboardLayout
-import com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard.RUVirtualKeyboardLayout
-import com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard.TRVirtualKeyboardLayout
-import com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard.UKVirtualKeyboardLayout
-import com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard.USVirtualKeyboardLayout
+import com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard.BulgarianAdvancedKeyboardLayout
+import com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard.PortugueseBRAdvancedKeyboardLayout
+import com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard.CzechAdvancedKeyboardLayout
+import com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard.GermanAdvancedKeyboardLayout
+import com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard.SpanishAdvancedKeyboardLayout
+import com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard.GreekAdvancedKeyboardLayout
+import com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard.FrenchAdvancedKeyboardLayout
+import com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard.HebrewAdvancedKeyboardLayout
+import com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard.PolishAdvancedKeyboardLayout
+import com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard.PortugueseAdvancedKeyboardLayout
+import com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard.RussianAdvancedKeyboardLayout
+import com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard.TurkishAdvancedKeyboardLayout
+import com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard.EnglishUKAdvancedKeyboardLayout
+import com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard.EnglishUSAdvancedKeyboardLayout
+import com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard.BulgarianVirtualKeyboardLayout
+import com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard.PortugueseBRVirtualKeyboardLayout
+import com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard.CzechVirtualKeyboardLayout
+import com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard.GermanVirtualKeyboardLayout
+import com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard.SpanishVirtualKeyboardLayout
+import com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard.GreekVirtualKeyboardLayout
+import com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard.FrenchVirtualKeyboardLayout
+import com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard.HebrewVirtualKeyboardLayout
+import com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard.PolishVirtualKeyboardLayout
+import com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard.PortugueseVirtualKeyboardLayout
+import com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard.RussianVirtualKeyboardLayout
+import com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard.TurkishVirtualKeyboardLayout
+import com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard.EnglishUKVirtualKeyboardLayout
+import com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard.EnglishUSVirtualKeyboardLayout
 import com.atharok.btremote.domain.repositories.BluetoothHidProfileRepository
 import com.atharok.btremote.domain.repositories.BluetoothRepository
 import com.atharok.btremote.domain.repositories.GyroscopeSensorRepository
@@ -90,35 +90,35 @@ private val androidModule: Module = module {
         )
     }
 
-    single { USVirtualKeyboardLayout() }
-    single { UKVirtualKeyboardLayout() }
-    single { ESVirtualKeyboardLayout() }
-    single { FRVirtualKeyboardLayout() }
-    single { DEVirtualKeyboardLayout() }
-    single { RUVirtualKeyboardLayout() }
-    single { CSVirtualKeyboardLayout() }
-    single { PLVirtualKeyboardLayout() }
-    single { PTVirtualKeyboardLayout() }
-    single { BRVirtualKeyboardLayout() }
-    single { ElVirtualKeyboardLayout() }
-    single { TRVirtualKeyboardLayout() }
-    single { HEVirtualKeyboardLayout() }
-    single { BGVirtualKeyboardLayout() }
+    single { EnglishUSVirtualKeyboardLayout() }
+    single { EnglishUKVirtualKeyboardLayout() }
+    single { SpanishVirtualKeyboardLayout() }
+    single { FrenchVirtualKeyboardLayout() }
+    single { GermanVirtualKeyboardLayout() }
+    single { RussianVirtualKeyboardLayout() }
+    single { CzechVirtualKeyboardLayout() }
+    single { PolishVirtualKeyboardLayout() }
+    single { PortugueseVirtualKeyboardLayout() }
+    single { PortugueseBRVirtualKeyboardLayout() }
+    single { GreekVirtualKeyboardLayout() }
+    single { TurkishVirtualKeyboardLayout() }
+    single { HebrewVirtualKeyboardLayout() }
+    single { BulgarianVirtualKeyboardLayout() }
 
-    single { USAdvancedKeyboardLayout(context = androidContext()) }
-    single { UKAdvancedKeyboardLayout(context = androidContext()) }
-    single { ESAdvancedKeyboardLayout(context = androidContext()) }
-    single { FRAdvancedKeyboardLayout(context = androidContext()) }
-    single { DEAdvancedKeyboardLayout(context = androidContext()) }
-    single { RUAdvancedKeyboardLayout(context = androidContext()) }
-    single { CSAdvancedKeyboardLayout(context = androidContext()) }
-    single { PLAdvancedKeyboardLayout(context = androidContext()) }
-    single { PTAdvancedKeyboardLayout(context = androidContext()) }
-    single { BRAdvancedKeyboardLayout(context = androidContext()) }
-    single { ElAdvancedKeyboardLayout(context = androidContext()) }
-    single { TRAdvancedKeyboardLayout(context = androidContext()) }
-    single { HEAdvancedKeyboardLayout(context = androidContext()) }
-    single { BGAdvancedKeyboardLayout(context = androidContext()) }
+    single { EnglishUSAdvancedKeyboardLayout(context = androidContext()) }
+    single { EnglishUKAdvancedKeyboardLayout(context = androidContext()) }
+    single { SpanishAdvancedKeyboardLayout(context = androidContext()) }
+    single { FrenchAdvancedKeyboardLayout(context = androidContext()) }
+    single { GermanAdvancedKeyboardLayout(context = androidContext()) }
+    single { RussianAdvancedKeyboardLayout(context = androidContext()) }
+    single { CzechAdvancedKeyboardLayout(context = androidContext()) }
+    single { PolishAdvancedKeyboardLayout(context = androidContext()) }
+    single { PortugueseAdvancedKeyboardLayout(context = androidContext()) }
+    single { PortugueseBRAdvancedKeyboardLayout(context = androidContext()) }
+    single { GreekAdvancedKeyboardLayout(context = androidContext()) }
+    single { TurkishAdvancedKeyboardLayout(context = androidContext()) }
+    single { HebrewAdvancedKeyboardLayout(context = androidContext()) }
+    single { BulgarianAdvancedKeyboardLayout(context = androidContext()) }
 
     factory<Locale> {
         androidContext().resources.configuration.locales[0]

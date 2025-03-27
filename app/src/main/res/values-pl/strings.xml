@@ -18,18 +18,18 @@
     <string name="theme_light">Jasny</string>
     <string name="theme_dark">Ciemny</string>
     <string name="language">Język</string>
-    <string name="keyboard_es">Hiszpański</string>
-    <string name="keyboard_de">Niemiecki</string>
-    <string name="keyboard_ru">Rosyjski</string>
-    <string name="keyboard_cs">Czeski</string>
-    <string name="keyboard_pl">Polski</string>
+    <string name="keyboard_spanish">Hiszpański</string>
+    <string name="keyboard_german">Niemiecki</string>
+    <string name="keyboard_russian">Rosyjski</string>
+    <string name="keyboard_czech">Czeski</string>
+    <string name="keyboard_polish">Polski</string>
     <string name="more">Więcej</string>
     <string name="settings">Ustawienia</string>
     <string name="appearance">Wygląd</string>
     <string name="send">Wyślij</string>
     <string name="app_name">BT Remote</string>
     <string name="remote">Zdalne</string>
-    <string name="keyboard_fr">Francuski</string>
+    <string name="keyboard_french">Francuski</string>
     <string name="delete">Usuń</string>
     <string name="bluetooth_permission_message">Musisz zezwolić na dostęp do Bluetooth.</string>
     <string name="bluetooth_not_supported_message">Twoje urządzenie nie obsługuje łączności Bluetooth.</string>
@@ -58,7 +58,7 @@
     <string name="brightness_increase">Zwiększ jasność</string>
     <string name="help_missing_device_title">Brakujące urządzenie</string>
     <string name="third_party_library">Biblioteki stron trzecich</string>
-    <string name="keyboard_uk">Angielski (Wielka Brytania)</string>
+    <string name="keyboard_english_uk">Angielski (Wielka Brytania)</string>
     <string name="pause">Wstrzymaj</string>
     <string name="help_device_failed_connection_check_4">• Spróbuj połączyć się kilka razy.</string>
     <string name="help_device_failed_connection_check_6">• Ponownie sparuj oba urządzenia, naciskając ikonę znajdującą się na górnym pasku.</string>
@@ -103,7 +103,7 @@
     <string name="help_missing_device_message">Jeśli urządzenie nie pojawia się na liście sparowanych urządzeń, należy je sparować, naciskając ikonę na górnym pasku.</string>
     <string name="help_device_failed_connection_check_3">• Upewnij się, że oba urządzenia znajdują się wystarczająco blisko siebie.</string>
     <string name="clear_input_field">Wyczyść pole wprowadzania po wysłaniu tekstu</string>
-    <string name="keyboard_us">Angielski (Stany Zjednoczone)</string>
+    <string name="keyboard_english_us">Angielski (Stany Zjednoczone)</string>
     <string name="help_device_failed_connection_message_2">Jeśli pomimo tych czynności nadal nie możesz połączyć się z urządzeniem, wykonaj następujące czynności:</string>
     <string name="help_paring_select_device_from_list">Z listy dostępnych urządzeń wybierz to, z którym chcesz się sparować.</string>
     <string name="help_pairing_missing_device_check_location_for_android_11_or_less">• Upewnij się, że usługi lokalizacji są włączone na Twoim urządzeniu.</string>
@@ -119,7 +119,7 @@
     <string name="standby">Stan spoczynku</string>
     <string name="mouse_pad_tap">Kliknięcie</string>
     <string name="unpair">Rozparuj</string>
-    <string name="keyboard_pt">Portugalski</string>
-    <string name="keyboard_br">Brazylyjski</string>
+    <string name="keyboard_portuguese">Portugalski</string>
+    <string name="keyboard_portuguese_br">Brazylyjski</string>
     <string name="unpair_device_warning_message">To urządzenie zostanie całkowicie rozparowane z twoim urządzeniem. Czy na pewno chcesz kontynuować?</string>
 </resources>

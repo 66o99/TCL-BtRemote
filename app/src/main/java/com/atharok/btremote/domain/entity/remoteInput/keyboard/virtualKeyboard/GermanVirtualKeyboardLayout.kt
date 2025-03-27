@@ -1,15 +1,16 @@
 package com.atharok.btremote.domain.entity.remoteInput.keyboard.virtualKeyboard
 
+
 import com.atharok.btremote.common.utils.REMOTE_INPUT_NONE
 import com.atharok.btremote.domain.entity.remoteInput.keyboard.KeyboardKey
 
-class TRVirtualKeyboardLayout: VirtualKeyboardLayout() {
+class GermanVirtualKeyboardLayout: VirtualKeyboardLayout() {
 
     protected override val keyboardInputs: Map<Char, ByteArray> by lazy {
         mapOf(
             ' ' to KEYBOARD_KEY_SPACE_BAR,
 
-            '"' to byteArrayOf(0x00, KeyboardKey.ROW_1_KEY_00.byte),
+            '^' to byteArrayOf(0x00, KeyboardKey.ROW_1_KEY_00.byte),
             '1' to byteArrayOf(0x00, KeyboardKey.ROW_1_KEY_01.byte),
             '2' to byteArrayOf(0x00, KeyboardKey.ROW_1_KEY_02.byte),
             '3' to byteArrayOf(0x00, KeyboardKey.ROW_1_KEY_03.byte),
@@ -20,21 +21,21 @@ class TRVirtualKeyboardLayout: VirtualKeyboardLayout() {
             '8' to byteArrayOf(0x00, KeyboardKey.ROW_1_KEY_08.byte),
             '9' to byteArrayOf(0x00, KeyboardKey.ROW_1_KEY_09.byte),
             '0' to byteArrayOf(0x00, KeyboardKey.ROW_1_KEY_10.byte),
-            '*' to byteArrayOf(0x00, KeyboardKey.ROW_1_KEY_11.byte),
-            '-' to byteArrayOf(0x00, KeyboardKey.ROW_1_KEY_12.byte),
+            'ß' to byteArrayOf(0x00, KeyboardKey.ROW_1_KEY_11.byte),
+            '´' to byteArrayOf(0x00, KeyboardKey.ROW_1_KEY_12.byte),
 
             'q' to byteArrayOf(0x00, KeyboardKey.ROW_2_KEY_00.byte),
             'w' to byteArrayOf(0x00, KeyboardKey.ROW_2_KEY_01.byte),
             'e' to byteArrayOf(0x00, KeyboardKey.ROW_2_KEY_02.byte),
             'r' to byteArrayOf(0x00, KeyboardKey.ROW_2_KEY_03.byte),
             't' to byteArrayOf(0x00, KeyboardKey.ROW_2_KEY_04.byte),
-            'y' to byteArrayOf(0x00, KeyboardKey.ROW_2_KEY_05.byte),
+            'z' to byteArrayOf(0x00, KeyboardKey.ROW_2_KEY_05.byte),
             'u' to byteArrayOf(0x00, KeyboardKey.ROW_2_KEY_06.byte),
-            'ı' to byteArrayOf(0x00, KeyboardKey.ROW_2_KEY_07.byte),
+            'i' to byteArrayOf(0x00, KeyboardKey.ROW_2_KEY_07.byte),
             'o' to byteArrayOf(0x00, KeyboardKey.ROW_2_KEY_08.byte),
             'p' to byteArrayOf(0x00, KeyboardKey.ROW_2_KEY_09.byte),
-            'ğ' to byteArrayOf(0x00, KeyboardKey.ROW_2_KEY_10.byte),
-            'ü' to byteArrayOf(0x00, KeyboardKey.ROW_2_KEY_11.byte),
+            'ü' to byteArrayOf(0x00, KeyboardKey.ROW_2_KEY_10.byte),
+            '+' to byteArrayOf(0x00, KeyboardKey.ROW_2_KEY_11.byte),
 
             'a' to byteArrayOf(0x00, KeyboardKey.ROW_3_KEY_00.byte),
             's' to byteArrayOf(0x00, KeyboardKey.ROW_3_KEY_01.byte),
@@ -45,29 +46,29 @@ class TRVirtualKeyboardLayout: VirtualKeyboardLayout() {
             'j' to byteArrayOf(0x00, KeyboardKey.ROW_3_KEY_06.byte),
             'k' to byteArrayOf(0x00, KeyboardKey.ROW_3_KEY_07.byte),
             'l' to byteArrayOf(0x00, KeyboardKey.ROW_3_KEY_08.byte),
-            'ş' to byteArrayOf(0x00, KeyboardKey.ROW_3_KEY_09.byte),
-            'i' to byteArrayOf(0x00, KeyboardKey.ROW_3_KEY_10.byte),
-            ',' to byteArrayOf(0x00, KeyboardKey.ROW_3_KEY_11.byte),
+            'ö' to byteArrayOf(0x00, KeyboardKey.ROW_3_KEY_09.byte),
+            'ä' to byteArrayOf(0x00, KeyboardKey.ROW_3_KEY_10.byte),
+            '#' to byteArrayOf(0x00, KeyboardKey.ROW_3_KEY_11.byte),
 
             '<' to byteArrayOf(0x00, KeyboardKey.ROW_4_KEY_00.byte),
-            'z' to byteArrayOf(0x00, KeyboardKey.ROW_4_KEY_01.byte),
+            'y' to byteArrayOf(0x00, KeyboardKey.ROW_4_KEY_01.byte),
             'x' to byteArrayOf(0x00, KeyboardKey.ROW_4_KEY_02.byte),
             'c' to byteArrayOf(0x00, KeyboardKey.ROW_4_KEY_03.byte),
             'v' to byteArrayOf(0x00, KeyboardKey.ROW_4_KEY_04.byte),
             'b' to byteArrayOf(0x00, KeyboardKey.ROW_4_KEY_05.byte),
             'n' to byteArrayOf(0x00, KeyboardKey.ROW_4_KEY_06.byte),
             'm' to byteArrayOf(0x00, KeyboardKey.ROW_4_KEY_07.byte),
-            'ö' to byteArrayOf(0x00, KeyboardKey.ROW_4_KEY_08.byte),
-            'ç' to byteArrayOf(0x00, KeyboardKey.ROW_4_KEY_09.byte),
-            '.' to byteArrayOf(0x00, KeyboardKey.ROW_4_KEY_10.byte),
+            ',' to byteArrayOf(0x00, KeyboardKey.ROW_4_KEY_08.byte),
+            '.' to byteArrayOf(0x00, KeyboardKey.ROW_4_KEY_09.byte),
+            '-' to byteArrayOf(0x00, KeyboardKey.ROW_4_KEY_10.byte),
 
             // ---- Shift ----
 
-            'é' to byteArrayOf(0x02, KeyboardKey.ROW_1_KEY_00.byte),
+            '°' to byteArrayOf(0x02, KeyboardKey.ROW_1_KEY_00.byte),
             '!' to byteArrayOf(0x02, KeyboardKey.ROW_1_KEY_01.byte),
-            '\'' to byteArrayOf(0x02, KeyboardKey.ROW_1_KEY_02.byte),
-            'ˆ' to byteArrayOf(0x02, KeyboardKey.ROW_1_KEY_03.byte),
-            '+' to byteArrayOf(0x02, KeyboardKey.ROW_1_KEY_04.byte),
+            '"' to byteArrayOf(0x02, KeyboardKey.ROW_1_KEY_02.byte),
+            '§' to byteArrayOf(0x02, KeyboardKey.ROW_1_KEY_03.byte),
+            '$' to byteArrayOf(0x02, KeyboardKey.ROW_1_KEY_04.byte),
             '%' to byteArrayOf(0x02, KeyboardKey.ROW_1_KEY_05.byte),
             '&' to byteArrayOf(0x02, KeyboardKey.ROW_1_KEY_06.byte),
             '/' to byteArrayOf(0x02, KeyboardKey.ROW_1_KEY_07.byte),
@@ -75,20 +76,20 @@ class TRVirtualKeyboardLayout: VirtualKeyboardLayout() {
             ')' to byteArrayOf(0x02, KeyboardKey.ROW_1_KEY_09.byte),
             '=' to byteArrayOf(0x02, KeyboardKey.ROW_1_KEY_10.byte),
             '?' to byteArrayOf(0x02, KeyboardKey.ROW_1_KEY_11.byte),
-            '_' to byteArrayOf(0x02, KeyboardKey.ROW_1_KEY_12.byte),
+            '`' to byteArrayOf(0x02, KeyboardKey.ROW_1_KEY_12.byte),
 
             'Q' to byteArrayOf(0x02, KeyboardKey.ROW_2_KEY_00.byte),
             'W' to byteArrayOf(0x02, KeyboardKey.ROW_2_KEY_01.byte),
             'E' to byteArrayOf(0x02, KeyboardKey.ROW_2_KEY_02.byte),
             'R' to byteArrayOf(0x02, KeyboardKey.ROW_2_KEY_03.byte),
             'T' to byteArrayOf(0x02, KeyboardKey.ROW_2_KEY_04.byte),
-            'Y' to byteArrayOf(0x02, KeyboardKey.ROW_2_KEY_05.byte),
+            'Z' to byteArrayOf(0x02, KeyboardKey.ROW_2_KEY_05.byte),
             'U' to byteArrayOf(0x02, KeyboardKey.ROW_2_KEY_06.byte),
             'I' to byteArrayOf(0x02, KeyboardKey.ROW_2_KEY_07.byte),
             'O' to byteArrayOf(0x02, KeyboardKey.ROW_2_KEY_08.byte),
             'P' to byteArrayOf(0x02, KeyboardKey.ROW_2_KEY_09.byte),
-            'Ğ' to byteArrayOf(0x02, KeyboardKey.ROW_2_KEY_10.byte),
-            'Ü' to byteArrayOf(0x02, KeyboardKey.ROW_2_KEY_11.byte),
+            'Ü' to byteArrayOf(0x02, KeyboardKey.ROW_2_KEY_10.byte),
+            '*' to byteArrayOf(0x02, KeyboardKey.ROW_2_KEY_11.byte),
 
             'A' to byteArrayOf(0x02, KeyboardKey.ROW_3_KEY_00.byte),
             'S' to byteArrayOf(0x02, KeyboardKey.ROW_3_KEY_01.byte),
@@ -99,59 +100,46 @@ class TRVirtualKeyboardLayout: VirtualKeyboardLayout() {
             'J' to byteArrayOf(0x02, KeyboardKey.ROW_3_KEY_06.byte),
             'K' to byteArrayOf(0x02, KeyboardKey.ROW_3_KEY_07.byte),
             'L' to byteArrayOf(0x02, KeyboardKey.ROW_3_KEY_08.byte),
-            'Ş' to byteArrayOf(0x02, KeyboardKey.ROW_3_KEY_09.byte),
-            'İ' to byteArrayOf(0x02, KeyboardKey.ROW_3_KEY_10.byte),
-            ';' to byteArrayOf(0x02, KeyboardKey.ROW_3_KEY_11.byte),
+            'Ö' to byteArrayOf(0x02, KeyboardKey.ROW_3_KEY_09.byte),
+            'Ä' to byteArrayOf(0x02, KeyboardKey.ROW_3_KEY_10.byte),
+            '\'' to byteArrayOf(0x02, KeyboardKey.ROW_3_KEY_11.byte),
 
             '>' to byteArrayOf(0x02, KeyboardKey.ROW_4_KEY_00.byte),
-            'Z' to byteArrayOf(0x02, KeyboardKey.ROW_4_KEY_01.byte),
+            'Y' to byteArrayOf(0x02, KeyboardKey.ROW_4_KEY_01.byte),
             'X' to byteArrayOf(0x02, KeyboardKey.ROW_4_KEY_02.byte),
             'C' to byteArrayOf(0x02, KeyboardKey.ROW_4_KEY_03.byte),
             'V' to byteArrayOf(0x02, KeyboardKey.ROW_4_KEY_04.byte),
             'B' to byteArrayOf(0x02, KeyboardKey.ROW_4_KEY_05.byte),
             'N' to byteArrayOf(0x02, KeyboardKey.ROW_4_KEY_06.byte),
             'M' to byteArrayOf(0x02, KeyboardKey.ROW_4_KEY_07.byte),
-            'Ö' to byteArrayOf(0x02, KeyboardKey.ROW_4_KEY_08.byte),
-            'Ç' to byteArrayOf(0x02, KeyboardKey.ROW_4_KEY_09.byte),
-            ':' to byteArrayOf(0x02, KeyboardKey.ROW_4_KEY_10.byte),
+            ';' to byteArrayOf(0x02, KeyboardKey.ROW_4_KEY_08.byte),
+            ':' to byteArrayOf(0x02, KeyboardKey.ROW_4_KEY_09.byte),
+            '_' to byteArrayOf(0x02, KeyboardKey.ROW_4_KEY_10.byte),
 
             // ---- Alt Gr ----
 
-            '£' to byteArrayOf(0x40, KeyboardKey.ROW_1_KEY_02.byte),
-            '#' to byteArrayOf(0x40, KeyboardKey.ROW_1_KEY_03.byte),
-            '$' to byteArrayOf(0x40, KeyboardKey.ROW_1_KEY_04.byte),
-            '½' to byteArrayOf(0x40, KeyboardKey.ROW_1_KEY_05.byte),
+            '²' to byteArrayOf(0x40, KeyboardKey.ROW_1_KEY_02.byte),
+            '³' to byteArrayOf(0x40, KeyboardKey.ROW_1_KEY_03.byte),
             '{' to byteArrayOf(0x40, KeyboardKey.ROW_1_KEY_07.byte),
             '[' to byteArrayOf(0x40, KeyboardKey.ROW_1_KEY_08.byte),
             ']' to byteArrayOf(0x40, KeyboardKey.ROW_1_KEY_09.byte),
             '}' to byteArrayOf(0x40, KeyboardKey.ROW_1_KEY_10.byte),
             '\\' to byteArrayOf(0x40, KeyboardKey.ROW_1_KEY_11.byte),
-            '|' to byteArrayOf(0x40, KeyboardKey.ROW_1_KEY_12.byte),
 
             '@' to byteArrayOf(0x40, KeyboardKey.ROW_2_KEY_00.byte),
             '€' to byteArrayOf(0x40, KeyboardKey.ROW_2_KEY_02.byte),
-            '¨' to byteArrayOf(0x40, KeyboardKey.ROW_2_KEY_10.byte),
-            '˜' to byteArrayOf(0x40, KeyboardKey.ROW_2_KEY_11.byte),
+            '~' to byteArrayOf(0x40, KeyboardKey.ROW_2_KEY_11.byte),
 
-            'æ' to byteArrayOf(0x40, KeyboardKey.ROW_3_KEY_00.byte),
-            'ß' to byteArrayOf(0x40, KeyboardKey.ROW_3_KEY_01.byte),
-            '´' to byteArrayOf(0x40, KeyboardKey.ROW_3_KEY_11.byte),
-
-            // ---- Shift + Alt Gr ----
-
-            'Æ' to byteArrayOf(0x42, KeyboardKey.ROW_3_KEY_00.byte),
-            'ˋ' to byteArrayOf(0x42, KeyboardKey.ROW_3_KEY_11.byte),
+            '|' to byteArrayOf(0x40, KeyboardKey.ROW_4_KEY_00.byte),
+            'µ' to byteArrayOf(0x40, KeyboardKey.ROW_4_KEY_07.byte),
         )
     }
 
     protected override val extraInputs: Map<Char, ByteArray> by lazy {
         mapOf(
             '¹' to (keyboardInputs['1'] ?: REMOTE_INPUT_NONE),
-            '²' to (keyboardInputs['2'] ?: REMOTE_INPUT_NONE),
-            '³' to (keyboardInputs['3'] ?: REMOTE_INPUT_NONE),
             '«' to (keyboardInputs['"'] ?: REMOTE_INPUT_NONE),
             '»' to (keyboardInputs['"'] ?: REMOTE_INPUT_NONE),
-            'µ' to (keyboardInputs['u'] ?: REMOTE_INPUT_NONE),
             '¥' to (keyboardInputs['Y'] ?: REMOTE_INPUT_NONE),
             '¢' to (keyboardInputs['c'] ?: REMOTE_INPUT_NONE),
 
@@ -159,10 +147,10 @@ class TRVirtualKeyboardLayout: VirtualKeyboardLayout() {
             'Á' to (keyboardInputs['A'] ?: REMOTE_INPUT_NONE),
             'Â' to (keyboardInputs['A'] ?: REMOTE_INPUT_NONE),
             'Ã' to (keyboardInputs['A'] ?: REMOTE_INPUT_NONE),
-            'Ä' to (keyboardInputs['A'] ?: REMOTE_INPUT_NONE),
             'Å' to (keyboardInputs['A'] ?: REMOTE_INPUT_NONE),
             'Ą' to (keyboardInputs['A'] ?: REMOTE_INPUT_NONE),
             'Æ' to (keyboardInputs['A'] ?: REMOTE_INPUT_NONE),
+            'Ç' to (keyboardInputs['C'] ?: REMOTE_INPUT_NONE),
             'Č' to (keyboardInputs['C'] ?: REMOTE_INPUT_NONE),
             'Ć' to (keyboardInputs['C'] ?: REMOTE_INPUT_NONE),
             'È' to (keyboardInputs['E'] ?: REMOTE_INPUT_NONE),
@@ -200,12 +188,14 @@ class TRVirtualKeyboardLayout: VirtualKeyboardLayout() {
             'á' to (keyboardInputs['a'] ?: REMOTE_INPUT_NONE),
             'â' to (keyboardInputs['a'] ?: REMOTE_INPUT_NONE),
             'ã' to (keyboardInputs['a'] ?: REMOTE_INPUT_NONE),
-            'ä' to (keyboardInputs['a'] ?: REMOTE_INPUT_NONE),
             'å' to (keyboardInputs['a'] ?: REMOTE_INPUT_NONE),
             'ą' to (keyboardInputs['a'] ?: REMOTE_INPUT_NONE),
+            'æ' to (keyboardInputs['a'] ?: REMOTE_INPUT_NONE),
+            'ç' to (keyboardInputs['c'] ?: REMOTE_INPUT_NONE),
             'č' to (keyboardInputs['c'] ?: REMOTE_INPUT_NONE),
             'ć' to (keyboardInputs['c'] ?: REMOTE_INPUT_NONE),
             'è' to (keyboardInputs['e'] ?: REMOTE_INPUT_NONE),
+            'é' to (keyboardInputs['e'] ?: REMOTE_INPUT_NONE),
             'ê' to (keyboardInputs['e'] ?: REMOTE_INPUT_NONE),
             'ë' to (keyboardInputs['e'] ?: REMOTE_INPUT_NONE),
             'ě' to (keyboardInputs['e'] ?: REMOTE_INPUT_NONE),

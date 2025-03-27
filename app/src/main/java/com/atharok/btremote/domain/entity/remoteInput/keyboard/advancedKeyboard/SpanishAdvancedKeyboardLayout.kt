@@ -3,14 +3,15 @@ package com.atharok.btremote.domain.entity.remoteInput.keyboard.advancedKeyboard
 import android.content.Context
 import com.atharok.btremote.domain.entity.remoteInput.keyboard.KeyboardKey
 
-class RUAdvancedKeyboardLayout(context: Context): AdvancedKeyboardLayout(context) {
+class SpanishAdvancedKeyboardLayout(context: Context): AdvancedKeyboardLayout(context) {
 
     override val line1: Array<AdvancedKeyboardKey> = arrayOf(
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_1_KEY_01.byte,
             weight = 1f,
             text = "1",
-            textSecondary = "!"
+            textSecondary = "!",
+            textTertiary = "|"
         ),
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_1_KEY_02.byte,
@@ -23,65 +24,65 @@ class RUAdvancedKeyboardLayout(context: Context): AdvancedKeyboardLayout(context
             byte = KeyboardKey.ROW_1_KEY_03.byte,
             weight = 1f,
             text = "3",
-            textSecondary = "№",
+            textSecondary = "·",
             textTertiary = "#"
         ),
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_1_KEY_04.byte,
             weight = 1f,
             text = "4",
-            textSecondary = ";",
-            textTertiary = "$"
+            textSecondary = "$",
+            textTertiary = "˜"
         ),
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_1_KEY_05.byte,
             weight = 1f,
             text = "5",
-            textSecondary = "%"
+            textSecondary = "%",
+            textTertiary = "€"
         ),
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_1_KEY_06.byte,
             weight = 1f,
             text = "6",
-            textSecondary = ":",
-            textTertiary = "^"
+            textSecondary = "&",
+            textTertiary = "¬"
         ),
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_1_KEY_07.byte,
             weight = 1f,
             text = "7",
-            textSecondary = "?",
-            textTertiary = "&"
+            textSecondary = "/"
         ),
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_1_KEY_08.byte,
             weight = 1f,
             text = "8",
-            textSecondary = "*"
+            textSecondary = "("
         ),
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_1_KEY_09.byte,
             weight = 1f,
             text = "9",
-            textSecondary = "("
+            textSecondary = ")"
         ),
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_1_KEY_10.byte,
             weight = 1f,
             text = "0",
-            textSecondary = ")"
+            textSecondary = "="
         ),
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_1_KEY_11.byte,
             weight = 1f,
-            text = "-",
-            textSecondary = "_"
+            text = "'",
+            textSecondary = "?"
         ),
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_1_KEY_12.byte,
             weight = 1f,
-            text = "=",
-            textSecondary = "+"
+            text = "¡",
+            textSecondary = "¿"
         )
     )
 
@@ -89,75 +90,66 @@ class RUAdvancedKeyboardLayout(context: Context): AdvancedKeyboardLayout(context
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_2_KEY_00.byte,
             weight = 1f,
-            text = "Й",
-            textTertiary = "Q"
+            text = "Q"
         ),
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_2_KEY_01.byte,
             weight = 1f,
-            text = "Ц",
-            textTertiary = "W"
+            text = "W"
         ),
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_2_KEY_02.byte,
             weight = 1f,
-            text = "У",
-            textTertiary = "E"
+            text = "E",
+            textTertiary = "€"
         ),
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_2_KEY_03.byte,
             weight = 1f,
-            text = "К",
-            textTertiary = "R"
+            text = "R"
         ),
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_2_KEY_04.byte,
             weight = 1f,
-            text = "Е",
-            textTertiary = "T"
+            text = "T"
         ),
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_2_KEY_05.byte,
             weight = 1f,
-            text = "Н",
-            textTertiary = "Y"
+            text = "Y"
         ),
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_2_KEY_06.byte,
             weight = 1f,
-            text = "Г",
-            textTertiary = "U"
+            text = "U"
         ),
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_2_KEY_07.byte,
             weight = 1f,
-            text = "Ш",
-            textTertiary = "I"
+            text = "I"
         ),
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_2_KEY_08.byte,
             weight = 1f,
-            text = "Щ",
-            textTertiary = "O"
+            text = "O"
         ),
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_2_KEY_09.byte,
             weight = 1f,
-            text = "З",
-            textTertiary = "P"
+            text = "P"
         ),
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_2_KEY_10.byte,
             weight = 1f,
-            text = "Х",
-            textSecondary = "{",
+            text = "ˋ",
+            textSecondary = "ˆ",
             textTertiary = "["
         ),
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_2_KEY_11.byte,
             weight = 1f,
-            text = "Ъ",
-            textSecondary = "}",
+            text = "+",
+            textSecondary = "*",
             textTertiary = "]"
         )
     )
@@ -166,77 +158,65 @@ class RUAdvancedKeyboardLayout(context: Context): AdvancedKeyboardLayout(context
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_3_KEY_00.byte,
             weight = 1f,
-            text = "Ф",
-            textTertiary = "A"
+            text = "A"
         ),
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_3_KEY_01.byte,
             weight = 1f,
-            text = "Ы",
-            textTertiary = "S"
+            text = "S"
         ),
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_3_KEY_02.byte,
             weight = 1f,
-            text = "В",
-            textTertiary = "D"
+            text = "D"
         ),
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_3_KEY_03.byte,
             weight = 1f,
-            text = "А",
-            textTertiary = "F"
+            text = "F"
         ),
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_3_KEY_04.byte,
             weight = 1f,
-            text = "П",
-            textTertiary = "G"
+            text = "G"
         ),
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_3_KEY_05.byte,
             weight = 1f,
-            text = "Р",
-            textTertiary = "H"
+            text = "H"
         ),
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_3_KEY_06.byte,
             weight = 1f,
-            text = "О",
-            textTertiary = "J"
+            text = "J"
         ),
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_3_KEY_07.byte,
             weight = 1f,
-            text = "Л",
-            textTertiary = "K"
+            text = "K"
         ),
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_3_KEY_08.byte,
             weight = 1f,
-            text = "Д",
-            textTertiary = "L"
+            text = "L"
         ),
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_3_KEY_09.byte,
             weight = 1f,
-            text = "Ж",
-            textSecondary = ":",
-            textTertiary = ";"
+            text = "Ñ"
         ),
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_3_KEY_10.byte,
             weight = 1f,
-            text = "Э",
-            textSecondary = "\"",
-            textTertiary = "'"
+            text = "´",
+            textSecondary = "¨",
+            textTertiary = "{"
         ),
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_3_KEY_11.byte,
             weight = 1f,
-            text = "\\",
-            textSecondary = "/",
-            textTertiary = "|"
+            text = "Ç",
+            textTertiary = "}"
         )
     )
 
@@ -244,79 +224,68 @@ class RUAdvancedKeyboardLayout(context: Context): AdvancedKeyboardLayout(context
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_1_KEY_00.byte,
             weight = 1f,
-            text = "Ё",
-            textSecondary = "~",
-            textTertiary = "`"
+            text = "º",
+            textSecondary = "ª",
+            textTertiary = "\\"
         ),
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_4_KEY_00.byte,
             weight = 1f,
-            text = "\\",
-            textSecondary = "/",
-            textTertiary = "|"
+            text = "<",
+            textSecondary = ">"
         ),
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_4_KEY_01.byte,
             weight = 1f,
-            text = "Я",
-            textTertiary = "Z"
+            text = "Z"
         ),
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_4_KEY_02.byte,
             weight = 1f,
-            text = "Ч",
-            textTertiary = "X"
+            text = "X"
         ),
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_4_KEY_03.byte,
             weight = 1f,
-            text = "С",
-            textTertiary = "C"
+            text = "C"
         ),
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_4_KEY_04.byte,
             weight = 1f,
-            text = "М",
-            textTertiary = "V"
+            text = "V"
         ),
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_4_KEY_05.byte,
             weight = 1f,
-            text = "И",
-            textTertiary = "B"
+            text = "B"
         ),
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_4_KEY_06.byte,
             weight = 1f,
-            text = "Т",
-            textTertiary = "N"
+            text = "N"
         ),
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_4_KEY_07.byte,
             weight = 1f,
-            text = "Ь",
-            textTertiary = "M"
+            text = "M"
         ),
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_4_KEY_08.byte,
             weight = 1f,
-            text = "Б",
-            textSecondary = "<",
-            textTertiary = ","
+            text = ",",
+            textSecondary = ";"
         ),
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_4_KEY_09.byte,
             weight = 1f,
-            text = "Ю",
-            textSecondary = ">",
-            textTertiary = "."
+            text = ".",
+            textSecondary = ":"
         ),
         TextAdvancedKeyboardKey(
             byte = KeyboardKey.ROW_4_KEY_10.byte,
             weight = 1f,
-            text = ".",
-            textSecondary = ",    ?",
-            textTertiary = "/"
+            text = "-",
+            textSecondary = "_"
         )
     )
 }
