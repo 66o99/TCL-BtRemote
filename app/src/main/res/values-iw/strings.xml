@@ -186,4 +186,5 @@
     <string name="connected_off">אין מכשירים מחוברים</string>
     <string name="open">פתח</string>
     <string name="integrate_advanced_keyboard_into_the_view">שלב את המקלדת המתקדמת לתוך הנוף</string>
+    <string name="keyboard_ukrainian">אוקראינית</string>
 </resources>
