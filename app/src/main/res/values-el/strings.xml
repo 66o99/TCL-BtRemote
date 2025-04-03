@@ -207,4 +207,5 @@
     <string name="connected_off">Καμία συνδεδεμένη συσκευή</string>
     <string name="open">Άνοιγμα</string>
     <string name="integrate_advanced_keyboard_into_the_view">Ενοποίησε το προχωρημένο πληκτρολόγιο μέσα στην άποψη</string>
+    <string name="keyboard_ukrainian">Ουκρανικό</string>
 </resources>
