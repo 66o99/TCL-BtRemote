@@ -186,4 +186,5 @@
     <string name="integrate_advanced_keyboard_into_the_view">Integrar el teclado avanzado en la vista</string>
     <string name="tv">TV</string>
     <string name="keyboard_ukrainian">Ucraniano</string>
+    <string name="keyboard_persian">Persa</string>
 </resources>
