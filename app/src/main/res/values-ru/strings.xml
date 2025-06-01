@@ -207,4 +207,10 @@
     <string name="connected_off">Нет подключенных устройств</string>
     <string name="integrate_advanced_keyboard_into_the_view">Интегрировать расширенную клавиатуру в представление</string>
     <string name="keyboard_ukrainian">Украинский</string>
+    <string name="keyboard_persian">Персидский</string>
+    <string name="help_hid_service_not_initialized_title">Служба HID не инициализирована</string>
+    <string name="help_hid_service_not_initialized_message_3">• Если эта опция недоступна, ваше устройство может не поддерживать профиль HID. В этом случае, к сожалению, вы не сможете использовать это приложение на этом устройстве.</string>
+    <string name="help_hid_service_not_initialized_message_1">Если сообщение указывает на то, что служба HID не инициализирована, перейдите в настройки разработчика вашего устройства и найдите параметр «Отключить профиль устройства Bluetooth HID»:</string>
+    <string name="help_info_hid_service_not_initialized_message">Служба HID не инициализирована. Пожалуйста, ознакомьтесь со справкой.</string>
+    <string name="help_hid_service_not_initialized_message_2">• Если эта опция доступна, отключите её, затем перезапустите устройство. После перезапуска профиль HID должен работать нормально.</string>
 </resources>
