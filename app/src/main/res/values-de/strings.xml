@@ -186,4 +186,7 @@
     <string name="connected_off">Keine Geräte verbunden</string>
     <string name="integrate_advanced_keyboard_into_the_view">Die erweiterte Tastatur in die Ansicht integrieren</string>
     <string name="keyboard_ukrainian">Ukrainisch</string>
+    <string name="help_info_hid_service_not_initialized_message">Dieses Gerät wurde noch nicht initialisiert. Bitte schaue im Hilfebereich nach.</string>
+    <string name="keyboard_persian">Persisch</string>
+    <string name="help_hid_service_not_initialized_title">Gerät nicht initialisiert</string>
 </resources>
