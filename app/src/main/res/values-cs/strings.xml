@@ -105,8 +105,8 @@
     <string name="mouse_click_right">Kliknutí pravým tlačítkem myši</string>
     <string name="mouse_click_middle">Kliknutí prostředním tlačítkem myši</string>
     <string name="mouse_wheel_up">Přejeďte prstem nahoru</string>
-    <string name="mouse_wheel_down">Přejeďte prstem nahoru</string>
-    <string name="mouse_pad_tap">Tap</string>
+    <string name="mouse_wheel_down">Přejeďte prstem dolů</string>
+    <string name="mouse_pad_tap">Klepněte</string>
     <!-- Notification -->
     <string name="notification_channel_name">Bluetooth HID připojení</string>
     <string name="connected_on">Připojeno k %1$s</string>

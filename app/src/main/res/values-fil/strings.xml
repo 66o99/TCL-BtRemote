@@ -186,4 +186,10 @@
     <string name="connected_off">Walang mga nakakonektang device</string>
     <string name="integrate_advanced_keyboard_into_the_view">I-integrate ang advanced na keyboard sa view</string>
     <string name="keyboard_ukrainian">Ukrainian</string>
+    <string name="help_hid_service_not_initialized_message_2">• Kung available ang opsyon na ito, i-disable ito, at i-restart ang iyong device. Pagkatapos mag-restart, gagana muli nang mabuti ang HID profile.</string>
+    <string name="help_info_hid_service_not_initialized_message">Hindi naka-initialize ang HID service. Mangyaring ikonsulta ang tulong.</string>
+    <string name="help_hid_service_not_initialized_message_3">• Kung hindi available ang opsyon na ito, malamang na hindi sinusuportahan ng iyong device ang HID profile. Kung ganoon, sa kasamaang-palad, hindi mo magagamit ang application na ito sa device na ito.</string>
+    <string name="keyboard_persian">Persian</string>
+    <string name="help_hid_service_not_initialized_title">Hindi Naka-initialize ang HID Service</string>
+    <string name="help_hid_service_not_initialized_message_1">Kung may mensahe na nagpapahiwatig na hindi naka-initialize ang HID service, mangyaring pumunta sa mga opsyon ng developer ng iyong device at hanapin ang opsyon na \"Disable Bluetooth HID Device Profile\":</string>
 </resources>
