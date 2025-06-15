@@ -192,4 +192,6 @@
     <string name="help_hid_service_not_initialized_message_3">• Se essa opção não está disponível, o seu dispositivo pode não suportar o perfil de HID. Nesse caso, infelizmente você não poderá usar esse aplicativo neste dispositivo.</string>
     <string name="help_hid_service_not_initialized_title">Serviço de HID não inicializado</string>
     <string name="help_hid_service_not_initialized_message_1">Se uma mensagem indica que o serviço de HID não foi inicializado, por favor vá nas opções de desenvolvedor do seu dispositivo e procure pela opção \"Desativar perfil de dispositivo HID Bluetooth\":</string>
+    <string name="use_enter_for_selection_summary">Ative essa opção apenas se o botão de selecionar não funcionar</string>
+    <string name="use_enter_for_selection_title">Usar a tecla Enter para seleção</string>
 </resources>
