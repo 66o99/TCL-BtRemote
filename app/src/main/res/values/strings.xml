@@ -80,7 +80,7 @@
 
     <!-- Bluetooth Connecting -->
     <string name="connection">Connection</string>
-    <string name="bluetooth_device_connecting_message">Attempt to connect to \"%1$s\" device…</string>
+    <string name="bluetooth_device_connecting_message">Connecting to \"%1$s\" device…</string>
     <string name="bluetooth_device_disconnecting_message">Disconnecting \"%1$s\"…</string>
     <string name="bluetooth_failed_to_register_app_message">Failure to register the application. Please ensure that no other Bluetooth service is running in the background. If the error persists, it\'s possible that the Bluetooth process was unexpectedly interrupted. To fix this issue, please disable the Bluetooth on your device, then re-enable it.</string>
     <string name="bluetooth_failed_to_connect_to_device">The attempt to connect to the remote device failed.</string>
@@ -113,7 +113,7 @@
     <string name="use_minimalist_interface">Use the minimalist interface</string>
     <string name="minimalist_interface_info">Does not display the TV channel buttons</string>
     <string name="navigation_mode">Navigation Mode</string>
-    <string name="d_pad">D-Pad</string>
+    <string name="d_pad">D-pad</string>
     <string name="d_pad_description">Navigation via directional controls</string>
     <string name="touchpad">Touchpad</string>
     <string name="touchpad_description">Navigation via touch gestures</string>
@@ -247,7 +247,7 @@
 
     <!-- Third Library -->
 
-    <string name="github" translatable="false">Github</string>
+    <string name="github" translatable="false">GitHub</string>
     <string name="apache_license_2.0" translatable="false">Apache License 2.0</string>
     <string name="apache_license_2.0_url" translatable="false">http://www.apache.org/licenses/LICENSE-2.0</string>
 

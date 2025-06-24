@@ -72,7 +72,7 @@
     <string name="bluetooth_address_wrong_format">L\'adresse saisie n\'est pas au bon format. Elle doit contenir 6 paires de caractères hexadécimaux.\nExemple : 00:1A:2B:3C:4D:5E.</string>
     <!-- Bluetooth Connecting -->
     <string name="connection">Connexion</string>
-    <string name="bluetooth_device_connecting_message">Tentative de connexion au périphérique \"%1$s\"…</string>
+    <string name="bluetooth_device_connecting_message">Connexion au périphérique \"%1$s\"…</string>
     <string name="bluetooth_device_disconnecting_message">Déconnexion de \"%1$s\"…</string>
     <string name="bluetooth_failed_to_register_app_message">Échec lors de l\'enregistrement de l\'application. Veuillez vérifier qu\'aucun autre service Bluetooth ne fonctionne en arrière-plan. Si l\'erreur persiste, il est possible que le processus Bluetooth ait été interrompu de manière inattendue. Pour corriger ce problème, veuillez désactiver le Bluetooth de votre appareil, puis réactivez-le.</string>
     <string name="bluetooth_failed_to_connect_to_device">La tentative de connexion à l\'appareil distant a échoué.</string>
@@ -103,7 +103,7 @@
     <string name="use_minimalist_interface">Utiliser l\'interface minimaliste</string>
     <string name="minimalist_interface_info">N\'affiche pas les boutons des chaînes de télévision</string>
     <string name="navigation_mode">Mode de navigation</string>
-    <string name="d_pad">D-Pad</string>
+    <string name="d_pad">D-pad</string>
     <string name="d_pad_description">Navigation avec les flèches directionnelles</string>
     <string name="touchpad">Pavé tactile</string>
     <string name="touchpad_description">Navigation par gestes tactiles</string>
