@@ -16,6 +16,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import kotlin.math.max
+import kotlin.math.min
 import kotlin.math.roundToInt
 
 class BluetoothHidViewModel(
@@ -59,7 +61,11 @@ class BluetoothHidViewModel(
         y: Float = 0f,
         wheel: Float
     ): Boolean {
-        val bytes: ByteArray = byteArrayOf(input.byte, x.roundToInt().toByte(), y.roundToInt().toByte(), wheel.roundToInt().toByte())
+        var xInt = min(x.roundToInt(), 127)
+        var yInt = min(y.roundToInt(), 127)
+        xInt = max(xInt, -127)
+        yInt = max(yInt, -127)
+        val bytes: ByteArray = byteArrayOf(input.byte, xInt.toByte(), yInt.toByte(), wheel.roundToInt().toByte())
         return sendReport(MOUSE_REPORT_ID, bytes)
     }
 
