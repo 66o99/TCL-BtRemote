@@ -20,7 +20,7 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.dimensionResource
 import com.atharok.btremote.R
-import com.atharok.btremote.common.utils.AppIcons.getIconModifier
+import com.atharok.btremote.common.extensions.autoMirroredIcon
 import com.atharok.btremote.ui.theme.dimensionElevation1
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -57,7 +57,7 @@ fun TemplateModalBottomSheet(
                 Image(
                     imageVector = icon,
                     contentDescription = iconDescription,
-                    modifier = getIconModifier(icon).size(dimensionResource(id = R.dimen.large_icon_size)),
+                    modifier = Modifier.autoMirroredIcon(icon).size(dimensionResource(id = R.dimen.large_icon_size)),
                     colorFilter = ColorFilter.tint(color = MaterialTheme.colorScheme.onSurface)
                 )
                 TextLarge(

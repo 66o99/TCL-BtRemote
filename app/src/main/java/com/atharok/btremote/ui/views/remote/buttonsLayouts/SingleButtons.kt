@@ -12,8 +12,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import com.atharok.btremote.R
+import com.atharok.btremote.common.extensions.autoMirroredIcon
 import com.atharok.btremote.common.utils.AppIcons
-import com.atharok.btremote.common.utils.AppIcons.getIconModifier
 import com.atharok.btremote.ui.components.AdaptiveText
 import com.atharok.btremote.ui.components.ButtonContentTemplate
 import com.atharok.btremote.ui.components.RemoteButtonSurface
@@ -62,7 +62,7 @@ private fun IconRemoteButton(
         Icon(
             imageVector = image,
             contentDescription = contentDescription,
-            modifier = getIconModifier(image).fillMaxSize(0.5f)
+            modifier = Modifier.autoMirroredIcon(image).fillMaxSize(0.5f)
         )
     }
 }

@@ -17,8 +17,8 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import com.atharok.btremote.R
+import com.atharok.btremote.common.extensions.autoMirroredIcon
 import com.atharok.btremote.common.utils.AppIcons
-import com.atharok.btremote.common.utils.AppIcons.getIconModifier
 import com.atharok.btremote.ui.components.ButtonContentTemplate
 import com.atharok.btremote.ui.components.RemoteButtonSurface
 import com.atharok.btremote.ui.theme.dimensionElevation1
@@ -73,7 +73,7 @@ private fun VerticalLayout(
                 Icon(
                     imageVector = topIcon,
                     contentDescription = stringResource(id = topIconDescription),
-                    modifier = getIconModifier(topIcon).fillMaxSize(0.5f)
+                    modifier = Modifier.autoMirroredIcon(topIcon).fillMaxSize(0.5f)
                 )
             }
         },
@@ -86,7 +86,7 @@ private fun VerticalLayout(
                 Icon(
                     imageVector = bottomIcon,
                     contentDescription = stringResource(id = bottomIconDescription),
-                    modifier = getIconModifier(bottomIcon).fillMaxSize(0.5f)
+                    modifier = Modifier.autoMirroredIcon(bottomIcon).fillMaxSize(0.5f)
                 )
             }
         },

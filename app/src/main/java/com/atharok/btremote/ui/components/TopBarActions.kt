@@ -7,8 +7,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import com.atharok.btremote.R
+import com.atharok.btremote.common.extensions.autoMirroredIcon
 import com.atharok.btremote.common.utils.AppIcons
-import com.atharok.btremote.common.utils.AppIcons.getIconModifier
 
 // ---- Actions ----
 
@@ -26,7 +26,7 @@ private fun TopAppBarAction(
         Icon(
             imageVector = image,
             contentDescription = contentDescription,
-            modifier = getIconModifier(image)
+            modifier = Modifier.autoMirroredIcon(image)
         )
     }
 }

@@ -14,8 +14,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import com.atharok.btremote.R
+import com.atharok.btremote.common.extensions.autoMirroredIcon
 import com.atharok.btremote.common.utils.AppIcons
-import com.atharok.btremote.common.utils.AppIcons.getIconModifier
 import com.atharok.btremote.ui.theme.dimensionElevation2
 
 @Composable
@@ -89,7 +89,7 @@ private fun DropdownMenuItemTemplate(
             Icon(
                 imageVector = image,
                 contentDescription = title,
-                modifier = getIconModifier(image)
+                modifier = Modifier.autoMirroredIcon(image)
             )
         }
     )

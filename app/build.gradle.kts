@@ -6,12 +6,12 @@ plugins {
 
 android {
     namespace = "com.atharok.btremote"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.atharok.btremote"
         minSdk = 28
-        targetSdk = 35
+        targetSdk = 36
         versionCode = 15
         versionName = "1.7.2"
 

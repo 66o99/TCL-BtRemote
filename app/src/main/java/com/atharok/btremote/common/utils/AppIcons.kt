@@ -1,6 +1,5 @@
 package com.atharok.btremote.common.utils
 
-import android.util.LayoutDirection
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.ArrowBack
 import androidx.compose.material.icons.automirrored.rounded.Backspace
@@ -64,34 +63,9 @@ import androidx.compose.material.icons.rounded.Toys
 import androidx.compose.material.icons.rounded.Usb
 import androidx.compose.material.icons.rounded.Visibility
 import androidx.compose.material.icons.rounded.Watch
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.scale
-import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.core.text.layoutDirection
 import org.koin.core.component.KoinComponent
-import java.util.Locale
 
 object AppIcons: KoinComponent {
-
-    // Workaround for some icons which should not be mirrored in RTL layout.
-    private val mirrorModifier: Modifier get() = Modifier.scale(scaleX = -1f, scaleY = 1f)
-
-    fun getIconModifier(appIcon: ImageVector): Modifier {
-        when (appIcon) {
-            Help -> {
-                if (getKoin().get<Locale>().language == Locale("he").language) {
-                    return mirrorModifier
-                }
-            }
-
-            Mute, VolumeIncrease, VolumeDecrease -> {
-                if (getKoin().get<Locale>().layoutDirection == LayoutDirection.RTL) {
-                    return mirrorModifier
-                }
-            }
-        }
-        return Modifier
-    }
 
     // ---- UI ----
 
