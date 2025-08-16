@@ -202,4 +202,9 @@
     <string name="help_hid_service_not_initialized_title">HID 服务未初始化</string>
     <string name="use_enter_for_selection_summary">仅在选择按钮不起作用时启用此选项</string>
     <string name="use_enter_for_selection_title">使用 Enter 键进行选择</string>
+    <string name="remove_from_favorites">从收藏中移除</string>
+    <string name="hide_bluetooth_activation_button">在应用启动时隐藏蓝牙激活按钮</string>
+    <string name="favorites">收藏</string>
+    <string name="add_to_favorites">添加到收藏</string>
+    <string name="advanced_options">高级选项</string>
 </resources>

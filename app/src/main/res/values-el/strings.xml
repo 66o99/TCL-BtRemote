@@ -215,4 +215,9 @@
     <string name="help_hid_service_not_initialized_message_3">• Εάν αυτή η επιλογή δεν είναι διαθέσιμη, η συσκευή σας ενδέχεται να μην υποστηρίζει το προφίλ HID. Σε αυτήν την περίπτωση, δυστυχώς δε θα μπορείτε να χρησιμοποιήσετε αυτήν την εφαρμογή σε αυτήν τη συσκευή.</string>
     <string name="use_enter_for_selection_title">Χρήση του κουμπιού Enter για επιλογή</string>
     <string name="use_enter_for_selection_summary">Ενεργοποιήσετε το μόνο αν το κουμπί επιλογής δεν λειτουργεί</string>
+    <string name="favorites">Αγαπημένα</string>
+    <string name="remove_from_favorites">Διαγραφή από τα αγαπημένα</string>
+    <string name="add_to_favorites">Προσθήκη στα αγαπημένα</string>
+    <string name="hide_bluetooth_activation_button">Απόκρυψη κουμπιού ενεργοποίησης Bluetooth κατά την εκκίνηση</string>
+    <string name="advanced_options">Προχωρημένες ρυθμίσεις</string>
 </resources>
