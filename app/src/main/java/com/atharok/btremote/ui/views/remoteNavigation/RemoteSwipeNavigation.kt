@@ -29,6 +29,8 @@ import kotlin.math.sqrt
 
 enum class SwipeAction() {
     NONE,
+    DIRECTION_RELEASE,
+    PICK_RELEASE,
     UP,
     LEFT,
     RIGHT,
@@ -56,8 +58,14 @@ fun RemoteSwipeNavigation(
 
     LaunchedEffect(action) {
         when(action) {
-            SwipeAction.NONE -> {
+            SwipeAction.NONE -> {}
+            SwipeAction.DIRECTION_RELEASE -> {
                 directionTouchUp()
+                action = SwipeAction.NONE
+            }
+            SwipeAction.PICK_RELEASE -> {
+                pickTouchUp()
+                action = SwipeAction.NONE
             }
             SwipeAction.UP -> {
                 upTouchDown()
@@ -77,8 +85,8 @@ fun RemoteSwipeNavigation(
             }
             SwipeAction.PICK -> {
                 pickTouchDown()
-                pickTouchUp()
                 haptic.performHapticFeedback(HapticFeedbackType.LongPress)
+                action = SwipeAction.PICK_RELEASE
             }
         }
     }
@@ -159,7 +167,7 @@ suspend fun PointerInputScope.detectDirection(
                         initialY = null
                         isTouching = false
                         distance = 0f
-                        onSwipeActionDetected(SwipeAction.NONE)
+                        onSwipeActionDetected(SwipeAction.DIRECTION_RELEASE)
                     }
                 }
                 position.consume()
