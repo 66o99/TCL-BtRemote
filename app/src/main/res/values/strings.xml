@@ -95,6 +95,10 @@
     <string name="disconnect">Disconnect</string>
     <string name="direction_arrows">Direction arrows</string>
 
+    <!-- Widgets -->
+    <string name="connect">Connect</string>
+    <string name="media_controls">Media controls</string>
+
     <!-- Settings -->
     <string name="settings">Settings</string>
     <string name="appearance">Appearance</string>
