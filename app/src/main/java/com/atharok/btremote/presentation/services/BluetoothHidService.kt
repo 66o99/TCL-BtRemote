@@ -17,10 +17,12 @@ import android.os.IBinder
 import android.util.Log
 import android.widget.RemoteViews
 import androidx.core.app.NotificationCompat
+import androidx.glance.appwidget.updateAll
 import com.atharok.btremote.R
 import com.atharok.btremote.common.utils.NOTIFICATION_CHANNEL_ID
 import com.atharok.btremote.common.utils.NOTIFICATION_ID
 import com.atharok.btremote.domain.usecases.BluetoothHidServiceUseCase
+import com.atharok.btremote.glance.MediaControlWidget
 import com.atharok.btremote.presentation.activities.MainActivity
 import com.atharok.btremote.presentation.services.NotificationBroadcastReceiver.Companion.ACTION_BACK
 import com.atharok.btremote.presentation.services.NotificationBroadcastReceiver.Companion.ACTION_DISCONNECT
@@ -62,12 +64,14 @@ class BluetoothHidService : Service() {
                             updateNotificationForConnectedState(it.deviceName)
                             currentConnectionState = STATE_CONNECTED
                         }
+                        MediaControlWidget().updateAll(this@BluetoothHidService)
                     }
                     STATE_DISCONNECTED -> {
                         if(currentConnectionState != STATE_DISCONNECTED) {
                             updateNotificationForDisconnectedState()
                             currentConnectionState = STATE_DISCONNECTED
                         }
+                        MediaControlWidget().updateAll(this@BluetoothHidService)
                     }
                 }
             }

@@ -1,0 +1,11 @@
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:description="@string/media_controls"
+    android:initialLayout="@layout/glance_default_loading_layout"
+    android:maxResizeWidth="256dp"
+    android:minWidth="128dp"
+    android:minHeight="64dp"
+    android:resizeMode="horizontal"
+    android:targetCellWidth="3"
+    android:targetCellHeight="1"
+    tools:targetApi="s" />
