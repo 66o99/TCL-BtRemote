@@ -29,12 +29,13 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import com.atharok.btremote.R
+import com.atharok.btremote.common.utils.KEYBOARD_INPUT_NONE
 import com.atharok.btremote.common.utils.getAdvancedKeyboardLayout
 import com.atharok.btremote.domain.entities.remoteInput.keyboard.KeyboardLanguage
 import com.atharok.btremote.domain.entities.remoteInput.keyboard.advancedKeyboard.AdvancedKeyboardLayout
 import com.atharok.btremote.domain.entities.remoteInput.keyboard.advancedKeyboard.TextAdvancedKeyboardModifierKey
 import com.atharok.btremote.ui.theme.dimensionElevation3
-import kotlin.jvm.internal.Ref.ByteRef
+import kotlin.jvm.internal.Ref.ObjectRef
 
 @Composable
 fun AdvancedKeyboardModalBottomSheet(
@@ -78,16 +79,10 @@ fun AdvancedKeyboard(
         mutableStateOf(getAdvancedKeyboardLayout(keyboardLanguage))
     }
 
-    val modifierKeyByteRef = remember {
-        ByteRef()
-    }
-
-    val keyByteRef = remember {
-        ByteRef()
-    }
-
-    fun handleSendKeyboardKeyReport() {
-        sendKeyboardKeyReport(byteArrayOf(modifierKeyByteRef.element, keyByteRef.element))
+    val reportRef = remember {
+        val ref = ObjectRef<ByteArray>()
+        ref.element = KEYBOARD_INPUT_NONE.copyOf()
+        ref
     }
 
     LaunchedEffect(keyboardLanguage) {
@@ -116,23 +111,28 @@ fun AdvancedKeyboard(
                         keyboardRow.forEach { keyboardKey ->
                             keyboardKey.keyView(
                                 { // touchDown
+                                    val report = reportRef.element
                                     if (keyboardKey is TextAdvancedKeyboardModifierKey) {
-                                        modifierKeyByteRef.element = (modifierKeyByteRef.element + it).toByte()
-                                    } else {
-                                        keyByteRef.element = it
-                                    }
-                                    handleSendKeyboardKeyReport()
-                                },
-                                { // touchUp
-                                    if (keyboardKey is TextAdvancedKeyboardModifierKey) {
-                                        modifierKeyByteRef.element = (modifierKeyByteRef.element - it).toByte()
-                                    } else {
-                                        // If 'it' is the last input pressed
-                                        if (it == keyByteRef.element) {
-                                            keyByteRef.element = 0x00
+                                        report[0] = (report[0] + it).toByte()
+                                    } else for (i in 2..<report.size) {
+                                        if (report[i] == 0x00.toByte()) {
+                                            report[i] = it
+                                            break
                                         }
                                     }
-                                    handleSendKeyboardKeyReport()
+                                    sendKeyboardKeyReport(report)
+                                },
+                                { // touchUp
+                                    val report = reportRef.element
+                                    if (keyboardKey is TextAdvancedKeyboardModifierKey) {
+                                        report[0] = (report[0] - it).toByte()
+                                    } else for (i in 2..<report.size) {
+                                        if (report[i] == it) {
+                                            report[i] = 0x00.toByte()
+                                            break
+                                        }
+                                    }
+                                    sendKeyboardKeyReport(report)
                                 },
                                 Modifier.then(
                                     if (keyboardKey.weight != 0f) Modifier.weight(keyboardKey.weight)

@@ -80,6 +80,10 @@ class SettingsUseCase(private val dataStoreRepository: DataStoreRepository) {
         dataStoreRepository.saveUseEnterForSelection(useEnterForSelection)
     }
 
+    suspend fun saveLowLatencyPingInterval(lowLatencyPingInterval: Long) {
+        dataStoreRepository.saveLowLatencyPingInterval(lowLatencyPingInterval)
+    }
+
     // ---- Others ----
 
     fun hideBluetoothActivationButton(): Flow<Boolean> = dataStoreRepository.hideBluetoothActivationButton()

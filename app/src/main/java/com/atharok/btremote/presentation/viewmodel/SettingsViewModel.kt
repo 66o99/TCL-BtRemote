@@ -83,6 +83,10 @@ class SettingsViewModel(
         useCase.saveUseEnterForSelection(useEnterForSelection)
     }
 
+    fun saveLowLatencyPingInterval(lowLatencyPingInterval: Long) = viewModelScope.launch {
+        useCase.saveLowLatencyPingInterval(lowLatencyPingInterval)
+    }
+
     // ---- Others ----
 
     val hideBluetoothActivationButtonFlow: Flow<Boolean> get() = useCase.hideBluetoothActivationButton()

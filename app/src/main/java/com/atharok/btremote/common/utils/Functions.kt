@@ -86,6 +86,13 @@ fun getAdvancedKeyboardLayout(language: KeyboardLanguage): AdvancedKeyboardLayou
     }
 }
 
+fun getKeyboardReport(modifiers: Byte, key: Byte): ByteArray {
+    val report = KEYBOARD_INPUT_NONE.copyOf()
+    report[0] = modifiers
+    report[2] = key
+    return report
+}
+
 fun isMacAddress(macAddress: String): Boolean {
     val regex = "^([0-9A-Fa-f]{2}:){5}[0-9A-Fa-f]{2}$".toRegex()
     return macAddress.matches(regex)

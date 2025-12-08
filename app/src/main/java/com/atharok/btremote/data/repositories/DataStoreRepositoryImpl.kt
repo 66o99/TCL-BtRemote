@@ -83,6 +83,10 @@ class DataStoreRepositoryImpl(
         settingsDataStore.saveUseEnterForSelection(useEnterForSelection)
     }
 
+    override suspend fun saveLowLatencyPingInterval(lowLatencyPingInterval: Long) {
+        settingsDataStore.saveLowLatencyPingInterval(lowLatencyPingInterval)
+    }
+
     // ---- Others ----
 
     override fun getFavoriteDevices(): Flow<List<String>> = settingsDataStore.favoriteDevicesFlow

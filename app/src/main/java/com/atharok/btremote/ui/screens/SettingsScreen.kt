@@ -61,6 +61,7 @@ import com.atharok.btremote.ui.components.TextNormal
 import com.atharok.btremote.ui.components.TextNormalSecondary
 import org.koin.androidx.compose.koinViewModel
 import java.util.Locale
+import kotlin.math.roundToLong
 
 @Composable
 fun SettingsScreen(
@@ -398,6 +399,23 @@ fun SettingsScreen(
                     )
             )
 
+            SettingsSlider(
+                valueRange = 0f..100f,
+                steps = 99,
+                value = remoteSettings.lowLatencyPingInterval.toFloat(),
+                onValueChange = { settingsViewModel.saveLowLatencyPingInterval(it.roundToLong()) },
+                info = stringResource(id = R.string.low_latency_ping_interval) +
+                        if (remoteSettings.lowLatencyPingInterval == 0L) " (DISABLED)"
+                        else " (${remoteSettings.lowLatencyPingInterval}ms)",
+                details = stringResource(id = R.string.low_latency_ping_interval_details),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(
+                        horizontal = horizontalPadding,
+                        vertical = verticalPadding
+                    )
+            )
+
             SettingsSwitch(
                 primaryText = stringResource(id = R.string.hide_bluetooth_activation_button),
                 secondaryText = null,
@@ -513,7 +531,9 @@ private fun SettingsRemoteNavigationSelector(
 
         TextNormalSecondary(
             text = stringResource(id = remoteNavigation.description),
-            modifier = Modifier.fillMaxSize().padding(bottom = dimensionResource(R.dimen.padding_small))
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(bottom = dimensionResource(R.dimen.padding_small))
         )
 
         MultiChoiceSegmentedButtonRow(
@@ -662,7 +682,9 @@ private fun SettingsSlider(
     ) {
         TextNormal(
             text = info,
-            modifier = Modifier.fillMaxWidth().padding(bottom = dimensionResource(R.dimen.padding_small))
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = dimensionResource(R.dimen.padding_small))
         )
         details?.let {
             TextNormalSecondary(text = it)

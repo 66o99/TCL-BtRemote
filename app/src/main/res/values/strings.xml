@@ -129,6 +129,8 @@
     <string name="use_enter_for_selection_title">Use the Enter key for selection</string>
     <string name="use_enter_for_selection_summary">Enable this option only if the select button does not work</string>
     <string name="advanced_options">Advanced Options</string>
+    <string name="low_latency_ping_interval">Low latency ping interval</string>
+    <string name="low_latency_ping_interval_details">EXPERIMENTAL - When enabled, sends a periodic ping (null noop packet) at the configured interval. This seems to help with the bluetooth latency, probably because it\'s forcing the devices to switch to some better parameters that can sustain the configured ping rate. This might drain the battery faster.</string>
     <string name="hide_bluetooth_activation_button">Hide Bluetooth activation button at app startup</string>
     <string name="about">About</string>
     <string name="language">Language</string>

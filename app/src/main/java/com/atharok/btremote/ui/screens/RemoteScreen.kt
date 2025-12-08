@@ -34,10 +34,13 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.LifecycleResumeEffect
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.atharok.btremote.R
+import com.atharok.btremote.common.utils.KEYBOARD_INPUT_NONE
 import com.atharok.btremote.common.utils.REMOTE_INPUT_NONE
 import com.atharok.btremote.common.utils.getKeyboardLayout
+import com.atharok.btremote.common.utils.getKeyboardReport
 import com.atharok.btremote.domain.entities.DeviceHidConnectionState
 import com.atharok.btremote.domain.entities.RemoteNavigationEntity
 import com.atharok.btremote.domain.entities.remoteInput.ChannelInput
@@ -73,6 +76,7 @@ import com.atharok.btremote.ui.views.remote.RemoteView
 import com.atharok.btremote.ui.views.remote.buttonsLayouts.TVChannelDialog
 import com.atharok.btremote.ui.views.remoteNavigation.RemoteDirectionalPadNavigation
 import com.atharok.btremote.ui.views.remoteNavigation.RemoteSwipeNavigation
+import kotlinx.coroutines.delay
 import org.koin.androidx.compose.koinViewModel
 
 private enum class NavigationToggle {
@@ -93,6 +97,14 @@ fun RemoteScreen(
 ) {
     val configuration = LocalConfiguration.current
     val isLandscapeMode = configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
+    var isScreenInteractive: Boolean by remember { mutableStateOf(false) }
+
+    LifecycleResumeEffect(Unit) {
+        isScreenInteractive = true
+        onPauseOrDispose {
+            isScreenInteractive = false
+        }
+    }
 
     val remoteSettings by remoteViewModel
         .remoteSettingsFlow.collectAsStateWithLifecycle(RemoteSettings())
@@ -125,6 +137,23 @@ fun RemoteScreen(
             navigateUp()
         }
         onDispose {}
+    }
+
+    LaunchedEffect(
+        remoteSettings.lowLatencyPingInterval,
+        isScreenInteractive,
+        isBluetoothServiceRunning,
+        bluetoothDeviceHidConnectionState.state
+    ) {
+        while (
+            remoteSettings.lowLatencyPingInterval > 0L &&
+            isScreenInteractive &&
+            isBluetoothServiceRunning &&
+            bluetoothDeviceHidConnectionState.state == BluetoothHidDevice.STATE_CONNECTED
+        ) {
+            remoteViewModel.sendEmptyReport()
+            delay(remoteSettings.lowLatencyPingInterval)
+        }
     }
 
     StatelessRemoteScreen(
@@ -287,7 +316,7 @@ private fun RemoteLandscapeView(
                 }
             }
 
-            if(!useAdvancedKeyboardIntegrated || !showKeyboard || !showAdvancedKeyboardMouse) {
+            if (!useAdvancedKeyboardIntegrated || !showKeyboard || !showAdvancedKeyboardMouse) {
                 Box(
                     modifier = Modifier.align(Alignment.CenterVertically),
                     contentAlignment = Alignment.Center
@@ -386,7 +415,7 @@ private fun RemoteLayout(
                 tvChannel9TouchDown = { sendKeyboardKeyReport(ChannelInput.CHANNEL_INPUT_9) },
                 tvChannel0TouchDown = { sendKeyboardKeyReport(ChannelInput.CHANNEL_INPUT_0) },
                 remoteTouchUp = { sendRemoteKeyReport(REMOTE_INPUT_NONE) },
-                keyboardTouchUp = { sendKeyboardKeyReport(REMOTE_INPUT_NONE) },
+                keyboardTouchUp = { sendKeyboardKeyReport(KEYBOARD_INPUT_NONE) },
             )
         }
     }
@@ -527,7 +556,7 @@ private fun NavigationLayout(
                     },
                     pickTouchDown = {
                         if(remoteSettings.useEnterForSelection) {
-                            sendKeyboardKeyReport(byteArrayOf(0x00, KeyboardKey.KEY_ENTER.byte))
+                            sendKeyboardKeyReport(getKeyboardReport(0x00, KeyboardKey.KEY_ENTER.byte))
                         } else {
                             sendRemoteKeyReport(RemoteInput.REMOTE_INPUT_MENU_PICK)
                         }
@@ -537,7 +566,7 @@ private fun NavigationLayout(
                     },
                     pickTouchUp = {
                         if(remoteSettings.useEnterForSelection) {
-                            sendKeyboardKeyReport(REMOTE_INPUT_NONE)
+                            sendKeyboardKeyReport(KEYBOARD_INPUT_NONE)
                         } else {
                             sendRemoteKeyReport(REMOTE_INPUT_NONE)
                         }

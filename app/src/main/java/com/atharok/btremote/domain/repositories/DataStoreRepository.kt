@@ -47,6 +47,8 @@ interface DataStoreRepository {
 
     suspend fun saveUseEnterForSelection(useEnterForSelection: Boolean)
 
+    suspend fun saveLowLatencyPingInterval(lowLatencyPingInterval: Long)
+
     // ---- Others ----
 
     fun getFavoriteDevices(): Flow<List<String>>

@@ -1,6 +1,7 @@
 package com.atharok.btremote.domain.entities.settings
 
 import com.atharok.btremote.common.utils.DEFAULT_KEYBOARD_LANGUAGE
+import com.atharok.btremote.common.utils.DEFAULT_LOW_LATENCY_PING_INTERVAL
 import com.atharok.btremote.common.utils.DEFAULT_MOUSE_SPEED
 import com.atharok.btremote.common.utils.DEFAULT_MUST_CLEAR_INPUT_FIELD
 import com.atharok.btremote.common.utils.DEFAULT_REMOTE_NAVIGATION
@@ -30,5 +31,8 @@ data class RemoteSettings(
     // ---- Remote ----
     val remoteNavigationEntity: RemoteNavigationEntity = DEFAULT_REMOTE_NAVIGATION,
     val useMinimalistRemote: Boolean = DEFAULT_USE_MINIMALIST_REMOTE,
-    val useEnterForSelection: Boolean = DEFAULT_USE_ENTER_FOR_SELECTION
+    val useEnterForSelection: Boolean = DEFAULT_USE_ENTER_FOR_SELECTION,
+
+    // ---- Other ----
+    val lowLatencyPingInterval: Long = DEFAULT_LOW_LATENCY_PING_INTERVAL
 )

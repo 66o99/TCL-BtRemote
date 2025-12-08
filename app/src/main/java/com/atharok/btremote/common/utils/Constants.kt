@@ -36,6 +36,9 @@ val DEFAULT_REMOTE_NAVIGATION: RemoteNavigationEntity = RemoteNavigationEntity.D
 const val DEFAULT_USE_MINIMALIST_REMOTE: Boolean = false
 const val DEFAULT_USE_ENTER_FOR_SELECTION: Boolean = false
 
+// ---- Other ----
+const val DEFAULT_LOW_LATENCY_PING_INTERVAL = 0L
+
 const val DELAY_BETWEEN_KEY_PRESSES_IN_MILLIS = 25L
 
 // ---- HID Descriptor ----
@@ -43,8 +46,11 @@ const val DELAY_BETWEEN_KEY_PRESSES_IN_MILLIS = 25L
 const val KEYBOARD_REPORT_ID = 0x01
 const val REMOTE_REPORT_ID = 0x02
 const val MOUSE_REPORT_ID = 0x03
+const val EMPTY_REPORT_ID = 0x04
 
-val REMOTE_INPUT_NONE = byteArrayOf(0x00, 0x00)
+val KEYBOARD_INPUT_NONE = ByteArray(8)
+val REMOTE_INPUT_NONE = ByteArray(2)
+val EMPTY_INPUT_NONE = ByteArray(1)
 
 val bluetoothHidDescriptor = byteArrayOf(
     // Remote Control
@@ -74,14 +80,17 @@ val bluetoothHidDescriptor = byteArrayOf(
     0x75.toByte(), 0x01.toByte(),                    //   Report Size (1)
     0x95.toByte(), 0x08.toByte(),                    //   Report Count (8)
     0x81.toByte(), 0x02.toByte(),                    //   Input (Data,Variable,Absolute)
-    0x75.toByte(), 0x08.toByte(),                    //    Report Size (8)
-    0x95.toByte(), 0x01.toByte(),                    //    Report Count (1)
-    0x15.toByte(), 0x00.toByte(),                    //    Logical Minimum (0)
-    0x26.toByte(), 0xFF.toByte(), 0x00.toByte(),     //    Logical Maximum (255)
-    0x05.toByte(), 0x07.toByte(),                    //    Usage Page (Keyboard Key Codes)
-    0x19.toByte(), 0x00.toByte(),                    //    Usage Minimum (0)
-    0x29.toByte(), 0xFF.toByte(),                    //    Usage Maximum (255)
-    0x81.toByte(), 0x00.toByte(),                    //    Input (Data,Array,Absolute)
+    0x75.toByte(), 0x08.toByte(),                    //   Report Size (8)
+    0x95.toByte(), 0x01.toByte(),                    //   Report Count (1)
+    0x81.toByte(), 0x03.toByte(),                    //   Input (Constant,Variable,Absolute)
+    0x05.toByte(), 0x07.toByte(),                    //   Usage Page (Keyboard Key Codes)
+    0x19.toByte(), 0x00.toByte(),                    //   Usage Minimum (0)
+    0x29.toByte(), 0xFF.toByte(),                    //   Usage Maximum (255)
+    0x15.toByte(), 0x00.toByte(),                    //   Logical Minimum (0)
+    0x26.toByte(), 0xFF.toByte(), 0x00.toByte(),     //   Logical Maximum (255)
+    0x75.toByte(), 0x08.toByte(),                    //   Report Size (8)
+    0x95.toByte(), 0x06.toByte(),                    //   Report Count (6)
+    0x81.toByte(), 0x00.toByte(),                    //   Input (Data,Array,Absolute)
     0xC0.toByte(),                                   // End Collection
 
     // Mouse
@@ -112,5 +121,15 @@ val bluetoothHidDescriptor = byteArrayOf(
     0x95.toByte(), 0x03.toByte(),                    //     Report Count (3)
     0x81.toByte(), 0x06.toByte(),                    //     Input (Data,Variable,Relative)
     0xC0.toByte(),                                   //   End Collection
+    0xC0.toByte(),                                   // End Collection
+
+    // Empty
+    0x06.toByte(), 0x00.toByte(), 0xFF.toByte(),     // Usage Page (Vendor Defined 0xFF00)
+    0x09.toByte(), 0x01.toByte(),                    // Usage (0x01)
+    0xA1.toByte(), 0x01.toByte(),                    // Collection (Application)
+    0x85.toByte(), EMPTY_REPORT_ID.toByte(),         //   Report ID (4)
+    0x75.toByte(), 0x08.toByte(),                    //   Report Size (8)
+    0x95.toByte(), 0x01.toByte(),                    //   Report Count (1)
+    0x81.toByte(), 0x03.toByte(),                    //   Input (Constant,Variable,Absolute)
     0xC0.toByte()                                    // End Collection
 )
