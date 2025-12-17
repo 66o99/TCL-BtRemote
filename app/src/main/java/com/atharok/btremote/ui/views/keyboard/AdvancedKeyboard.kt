@@ -2,13 +2,15 @@ package com.atharok.btremote.ui.views.keyboard
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.sizeIn
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -27,11 +29,13 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import com.atharok.btremote.R
+import com.atharok.btremote.common.utils.KEYBOARD_INPUT_NONE
 import com.atharok.btremote.common.utils.getAdvancedKeyboardLayout
 import com.atharok.btremote.domain.entities.remoteInput.keyboard.KeyboardLanguage
 import com.atharok.btremote.domain.entities.remoteInput.keyboard.advancedKeyboard.AdvancedKeyboardLayout
 import com.atharok.btremote.domain.entities.remoteInput.keyboard.advancedKeyboard.TextAdvancedKeyboardModifierKey
 import com.atharok.btremote.ui.theme.dimensionElevation3
+import kotlin.jvm.internal.Ref.ObjectRef
 
 @Composable
 fun AdvancedKeyboardModalBottomSheet(
@@ -44,7 +48,7 @@ fun AdvancedKeyboardModalBottomSheet(
 ) {
     KeyboardModalBottomSheet(
         onShowKeyboardBottomSheetChanged = onShowKeyboardBottomSheetChanged,
-        windowInsets = WindowInsets(0, 0, 0, 0),
+        windowInsets = WindowInsets.safeDrawing,
         modifier = modifier
     ) {
         AdvancedKeyboard(
@@ -75,27 +79,22 @@ fun AdvancedKeyboard(
         mutableStateOf(getAdvancedKeyboardLayout(keyboardLanguage))
     }
 
-    var modifierKeyByte: Byte by remember {
-        mutableStateOf(0x00)
-    }
-
-    var keyByte: Byte by remember {
-        mutableStateOf(0x00)
+    val reportRef = remember {
+        val ref = ObjectRef<ByteArray>()
+        ref.element = KEYBOARD_INPUT_NONE.copyOf()
+        ref
     }
 
     LaunchedEffect(keyboardLanguage) {
         keyboardLayout = getAdvancedKeyboardLayout(keyboardLanguage)
     }
 
-    LaunchedEffect(modifierKeyByte, keyByte) {
-        sendKeyboardKeyReport(byteArrayOf(modifierKeyByte, keyByte))
-    }
-
     CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Ltr) {
-        Box(
+        BoxWithConstraints(
             modifier = modifier,
             contentAlignment = Alignment.Center
         ) {
+            val containerWidth = maxWidth
             Column(
                 modifier = Modifier.sizeIn(
                     maxHeight = configuration.screenHeightDp.dp * if (isLandscape) 1f else 0.5f
@@ -112,23 +111,33 @@ fun AdvancedKeyboard(
                         keyboardRow.forEach { keyboardKey ->
                             keyboardKey.keyView(
                                 { // touchDown
+                                    val report = reportRef.element
                                     if (keyboardKey is TextAdvancedKeyboardModifierKey) {
-                                        modifierKeyByte = (modifierKeyByte + it).toByte()
-                                    } else {
-                                        keyByte = it
-                                    }
-                                },
-                                { // touchUp
-                                    if (keyboardKey is TextAdvancedKeyboardModifierKey) {
-                                        modifierKeyByte = (modifierKeyByte - it).toByte()
-                                    } else {
-                                        // If 'it' is the last input pressed
-                                        if (it == keyByte) {
-                                            keyByte = 0x00
+                                        report[0] = (report[0] + it).toByte()
+                                    } else for (i in 2..<report.size) {
+                                        if (report[i] == 0x00.toByte()) {
+                                            report[i] = it
+                                            break
                                         }
                                     }
+                                    sendKeyboardKeyReport(report)
                                 },
-                                Modifier.weight(keyboardKey.weight),
+                                { // touchUp
+                                    val report = reportRef.element
+                                    if (keyboardKey is TextAdvancedKeyboardModifierKey) {
+                                        report[0] = (report[0] - it).toByte()
+                                    } else for (i in 2..<report.size) {
+                                        if (report[i] == it) {
+                                            report[i] = 0x00.toByte()
+                                            break
+                                        }
+                                    }
+                                    sendKeyboardKeyReport(report)
+                                },
+                                Modifier.then(
+                                    if (keyboardKey.weight != 0f) Modifier.weight(keyboardKey.weight)
+                                    else Modifier.width(containerWidth.times(keyboardKey.fraction))
+                                ),
                                 shape,
                                 elevation
                             )

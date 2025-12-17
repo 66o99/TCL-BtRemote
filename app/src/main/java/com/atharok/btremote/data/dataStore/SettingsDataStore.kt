@@ -6,12 +6,15 @@ import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.floatPreferencesKey
+import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import com.atharok.btremote.common.extensions.dataStore
 import com.atharok.btremote.common.utils.DEFAULT_KEYBOARD_LANGUAGE
+import com.atharok.btremote.common.utils.DEFAULT_LOW_LATENCY_PING_INTERVAL
 import com.atharok.btremote.common.utils.DEFAULT_MOUSE_SPEED
 import com.atharok.btremote.common.utils.DEFAULT_MUST_CLEAR_INPUT_FIELD
 import com.atharok.btremote.common.utils.DEFAULT_REMOTE_NAVIGATION
+import com.atharok.btremote.common.utils.DEFAULT_SCROLL_SPEED
 import com.atharok.btremote.common.utils.DEFAULT_SHOULD_INVERT_MOUSE_SCROLLING_DIRECTION
 import com.atharok.btremote.common.utils.DEFAULT_THEME
 import com.atharok.btremote.common.utils.DEFAULT_USE_ADVANCED_KEYBOARD
@@ -40,8 +43,8 @@ class SettingsDataStore(private val context: Context) {
         private const val DYNAMIC_COLORS_KEY = "material_you_key"
         private const val BLACK_COLOR_KEY = "black_color_key"
         private const val FULL_SCREEN_KEY = "full_screen_key"
-
         private const val MOUSE_SPEED_KEY = "mouse_speed_key"
+        private const val SCROLL_SPEED_KEY = "scroll_speed_key"
         private const val INVERT_MOUSE_SCROLLING_DIRECTION_KEY = "invert_mouse_scrolling_direction_key"
         private const val USE_GYROSCOPE_KEY = "use_gyroscope_key"
         private const val KEYBOARD_LANGUAGE = "keyboard_language"
@@ -51,7 +54,7 @@ class SettingsDataStore(private val context: Context) {
         private const val USE_MINIMALIST_REMOTE_KEY = "use_minimalist_remote_key"
         private const val REMOTE_NAVIGATION_KEY = "remote_navigation_key"
         private const val USE_ENTER_FOR_SELECTION_KEY = "use_enter_for_selection_key"
-
+        private const val LOW_LATENCY_PING_INTERVAL_KEY = "low_latency_ping_interval_key"
         private const val FAVORITE_DEVICES_KEY = "favorite_devices_key"
         private const val AUTO_CONNECT_DEVICE_ADDRESS_KEY = "auto_connect_device_address_key"
         private const val HIDE_BLUETOOTH_ACTIVATION_BUTTON_KEY = "hide_bluetooth_activation_button_key"
@@ -62,15 +65,17 @@ class SettingsDataStore(private val context: Context) {
     private val useBlackColorForDarkThemeKey = booleanPreferencesKey(BLACK_COLOR_KEY)
     private val useFullScreenKey = booleanPreferencesKey(FULL_SCREEN_KEY)
     private val mouseSpeedKey = floatPreferencesKey(MOUSE_SPEED_KEY)
+    private val scrollSpeedKey = floatPreferencesKey(SCROLL_SPEED_KEY)
     private val invertMouseScrollingDirectionKey = booleanPreferencesKey(INVERT_MOUSE_SCROLLING_DIRECTION_KEY)
     private val useGyroscopeKey = booleanPreferencesKey(USE_GYROSCOPE_KEY)
     private val keyboardLanguageKey = stringPreferencesKey(KEYBOARD_LANGUAGE)
     private val mustClearInputFieldKey = booleanPreferencesKey(MUST_CLEAR_INPUT_FIELD_KEY)
     private val useAdvancedKeyboardKey = booleanPreferencesKey(USE_ADVANCED_KEYBOARD_KEY)
-    private val useAdvancedKeyboardIntegratedKey  = booleanPreferencesKey(USE_ADVANCED_KEYBOARD_INTEGRATED_KEY)
+    private val useAdvancedKeyboardIntegratedKey = booleanPreferencesKey(USE_ADVANCED_KEYBOARD_INTEGRATED_KEY)
     private val useMinimalistRemoteKey = booleanPreferencesKey(USE_MINIMALIST_REMOTE_KEY)
     private val remoteNavigationKey = stringPreferencesKey(REMOTE_NAVIGATION_KEY)
     private val useEnterForSelectionKey = booleanPreferencesKey(USE_ENTER_FOR_SELECTION_KEY)
+    private val lowLatencyPingIntervalKey = longPreferencesKey(LOW_LATENCY_PING_INTERVAL_KEY)
     private val favoriteDevicesKey = stringPreferencesKey(FAVORITE_DEVICES_KEY)
     private val autoConnectDeviceAddressKey = stringPreferencesKey(AUTO_CONNECT_DEVICE_ADDRESS_KEY)
     private val hideBluetoothActivationButtonKey = booleanPreferencesKey(HIDE_BLUETOOTH_ACTIVATION_BUTTON_KEY)
@@ -133,6 +138,7 @@ class SettingsDataStore(private val context: Context) {
             RemoteSettings(
                 // ---- Mouse ----
                 mouseSpeed = preferences[mouseSpeedKey] ?: DEFAULT_MOUSE_SPEED,
+                scrollSpeed = preferences[scrollSpeedKey] ?: DEFAULT_SCROLL_SPEED,
                 shouldInvertMouseScrollingDirection = preferences[invertMouseScrollingDirectionKey] ?: DEFAULT_SHOULD_INVERT_MOUSE_SCROLLING_DIRECTION,
                 useGyroscope = preferences[useGyroscopeKey] ?: DEFAULT_USE_GYROSCOPE,
 
@@ -153,7 +159,10 @@ class SettingsDataStore(private val context: Context) {
                     DEFAULT_REMOTE_NAVIGATION
                 },
                 useMinimalistRemote = preferences[useMinimalistRemoteKey] ?: DEFAULT_USE_MINIMALIST_REMOTE,
-                useEnterForSelection = preferences[useEnterForSelectionKey] ?: DEFAULT_USE_ENTER_FOR_SELECTION
+                useEnterForSelection = preferences[useEnterForSelectionKey] ?: DEFAULT_USE_ENTER_FOR_SELECTION,
+
+                // ---- Other ----
+                lowLatencyPingInterval = preferences[lowLatencyPingIntervalKey] ?: DEFAULT_LOW_LATENCY_PING_INTERVAL
             )
         }
 
@@ -162,6 +171,12 @@ class SettingsDataStore(private val context: Context) {
     suspend fun saveMouseSpeed(mouseSpeed: Float) {
         context.dataStore.edit {
             it[mouseSpeedKey] = mouseSpeed
+        }
+    }
+
+    suspend fun saveScrollSpeed(scrollSpeed: Float) {
+        context.dataStore.edit {
+            it[scrollSpeedKey] = scrollSpeed
         }
     }
 
@@ -220,6 +235,14 @@ class SettingsDataStore(private val context: Context) {
     suspend fun saveUseEnterForSelection(useEnterForSelection: Boolean) {
         context.dataStore.edit {
             it[useEnterForSelectionKey] = useEnterForSelection
+        }
+    }
+
+    // ---- Other ----
+
+    suspend fun saveLowLatencyPingInterval(lowLatencyPingInterval: Long) {
+        context.dataStore.edit {
+            it[lowLatencyPingIntervalKey] = lowLatencyPingInterval
         }
     }
 

@@ -2,6 +2,8 @@ package com.atharok.btremote.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.atharok.btremote.common.utils.EMPTY_INPUT_NONE
+import com.atharok.btremote.common.utils.EMPTY_REPORT_ID
 import com.atharok.btremote.common.utils.KEYBOARD_REPORT_ID
 import com.atharok.btremote.common.utils.MOUSE_REPORT_ID
 import com.atharok.btremote.common.utils.REMOTE_REPORT_ID
@@ -32,14 +34,20 @@ class RemoteViewModel(
         return useCase.sendReport(id, bytes)
     }
 
+    // Empty
+    val sendEmptyReport: () -> Boolean = { sendReport(EMPTY_REPORT_ID, EMPTY_INPUT_NONE) }
+
     // Remote
     val sendRemoteReport: (ByteArray) -> Unit = { bytes -> sendReport(REMOTE_REPORT_ID, bytes) }
 
     // Mouse
     val sendMouseReport: (MouseAction, Float, Float, Float) -> Unit = { input, x, y, wheel ->
-        val xInt = x.roundToInt().coerceIn(-127, 127)
-        val yInt = y.roundToInt().coerceIn(-127, 127)
-        val bytes: ByteArray = byteArrayOf(input.byte, xInt.toByte(), yInt.toByte(), wheel.roundToInt().toByte())
+        val bytes = byteArrayOf(
+            input.byte,
+            x.roundToInt().coerceIn(-127, 127).toByte(),
+            y.roundToInt().coerceIn(-127, 127).toByte(),
+            wheel.roundToInt().toByte()
+        )
         sendReport(MOUSE_REPORT_ID, bytes)
     }
 

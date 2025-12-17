@@ -9,8 +9,8 @@ import android.bluetooth.BluetoothProfile.ServiceListener
 import android.content.Context
 import androidx.annotation.RequiresPermission
 import com.atharok.btremote.common.utils.DELAY_BETWEEN_KEY_PRESSES_IN_MILLIS
+import com.atharok.btremote.common.utils.KEYBOARD_INPUT_NONE
 import com.atharok.btremote.common.utils.KEYBOARD_REPORT_ID
-import com.atharok.btremote.common.utils.REMOTE_INPUT_NONE
 import com.atharok.btremote.common.utils.checkBluetoothConnectPermission
 import com.atharok.btremote.common.utils.isMacAddress
 import com.atharok.btremote.domain.entities.DeviceHidConnectionState
@@ -172,7 +172,7 @@ class BluetoothHidCore(
                             success = false
                         }
                         delay(DELAY_BETWEEN_KEY_PRESSES_IN_MILLIS)
-                        hidDevice.sendReport(device, KEYBOARD_REPORT_ID, REMOTE_INPUT_NONE)
+                        hidDevice.sendReport(device, KEYBOARD_REPORT_ID, KEYBOARD_INPUT_NONE)
                         delay(DELAY_BETWEEN_KEY_PRESSES_IN_MILLIS)
                     }
                 }

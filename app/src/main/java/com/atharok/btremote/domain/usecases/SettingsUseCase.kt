@@ -40,6 +40,10 @@ class SettingsUseCase(private val dataStoreRepository: DataStoreRepository) {
         dataStoreRepository.saveMouseSpeed(mouseSpeed)
     }
 
+    suspend fun saveScrollSpeed(scrollSpeed: Float) {
+        dataStoreRepository.saveScrollSpeed(scrollSpeed)
+    }
+
     suspend fun saveInvertMouseScrollingDirection(invertScrollingDirection: Boolean) {
         dataStoreRepository.saveInvertMouseScrollingDirection(invertScrollingDirection)
     }
@@ -74,6 +78,10 @@ class SettingsUseCase(private val dataStoreRepository: DataStoreRepository) {
 
     suspend fun saveUseEnterForSelection(useEnterForSelection: Boolean) {
         dataStoreRepository.saveUseEnterForSelection(useEnterForSelection)
+    }
+
+    suspend fun saveLowLatencyPingInterval(lowLatencyPingInterval: Long) {
+        dataStoreRepository.saveLowLatencyPingInterval(lowLatencyPingInterval)
     }
 
     // ---- Others ----

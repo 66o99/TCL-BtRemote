@@ -6,6 +6,7 @@ import android.content.res.Configuration
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
@@ -27,19 +28,19 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.geometry.Size
-import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.toSize
+import androidx.lifecycle.compose.LifecycleResumeEffect
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.atharok.btremote.R
+import com.atharok.btremote.common.utils.KEYBOARD_INPUT_NONE
 import com.atharok.btremote.common.utils.REMOTE_INPUT_NONE
 import com.atharok.btremote.common.utils.getKeyboardLayout
+import com.atharok.btremote.common.utils.getKeyboardReport
 import com.atharok.btremote.domain.entities.DeviceHidConnectionState
 import com.atharok.btremote.domain.entities.RemoteNavigationEntity
 import com.atharok.btremote.domain.entities.remoteInput.ChannelInput
@@ -75,6 +76,7 @@ import com.atharok.btremote.ui.views.remote.RemoteView
 import com.atharok.btremote.ui.views.remote.buttonsLayouts.TVChannelDialog
 import com.atharok.btremote.ui.views.remoteNavigation.RemoteDirectionalPadNavigation
 import com.atharok.btremote.ui.views.remoteNavigation.RemoteSwipeNavigation
+import kotlinx.coroutines.delay
 import org.koin.androidx.compose.koinViewModel
 
 private enum class NavigationToggle {
@@ -94,15 +96,29 @@ fun RemoteScreen(
     context: Context = LocalContext.current
 ) {
     val configuration = LocalConfiguration.current
+    val isLandscapeMode = configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
+    var isScreenInteractive: Boolean by remember { mutableStateOf(false) }
+
+    LifecycleResumeEffect(Unit) {
+        isScreenInteractive = true
+        onPauseOrDispose {
+            isScreenInteractive = false
+        }
+    }
 
     val remoteSettings by remoteViewModel
         .remoteSettingsFlow.collectAsStateWithLifecycle(RemoteSettings())
 
-    // Remote
-    var navigationToggle by rememberSaveable { mutableStateOf(NavigationToggle.DIRECTION) }
-
     // Keyboard
     var showKeyboard: Boolean by rememberSaveable { mutableStateOf(false) }
+    var showAdvancedKeyboardMouse: Boolean by rememberSaveable { mutableStateOf(false) }
+
+    // Remote
+    var navigationToggleState by rememberSaveable { mutableStateOf(NavigationToggle.DIRECTION) }
+    val navigationToggle = with(remoteSettings) {
+        if (showKeyboard && useAdvancedKeyboard && useAdvancedKeyboardIntegrated) NavigationToggle.MOUSE
+        else navigationToggleState
+    }
 
     // Help
     var showHelpBottomSheet: Boolean by remember { mutableStateOf(false) }
@@ -123,20 +139,43 @@ fun RemoteScreen(
         onDispose {}
     }
 
+    LaunchedEffect(
+        remoteSettings.lowLatencyPingInterval,
+        isScreenInteractive,
+        isBluetoothServiceRunning,
+        bluetoothDeviceHidConnectionState.state
+    ) {
+        while (
+            remoteSettings.lowLatencyPingInterval > 0L &&
+            isScreenInteractive &&
+            isBluetoothServiceRunning &&
+            bluetoothDeviceHidConnectionState.state == BluetoothHidDevice.STATE_CONNECTED
+        ) {
+            remoteViewModel.sendEmptyReport()
+            delay(remoteSettings.lowLatencyPingInterval)
+        }
+    }
+
     StatelessRemoteScreen(
         deviceName = bluetoothDeviceHidConnectionState.deviceName,
-        isLandscapeMode = configuration.orientation == Configuration.ORIENTATION_LANDSCAPE,
+        isLandscapeMode = isLandscapeMode,
+        showKeyboard = showKeyboard,
+        useAdvancedKeyboardIntegrated = remoteSettings.useAdvancedKeyboard && remoteSettings.useAdvancedKeyboardIntegrated,
+        showAdvancedKeyboardMouse = showAdvancedKeyboardMouse,
         topBarActions = {
             TopBarActions(
+                isLandscapeMode = isLandscapeMode,
                 navigateToSettings = navigateToSettings,
                 disconnectDevice = {
                     remoteViewModel.disconnectDevice()
                 },
                 navigationToggle = navigationToggle,
-                onNavigationToggleChanged = { navigationToggle = it },
-                useAdvancedKeyboardIntegrated = remoteSettings.useAdvancedKeyboard && remoteSettings.useAdvancedKeyboardIntegrated,
+                onNavigationToggleChanged = { navigationToggleState = it },
                 showKeyboard = showKeyboard,
                 onShowKeyboardChanged = { showKeyboard = it },
+                useAdvancedKeyboardIntegrated = remoteSettings.useAdvancedKeyboard && remoteSettings.useAdvancedKeyboardIntegrated,
+                showAdvancedKeyboardMouse = showAdvancedKeyboardMouse,
+                onShowAdvancedKeyboardMouseChanged = { showAdvancedKeyboardMouse = it },
                 showHelpBottomSheet = showHelpBottomSheet,
                 onShowHelpBottomSheetChanged = { showHelpBottomSheet = it },
                 sendRemoteKeyReport = remoteViewModel.sendRemoteReport,
@@ -202,6 +241,9 @@ fun RemoteScreen(
 private fun StatelessRemoteScreen(
     deviceName: String,
     isLandscapeMode: Boolean,
+    showKeyboard: Boolean,
+    useAdvancedKeyboardIntegrated: Boolean,
+    showAdvancedKeyboardMouse: Boolean,
     topBarActions: @Composable (RowScope.() -> Unit),
     remoteLayout: @Composable () -> Unit,
     navigationLayout: @Composable () -> Unit,
@@ -217,6 +259,9 @@ private fun StatelessRemoteScreen(
 
         if(isLandscapeMode) {
             RemoteLandscapeView(
+                showKeyboard = showKeyboard,
+                useAdvancedKeyboardIntegrated = useAdvancedKeyboardIntegrated,
+                showAdvancedKeyboardMouse = showAdvancedKeyboardMouse,
                 remoteLayout = remoteLayout,
                 navigationLayout = navigationLayout,
                 modifier = Modifier
@@ -240,35 +285,45 @@ private fun StatelessRemoteScreen(
 
 @Composable
 private fun RemoteLandscapeView(
+    showKeyboard: Boolean,
+    useAdvancedKeyboardIntegrated: Boolean,
+    showAdvancedKeyboardMouse: Boolean,
     remoteLayout: @Composable () -> Unit,
     navigationLayout: @Composable () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    var rowSize by remember { mutableStateOf(Size.Zero) }
-
-    Row(
-        modifier = modifier.onGloballyPositioned { layoutCoordinates ->
-            rowSize = layoutCoordinates.size.toSize() },
-        horizontalArrangement = Arrangement.SpaceBetween
-    ) {
-        Box(
-            modifier = Modifier
-                .widthIn(max = with(LocalDensity.current) { (0.5f * rowSize.width).toDp() })
-                .align(Alignment.CenterVertically)
-                .padding(
-                    start = dimensionResource(id = R.dimen.padding_large),
-                    top = dimensionResource(id = R.dimen.padding_large),
-                    bottom = dimensionResource(id = R.dimen.padding_large)
-                ),
+    BoxWithConstraints {
+        val containerWidth = maxWidth
+        Row(
+            modifier = modifier,
+            horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            navigationLayout()
-        }
+            if (!useAdvancedKeyboardIntegrated || !showKeyboard || showAdvancedKeyboardMouse) {
+                Box(
+                    modifier = Modifier
+                        .widthIn(
+                            max = if (useAdvancedKeyboardIntegrated && showKeyboard) Dp.Unspecified
+                            else containerWidth.times(0.5f)
+                        )
+                        .align(Alignment.CenterVertically)
+                        .padding(
+                            start = dimensionResource(id = R.dimen.padding_large),
+                            top = dimensionResource(id = R.dimen.padding_large),
+                            bottom = dimensionResource(id = R.dimen.padding_large)
+                        ),
+                ) {
+                    navigationLayout()
+                }
+            }
 
-        Box(
-            modifier = Modifier.align(Alignment.CenterVertically),
-            contentAlignment = Alignment.Center
-        ) {
-            remoteLayout()
+            if (!useAdvancedKeyboardIntegrated || !showKeyboard || !showAdvancedKeyboardMouse) {
+                Box(
+                    modifier = Modifier.align(Alignment.CenterVertically),
+                    contentAlignment = Alignment.Center
+                ) {
+                    remoteLayout()
+                }
+            }
         }
     }
 }
@@ -360,7 +415,7 @@ private fun RemoteLayout(
                 tvChannel9TouchDown = { sendKeyboardKeyReport(ChannelInput.CHANNEL_INPUT_9) },
                 tvChannel0TouchDown = { sendKeyboardKeyReport(ChannelInput.CHANNEL_INPUT_0) },
                 remoteTouchUp = { sendRemoteKeyReport(REMOTE_INPUT_NONE) },
-                keyboardTouchUp = { sendKeyboardKeyReport(REMOTE_INPUT_NONE) },
+                keyboardTouchUp = { sendKeyboardKeyReport(KEYBOARD_INPUT_NONE) },
             )
         }
     }
@@ -501,7 +556,7 @@ private fun NavigationLayout(
                     },
                     pickTouchDown = {
                         if(remoteSettings.useEnterForSelection) {
-                            sendKeyboardKeyReport(byteArrayOf(0x00, KeyboardKey.KEY_ENTER.byte))
+                            sendKeyboardKeyReport(getKeyboardReport(0x00, KeyboardKey.KEY_ENTER.byte))
                         } else {
                             sendRemoteKeyReport(RemoteInput.REMOTE_INPUT_MENU_PICK)
                         }
@@ -511,7 +566,7 @@ private fun NavigationLayout(
                     },
                     pickTouchUp = {
                         if(remoteSettings.useEnterForSelection) {
-                            sendKeyboardKeyReport(REMOTE_INPUT_NONE)
+                            sendKeyboardKeyReport(KEYBOARD_INPUT_NONE)
                         } else {
                             sendRemoteKeyReport(REMOTE_INPUT_NONE)
                         }
@@ -522,6 +577,7 @@ private fun NavigationLayout(
             NavigationToggle.MOUSE -> {
                 MousePadLayout(
                     mouseSpeed = remoteSettings.mouseSpeed,
+                    scrollSpeed = remoteSettings.scrollSpeed,
                     shouldInvertMouseScrollingDirection = remoteSettings.shouldInvertMouseScrollingDirection,
                     useGyroscope = remoteSettings.useGyroscope,
                     sendMouseInput = sendMouseKeyReport,
@@ -603,39 +659,66 @@ private fun KeyboardModalBottomSheet(
 
 @Composable
 private fun TopBarActions(
+    isLandscapeMode: Boolean,
     navigateToSettings: () -> Unit,
     disconnectDevice: () -> Unit,
     navigationToggle: NavigationToggle,
     onNavigationToggleChanged: (NavigationToggle) -> Unit,
-    useAdvancedKeyboardIntegrated: Boolean,
     showKeyboard: Boolean,
     onShowKeyboardChanged: (Boolean) -> Unit,
+    useAdvancedKeyboardIntegrated: Boolean,
+    showAdvancedKeyboardMouse: Boolean,
+    onShowAdvancedKeyboardMouseChanged: (Boolean) -> Unit,
     showHelpBottomSheet: Boolean,
     onShowHelpBottomSheetChanged: (Boolean) -> Unit,
     sendRemoteKeyReport: (ByteArray) -> Unit,
     showBrightnessButtons: Boolean
 ) {
-    FadeAnimatedContent(targetState = navigationToggle) {
-        when (it) {
-            NavigationToggle.MOUSE -> {
-                DirectionButtonsAction(
-                    showDirectionButtons = {
-                        onNavigationToggleChanged(NavigationToggle.DIRECTION)
-                    }
-                )
-            }
+    if (!(useAdvancedKeyboardIntegrated && showKeyboard)) {
+        FadeAnimatedContent(targetState = navigationToggle) {
+            when (it) {
+                NavigationToggle.MOUSE -> {
+                    DirectionButtonsAction(
+                        showDirectionButtons = {
+                            onNavigationToggleChanged(NavigationToggle.DIRECTION)
+                        }
+                    )
+                }
 
-            NavigationToggle.DIRECTION -> {
-                MouseAction(
-                    showMousePad = {
-                        onNavigationToggleChanged(NavigationToggle.MOUSE)
-                    }
-                )
+                NavigationToggle.DIRECTION -> {
+                    MouseAction(
+                        showMousePad = {
+                            onNavigationToggleChanged(NavigationToggle.MOUSE)
+                        }
+                    )
+                }
             }
         }
     }
 
-    if(useAdvancedKeyboardIntegrated) {
+    if (useAdvancedKeyboardIntegrated) {
+        if (isLandscapeMode && showKeyboard) {
+            FadeAnimatedContent(targetState = showAdvancedKeyboardMouse) {
+                when (it) {
+                    true -> {
+                        KeyboardAction(
+                            showKeyboard = {
+                                onShowAdvancedKeyboardMouseChanged(false)
+                            }
+                        )
+                    }
+
+                    false -> {
+                        MouseAction(
+                            showMousePad = {
+                                onShowAdvancedKeyboardMouseChanged(true)
+                            }
+                        )
+                    }
+                }
+            }
+        }
+
         FadeAnimatedContent(targetState = showKeyboard) {
             when (it) {
                 true -> {
@@ -649,6 +732,7 @@ private fun TopBarActions(
                 false -> {
                     KeyboardAction(
                         showKeyboard = {
+                            onShowAdvancedKeyboardMouseChanged(false)
                             onShowKeyboardChanged(true)
                         }
                     )

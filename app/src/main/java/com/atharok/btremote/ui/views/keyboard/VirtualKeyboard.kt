@@ -32,7 +32,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.LayoutDirection
 import com.atharok.btremote.R
 import com.atharok.btremote.common.utils.AppIcons
-import com.atharok.btremote.common.utils.REMOTE_INPUT_NONE
+import com.atharok.btremote.common.utils.KEYBOARD_INPUT_NONE
 import com.atharok.btremote.domain.entities.remoteInput.keyboard.virtualKeyboard.VirtualKeyboardLayout
 import com.atharok.btremote.ui.theme.dimensionElevation3
 
@@ -104,7 +104,7 @@ private fun StatelessKeyboardView(
                     onDone = {
                         sendTextReport(text)
                         sendKeyboardKeyReport(VirtualKeyboardLayout.KEYBOARD_KEY_ENTER)
-                        sendKeyboardKeyReport(REMOTE_INPUT_NONE)
+                        sendKeyboardKeyReport(KEYBOARD_INPUT_NONE)
                         if(mustClearInputField) {
                             onTextChange("")
                         }
@@ -179,7 +179,7 @@ private fun AdditionalKeyboardKeysLayout(
             VirtualKeyboardKey(
                 image = AppIcons.KeyboardBackspace,
                 contentDescription = stringResource(id = R.string.delete),
-                bytes = VirtualKeyboardLayout.KEYBOARD_KEY_DELETE,
+                bytes = VirtualKeyboardLayout.KEYBOARD_KEY_BACKSPACE,
                 sendKeyboardKey = sendKeyboardKeyReport,
                 modifier = Modifier.weight(1f).padding(end = dimensionResource(id = R.dimen.padding_min))
             )
@@ -231,7 +231,7 @@ private fun VirtualKeyboardKey(
 ) {
     KeyboardKeyView(
         touchDown = { sendKeyboardKey(bytes) },
-        touchUp = { sendKeyboardKey(REMOTE_INPUT_NONE) },
+        touchUp = { sendKeyboardKey(KEYBOARD_INPUT_NONE) },
         modifier = modifier,
         shape = shape,
         elevation = elevation
