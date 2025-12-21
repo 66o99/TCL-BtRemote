@@ -11,15 +11,15 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.Dp
 import com.atharok.btremote.R
-import com.atharok.btremote.ui.theme.dimensionElevation2
-import com.atharok.btremote.ui.theme.dimensionShadowElevation
+import com.atharok.btremote.ui.theme.surfaceElevationMedium
+import com.atharok.btremote.ui.theme.surfaceElevationShadow
 
 @Composable
 fun DefaultElevatedCard(
     modifier: Modifier = Modifier,
     shape: Shape = RoundedCornerShape(dimensionResource(id = R.dimen.card_corner_radius)),
-    elevation: Dp = dimensionElevation2(),
-    shadowElevation: Dp = dimensionShadowElevation(),
+    elevation: Dp = surfaceElevationMedium(),
+    shadowElevation: Dp = surfaceElevationShadow(),
     content: @Composable () -> Unit
 ) {
     ElevatedCard(

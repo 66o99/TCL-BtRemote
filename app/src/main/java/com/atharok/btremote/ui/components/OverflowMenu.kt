@@ -16,7 +16,7 @@ import androidx.compose.ui.res.stringResource
 import com.atharok.btremote.R
 import com.atharok.btremote.common.extensions.autoMirroredIcon
 import com.atharok.btremote.common.utils.AppIcons
-import com.atharok.btremote.ui.theme.dimensionElevation3
+import com.atharok.btremote.ui.theme.surfaceElevationHigh
 
 @Composable
 private fun OverflowMenu(
@@ -30,7 +30,7 @@ private fun OverflowMenu(
     DropdownMenu(
         expanded = showMenu,
         onDismissRequest = { showMenu = false },
-        containerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(dimensionElevation3())
+        containerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(surfaceElevationHigh())
     ) {
         content { showMenu = false }
     }

@@ -9,8 +9,8 @@ import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.atharok.btremote.ui.theme.dimensionElevation1
-import com.atharok.btremote.ui.theme.dimensionElevation3
+import com.atharok.btremote.ui.theme.surfaceElevationHigh
+import com.atharok.btremote.ui.theme.surfaceElevationLow
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -31,10 +31,10 @@ fun TopBar(
         windowInsets = TopAppBarDefaults.windowInsets,
         colors = TopAppBarDefaults.topAppBarColors(
             containerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(
-                elevation = dimensionElevation1()
+                elevation = surfaceElevationLow()
             ),
             scrolledContainerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(
-                elevation = dimensionElevation3()
+                elevation = surfaceElevationHigh()
             )
         ),
         scrollBehavior = scrollBehavior

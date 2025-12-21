@@ -9,7 +9,7 @@ import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.atharok.btremote.ui.theme.dimensionElevation2
+import com.atharok.btremote.ui.theme.surfaceElevationMedium
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -23,7 +23,7 @@ fun KeyboardModalBottomSheet(
         onDismissRequest = { onShowKeyboardBottomSheetChanged(false) },
         modifier = modifier,
         sheetState = rememberModalBottomSheetState(true),
-        containerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(dimensionElevation2()),
+        containerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(surfaceElevationMedium()),
         contentWindowInsets = {
             windowInsets
         }

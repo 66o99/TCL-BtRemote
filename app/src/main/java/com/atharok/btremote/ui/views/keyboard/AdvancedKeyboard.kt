@@ -31,7 +31,7 @@ import com.atharok.btremote.common.utils.getAdvancedKeyboardLayout
 import com.atharok.btremote.domain.entities.remoteInput.keyboard.KeyboardLanguage
 import com.atharok.btremote.domain.entities.remoteInput.keyboard.advancedKeyboard.AdvancedKeyboardLayout
 import com.atharok.btremote.domain.entities.remoteInput.keyboard.advancedKeyboard.TextAdvancedKeyboardModifierKey
-import com.atharok.btremote.ui.theme.dimensionElevation4
+import com.atharok.btremote.ui.theme.surfaceElevationHigh
 
 @Composable
 fun AdvancedKeyboardModalBottomSheet(
@@ -62,7 +62,7 @@ fun AdvancedKeyboard(
     sendKeyboardKeyReport: (bytes: ByteArray) -> Unit,
     modifier: Modifier = Modifier,
     shape: Shape = RoundedCornerShape(dimensionResource(id = R.dimen.keyboard_key_corner_radius)),
-    keyElevation: Dp = dimensionElevation4()
+    keyElevation: Dp = surfaceElevationHigh()
 ) {
     val configuration = LocalConfiguration.current
     val isLandscape = configuration.orientation == Configuration.ORIENTATION_LANDSCAPE

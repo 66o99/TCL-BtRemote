@@ -8,20 +8,16 @@ import com.atharok.btremote.R
 
 @Composable
 @ReadOnlyComposable
-fun dimensionElevation1(): Dp = dimensionResource(id = R.dimen.elevation_1)
+fun surfaceElevationLow(): Dp = dimensionResource(id = R.dimen.surface_elevation_low)
 
 @Composable
 @ReadOnlyComposable
-fun dimensionElevation2(): Dp = dimensionResource(id = R.dimen.elevation_2)
+fun surfaceElevationMedium(): Dp = dimensionResource(id = R.dimen.surface_elevation_medium)
 
 @Composable
 @ReadOnlyComposable
-fun dimensionElevation3(): Dp = dimensionResource(id = R.dimen.elevation_3)
+fun surfaceElevationHigh(): Dp = dimensionResource(id = R.dimen.surface_elevation_high)
 
 @Composable
 @ReadOnlyComposable
-fun dimensionElevation4(): Dp = dimensionResource(id = R.dimen.elevation_4)
-
-@Composable
-@ReadOnlyComposable
-fun dimensionShadowElevation(): Dp = dimensionResource(id = R.dimen.shadow_elevation)
+fun surfaceElevationShadow(): Dp = dimensionResource(id = R.dimen.surface_elevation_shadow)

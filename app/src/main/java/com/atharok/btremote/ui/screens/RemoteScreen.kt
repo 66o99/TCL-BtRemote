@@ -64,7 +64,7 @@ import com.atharok.btremote.ui.components.MoreOverflowMenu
 import com.atharok.btremote.ui.components.MouseAction
 import com.atharok.btremote.ui.components.RemoteAction
 import com.atharok.btremote.ui.components.SettingsDropdownMenuItem
-import com.atharok.btremote.ui.theme.dimensionElevation2
+import com.atharok.btremote.ui.theme.surfaceElevationMedium
 import com.atharok.btremote.ui.views.RemoteScreenHelpModalBottomSheet
 import com.atharok.btremote.ui.views.keyboard.AdvancedKeyboard
 import com.atharok.btremote.ui.views.keyboard.AdvancedKeyboardModalBottomSheet
@@ -329,7 +329,7 @@ private fun RemoteLayout(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(dimensionResource(R.dimen.padding_large)),
-                keyElevation = dimensionElevation2()
+                keyElevation = surfaceElevationMedium()
             )
         } else {
             RemoteButtonsLayouts(

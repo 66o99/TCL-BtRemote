@@ -38,7 +38,7 @@ import com.atharok.btremote.ui.screens.RemoteScreen
 import com.atharok.btremote.ui.screens.SettingsScreen
 import com.atharok.btremote.ui.screens.ThirdLibrariesScreen
 import com.atharok.btremote.ui.theme.BtRemoteTheme
-import com.atharok.btremote.ui.theme.dimensionElevation1
+import com.atharok.btremote.ui.theme.surfaceElevationLow
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -55,7 +55,7 @@ fun BtRemoteApp(
     ) {
         Surface(
             modifier = Modifier.fillMaxSize(),
-            tonalElevation = dimensionElevation1()
+            tonalElevation = surfaceElevationLow()
         ) {
             if(!appScopeViewModel.isBluetoothSupported) {
                 BluetoothNotSupportScreen()

@@ -21,7 +21,7 @@ import com.atharok.btremote.common.extensions.autoMirroredIcon
 import com.atharok.btremote.common.utils.AppIcons
 import com.atharok.btremote.ui.components.ButtonContentTemplate
 import com.atharok.btremote.ui.components.RemoteButtonSurface
-import com.atharok.btremote.ui.theme.dimensionElevation2
+import com.atharok.btremote.ui.theme.surfaceElevationMedium
 
 @Composable
 private fun VerticalLayout(
@@ -29,7 +29,7 @@ private fun VerticalLayout(
     contentDown: @Composable () -> Unit,
     modifier: Modifier = Modifier,
     shape: Shape = RectangleShape,
-    elevation: Dp = dimensionElevation2()
+    elevation: Dp = surfaceElevationMedium()
 ) {
     RemoteButtonSurface(
         modifier = modifier,
