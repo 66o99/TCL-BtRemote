@@ -42,6 +42,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.atharok.btremote.R
+import com.atharok.btremote.common.extensions.getAppVersion
 import com.atharok.btremote.common.utils.AppIcons
 import com.atharok.btremote.common.utils.SOURCE_CODE_LINK
 import com.atharok.btremote.common.utils.WEB_SITE_LINK
@@ -459,8 +460,7 @@ fun SettingsScreen(
                     )
             )
 
-            SettingsText(
-                text = stringResource(id = R.string.source_code),
+            Column(
                 modifier = Modifier
                     .clickable {
                         uriHandler.openUri(SOURCE_CODE_LINK)
@@ -469,8 +469,12 @@ fun SettingsScreen(
                     .padding(
                         horizontal = horizontalPadding,
                         vertical = verticalPadding
-                    )
-            )
+                    ),
+                verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.padding_min))
+            ) {
+                TextNormal(text = stringResource(id = R.string.source_code))
+                TextNormalSecondary(text = stringResource(id = R.string.code_version, context.getAppVersion()))
+            }
         }
     }
 }

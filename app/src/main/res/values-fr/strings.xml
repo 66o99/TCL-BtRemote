@@ -123,6 +123,7 @@
     <string name="third_party_library">Bibliothèques tierces</string>
     <string name="website">Site web</string>
     <string name="source_code">Code source</string>
+    <string name="code_version">Version %1$s</string>
     <!-- Keyboard -->
     <string name="keyboard">Clavier</string>
     <string name="keyboard_language">Langue du clavier</string>
