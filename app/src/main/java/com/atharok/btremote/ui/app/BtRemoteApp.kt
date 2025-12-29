@@ -11,6 +11,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.Lifecycle
@@ -79,10 +80,12 @@ fun BtRemoteApp(
                 AppNavHost(
                     navController = navController,
 
-                    startDestination = if(arePermissionsGranted(context, bluetoothConnectPermissions))
-                        AppNavDestination.BluetoothActivationDestination.route
-                    else
-                        AppNavDestination.BluetoothPermissionsDestination.route,
+                    startDestination = remember {
+                        if(arePermissionsGranted(context, bluetoothConnectPermissions))
+                            AppNavDestination.BluetoothActivationDestination.route
+                        else
+                            AppNavDestination.BluetoothPermissionsDestination.route
+                    },
 
                     bluetoothPermissionsScreen = {
                         BluetoothPermissionsScreen(
@@ -96,6 +99,7 @@ fun BtRemoteApp(
                                     popUpTo(0) {
                                         this.saveState = false
                                     }
+                                    launchSingleTop = true
                                 }
                             },
                             navigateToSettings = navigateToSettings,
