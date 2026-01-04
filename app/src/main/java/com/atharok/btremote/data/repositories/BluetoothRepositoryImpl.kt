@@ -4,7 +4,7 @@ import androidx.compose.runtime.snapshots.SnapshotStateList
 import com.atharok.btremote.data.bluetooth.BluetoothHidCore
 import com.atharok.btremote.data.bluetooth.BluetoothLocalData
 import com.atharok.btremote.data.bluetooth.BluetoothScanner
-import com.atharok.btremote.data.bluetooth.BluetoothStatusChecker
+import com.atharok.btremote.data.bluetooth.BluetoothStatus
 import com.atharok.btremote.domain.entities.DeviceEntity
 import com.atharok.btremote.domain.entities.DeviceHidConnectionState
 import com.atharok.btremote.domain.entities.remoteInput.keyboard.virtualKeyboard.VirtualKeyboardLayout
@@ -12,25 +12,17 @@ import com.atharok.btremote.domain.repositories.BluetoothRepository
 import kotlinx.coroutines.flow.StateFlow
 
 class BluetoothRepositoryImpl(
-    private val bluetoothStatusChecker: BluetoothStatusChecker,
+    private val bluetoothStatus: BluetoothStatus,
     private val bluetoothScanner: BluetoothScanner,
     private val bluetoothLocalData: BluetoothLocalData,
     private val bluetoothHidCore: BluetoothHidCore
 ): BluetoothRepository {
 
-    // ---- BluetoothStatusChecker ----
+    // ---- BluetoothStatus ----
 
-    override fun isBluetoothSupported(): Boolean = bluetoothStatusChecker.isBluetoothSupported
+    override fun isBluetoothSupported(): Boolean = bluetoothStatus.isBluetoothSupported()
 
-    override fun isBluetoothEnabled(): StateFlow<Boolean> = bluetoothStatusChecker.isBluetoothEnabled
-
-    override fun registerBluetoothStateReceiver() {
-        bluetoothStatusChecker.registerBluetoothStateReceiver()
-    }
-
-    override fun unregisterBluetoothStateReceiver() {
-        bluetoothStatusChecker.unregisterBluetoothStateReceiver()
-    }
+    override fun isBluetoothEnabled(): Boolean = bluetoothStatus.isBluetoothEnabled()
 
     // ---- BluetoothScanner ----
 

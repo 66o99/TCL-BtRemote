@@ -11,7 +11,7 @@ import com.atharok.btremote.common.utils.bluetoothHidDescriptor
 import com.atharok.btremote.data.bluetooth.BluetoothHidCore
 import com.atharok.btremote.data.bluetooth.BluetoothLocalData
 import com.atharok.btremote.data.bluetooth.BluetoothScanner
-import com.atharok.btremote.data.bluetooth.BluetoothStatusChecker
+import com.atharok.btremote.data.bluetooth.BluetoothStatus
 import com.atharok.btremote.data.dataStore.SettingsDataStore
 import com.atharok.btremote.data.repositories.BluetoothRepositoryImpl
 import com.atharok.btremote.data.repositories.DataStoreRepositoryImpl
@@ -246,7 +246,7 @@ private val repositoryModule: Module = module {
 
     single<BluetoothRepository> {
         BluetoothRepositoryImpl(
-            bluetoothStatusChecker = get<BluetoothStatusChecker>(),
+            bluetoothStatus = get<BluetoothStatus>(),
             bluetoothScanner = get<BluetoothScanner>(),
             bluetoothLocalData = get<BluetoothLocalData>(),
             bluetoothHidCore = get<BluetoothHidCore>()
@@ -269,8 +269,7 @@ private val dataModule: Module = module {
     }
 
     single {
-        BluetoothStatusChecker(
-            context = androidContext(),
+        BluetoothStatus(
             adapter = get<BluetoothManager>().adapter
         )
     }

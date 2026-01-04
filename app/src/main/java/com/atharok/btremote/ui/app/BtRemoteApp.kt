@@ -9,9 +9,10 @@ import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.Lifecycle
@@ -25,6 +26,7 @@ import com.atharok.btremote.common.utils.bluetoothScanPermissions
 import com.atharok.btremote.domain.entities.DeviceHidConnectionState
 import com.atharok.btremote.presentation.services.BluetoothHidService
 import com.atharok.btremote.presentation.viewmodel.AppScopeViewModel
+import com.atharok.btremote.ui.components.CheckBluetoothStateChanged
 import com.atharok.btremote.ui.components.OnLifecycleEvent
 import com.atharok.btremote.ui.navigation.AppNavDestination
 import com.atharok.btremote.ui.navigation.AppNavHost
@@ -62,18 +64,16 @@ fun BtRemoteApp(
                 BluetoothNotSupportScreen()
             } else {
 
-                val isBluetoothEnabled: Boolean by appScopeViewModel.isBluetoothEnabled.collectAsStateWithLifecycle()
                 val isBluetoothServiceRunning: Boolean by appScopeViewModel.isBluetoothServiceRunning.collectAsStateWithLifecycle()
                 val isBluetoothHidProfileRegistered: Boolean by appScopeViewModel.isBluetoothHidProfileRegistered.collectAsStateWithLifecycle()
                 val bluetoothDeviceHidConnectionState: DeviceHidConnectionState by appScopeViewModel.deviceHidConnectionState.collectAsStateWithLifecycle()
 
-                // BroadcastReceiver
-                DisposableEffect(Unit) {
-                    appScopeViewModel.registerBluetoothStateReceiver()
-                    onDispose {
-                        appScopeViewModel.unregisterBluetoothStateReceiver()
-                    }
-                }
+                var isBluetoothEnabled: Boolean by remember { mutableStateOf(appScopeViewModel.isBluetoothEnabled) }
+
+                CheckBluetoothStateChanged(
+                    isBluetoothEnabled = isBluetoothEnabled,
+                    onBluetoothEnabledChanged = { isBluetoothEnabled = it }
+                )
 
                 // ---- NavHost ----
 

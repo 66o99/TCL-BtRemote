@@ -23,21 +23,11 @@ class AppScopeViewModel(
 
     val isBluetoothSupported: Boolean get() = useCase.isBluetoothSupported()
 
-    val isBluetoothEnabled: StateFlow<Boolean> get() = useCase.isBluetoothEnabled()
+    val isBluetoothEnabled: Boolean get() = useCase.isBluetoothEnabled()
 
     val isBluetoothServiceRunning: StateFlow<Boolean> get() = useCase.isBluetoothServiceRunning()
 
     val isBluetoothHidProfileRegistered: StateFlow<Boolean> get() = useCase.isBluetoothHidProfileRegistered()
 
     val deviceHidConnectionState: StateFlow<DeviceHidConnectionState> get() = useCase.getDeviceHidConnectionState()
-
-    // ---- Broadcast Receiver ----
-
-    fun registerBluetoothStateReceiver() {
-        useCase.registerBluetoothStateReceiver()
-    }
-
-    fun unregisterBluetoothStateReceiver() {
-        useCase.unregisterBluetoothStateReceiver()
-    }
 }

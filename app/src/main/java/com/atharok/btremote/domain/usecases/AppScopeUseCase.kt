@@ -26,7 +26,7 @@ class AppScopeUseCase(
         return bluetoothRepository.isBluetoothSupported()
     }
 
-    fun isBluetoothEnabled(): StateFlow<Boolean> {
+    fun isBluetoothEnabled(): Boolean {
         return bluetoothRepository.isBluetoothEnabled()
     }
 
@@ -40,15 +40,5 @@ class AppScopeUseCase(
 
     fun getDeviceHidConnectionState(): StateFlow<DeviceHidConnectionState> {
         return bluetoothRepository.getDeviceHidConnectionState()
-    }
-
-    // ---- Broadcast Receiver ----
-
-    fun registerBluetoothStateReceiver() {
-        bluetoothRepository.registerBluetoothStateReceiver()
-    }
-
-    fun unregisterBluetoothStateReceiver() {
-        bluetoothRepository.unregisterBluetoothStateReceiver()
     }
 }

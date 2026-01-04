@@ -1,8 +1,15 @@
 package com.atharok.btremote.ui.components
 
+import android.bluetooth.BluetoothAdapter
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberUpdatedState
+import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
@@ -25,7 +32,7 @@ fun OnLifecycleEvent(onEvent: (owner: LifecycleOwner, event: Lifecycle.Event) ->
     }
 }
 
-/*@Composable
+@Composable
 fun SystemBroadcastReceiver(
     systemAction: String,
     onSystemEvent: (intent: Intent?) -> Unit
@@ -63,4 +70,4 @@ fun CheckBluetoothStateChanged(
             }
         }
     }
-}*/
+}

@@ -8,12 +8,10 @@ import kotlinx.coroutines.flow.StateFlow
 
 interface BluetoothRepository {
 
-    // ---- BluetoothStatusChecker ----
+    // ---- BluetoothStatus ----
 
     fun isBluetoothSupported(): Boolean
-    fun isBluetoothEnabled(): StateFlow<Boolean>
-    fun registerBluetoothStateReceiver()
-    fun unregisterBluetoothStateReceiver()
+    fun isBluetoothEnabled(): Boolean
 
     // ---- BluetoothScanner ----
 
