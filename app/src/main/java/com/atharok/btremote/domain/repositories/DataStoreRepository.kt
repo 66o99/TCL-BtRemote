@@ -45,7 +45,7 @@ interface DataStoreRepository {
 
     suspend fun saveUseEnterForSelection(useEnterForSelection: Boolean)
 
-    suspend fun saveDefaultToMouseNavigation(defaultToMouseNavigation: Boolean)
+    suspend fun saveUseMouseNavigationByDefault(useMouseNavigationByDefault: Boolean)
 
     // ---- Others ----
 

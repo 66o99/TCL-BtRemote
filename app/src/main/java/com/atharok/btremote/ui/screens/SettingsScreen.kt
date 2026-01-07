@@ -198,10 +198,10 @@ fun SettingsScreen(
             )
 
             SettingsSwitch(
-                primaryText = stringResource(id = R.string.default_to_mouse_navigation),
-                secondaryText = stringResource(id = R.string.default_to_mouse_navigation_info),
-                checked = remoteSettings.defaultToMouseNavigation,
-                onCheckedChange = { settingsViewModel.saveDefaultToMouseNavigation(it) },
+                primaryText = stringResource(id = R.string.use_mouse_navigation_by_default),
+                secondaryText = null,
+                checked = remoteSettings.useMouseNavigationByDefault,
+                onCheckedChange = { settingsViewModel.saveUseMouseNavigationByDefault(it) },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(

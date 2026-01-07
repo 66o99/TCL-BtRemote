@@ -201,6 +201,4 @@
     <string name="help_hid_service_not_initialized_message_3">• Si esta opción no está disponible, es posible que su dispositivo no sea compatible con el perfil HID. En ese caso, lamentablemente, no podrás usar esta aplicación en este dispositivo.</string>
     <string name="connect">Conectar</string>
     <string name="media_controls">Controles multimedia</string>
-    <string name="default_to_mouse_navigation">Navegación con el ratón por defecto</string>
-    <string name="default_to_mouse_navigation_info">Muestra la navegación con el ratón de forma predeterminada en remoto</string>
 </resources>

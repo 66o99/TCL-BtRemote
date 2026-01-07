@@ -201,6 +201,4 @@
     <string name="add_to_favorites">Добави към любими</string>
     <string name="connect">Свържете се</string>
     <string name="media_controls">Контроли за медии</string>
-    <string name="default_to_mouse_navigation">Навигация с мишка по подразбиране</string>
-    <string name="default_to_mouse_navigation_info">Показва навигация с мишка по подразбиране при отдалечен достъп</string>
 </resources>

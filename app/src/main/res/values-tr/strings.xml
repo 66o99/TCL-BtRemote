@@ -185,6 +185,4 @@
     <string name="touchpad">Dokunmatik yüzey</string>
     <string name="touchpad_description">Dokunmatik hareketlerle navigasyon</string>
     <string name="tv">TV</string>
-    <string name="default_to_mouse_navigation">Varsayılan fareyle gezinme</string>
-    <string name="default_to_mouse_navigation_info">Uzak bağlantıda varsayılan olarak fareyle gezinmeyi gösterir</string>
 </resources>

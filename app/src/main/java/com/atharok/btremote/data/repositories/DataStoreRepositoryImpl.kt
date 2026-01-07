@@ -79,8 +79,8 @@ class DataStoreRepositoryImpl(
         settingsDataStore.saveUseEnterForSelection(useEnterForSelection)
     }
 
-    override suspend fun saveDefaultToMouseNavigation(defaultToMouseNavigation: Boolean) {
-        settingsDataStore.saveDefaultToMouseNavigation(defaultToMouseNavigation)
+    override suspend fun saveUseMouseNavigationByDefault(useMouseNavigationByDefault: Boolean) {
+        settingsDataStore.saveUseMouseNavigationByDefault(useMouseNavigationByDefault)
     }
 
     // ---- Others ----

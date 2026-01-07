@@ -199,6 +199,4 @@
     <string name="advanced_options">Erweiterte Optionen</string>
     <string name="remove_from_favorites">Als Favorit entfernen</string>
     <string name="hide_bluetooth_activation_button">Verstecke Bluetooth-Aktivierungsbutton beim starten der App</string>
-    <string name="default_to_mouse_navigation">Mausnavigation als Standard</string>
-    <string name="default_to_mouse_navigation_info">Zeigt bei Remote-Verbindungen standardmäßig Mausnavigation an</string>
 </resources>

@@ -222,6 +222,4 @@
     <string name="advanced_options">Προχωρημένες ρυθμίσεις</string>
     <string name="connect">Σύνδεση</string>
     <string name="media_controls">Στοιχεία ελέγχου πολυμέσων</string>
-    <string name="default_to_mouse_navigation">Πλοήγηση με ποντίκι ως προεπιλογή</string>
-    <string name="default_to_mouse_navigation_info">Εμφανίζει την πλοήγηση με ποντίκι ως προεπιλογή σε απομακρυσμένη σύνδεση</string>
 </resources>

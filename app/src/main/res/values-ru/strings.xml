@@ -220,6 +220,4 @@
     <string name="hide_bluetooth_activation_button">Скрыть кнопку активации Bluetooth при запуске приложения</string>
     <string name="advanced_options">Расширенные опции</string>
     <string name="add_to_favorites">Добавить в избранное</string>
-    <string name="default_to_mouse_navigation">Навигация мышью по умолчанию</string>
-    <string name="default_to_mouse_navigation_info">По умолчанию показывает навигацию мышью при удалённом доступе</string>
 </resources>

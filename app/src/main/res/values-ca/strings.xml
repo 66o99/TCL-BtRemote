@@ -97,6 +97,4 @@
     <string name="ctrl">Ctrl</string>
     <string name="alt">Alt</string>
     <string name="escape">Esc</string>
-    <string name="default_to_mouse_navigation">Navegació amb el ratolí per defecte</string>
-    <string name="default_to_mouse_navigation_info">Mostra la navegació amb el ratolí per defecte en remot</string>
 </resources>

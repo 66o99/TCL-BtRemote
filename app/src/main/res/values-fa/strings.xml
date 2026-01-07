@@ -186,6 +186,4 @@
     <string name="help_remote_control_buttons_are_not_working_check_4">• سپس، دو دستگاه را با همین برنامه دوباره جفت کنید.</string>
     <string name="help_remote_control_buttons_are_not_working_message_2">هر برنامه‌ای که با پروتکل HID کار می‌کند ممکن است به پروفایل متفاوتی وابسته باشد. اگر از پیش دستگاه‌های خود را با برنامه دیگری جفت کرده‌اید، ممکن است لازم باشد آن‌ها را دوباره جفت کنید تا پروفایل بازنشانی شود. بدون این مرحله، دکمه‌ها ممکن است به درستی کار نکنند یا مقادیر نادرستی ارسال کنند.</string>
     <string name="help_keyboard_wrong_character_sent_message">اگر کاراکترهای فرستاده شده نادرست هستند، باید صفحه‌کلید فیزیکی را در دستگاه راه دور به گونه‌ای پیکربندی کنید که با زبان انتخاب‌شده در تنظیمات برنامه هم‌خوانی داشته باشد.</string>
-    <string name="default_to_mouse_navigation">ناوبری با ماوس به‌صورت پیش‌فرض</string>
-    <string name="default_to_mouse_navigation_info">ناوبری با ماوس را به‌صورت پیش‌فرض در حالت راه دور نمایش می‌دهد</string>
 </resources>

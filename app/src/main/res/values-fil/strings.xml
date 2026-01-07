@@ -199,6 +199,4 @@
     <string name="advanced_options">Mga Advanced na Opsyon</string>
     <string name="add_to_favorites">Idagdag sa mga paborito</string>
     <string name="hide_bluetooth_activation_button">Itago ang button ng pag-activate ng Bluetooth sa pagsimula ng app</string>
-    <string name="default_to_mouse_navigation">Pag-navigate gamit ang mouse bilang default</string>
-    <string name="default_to_mouse_navigation_info">Ipinapakita ang pag-navigate gamit ang mouse bilang default sa remote</string>
 </resources>

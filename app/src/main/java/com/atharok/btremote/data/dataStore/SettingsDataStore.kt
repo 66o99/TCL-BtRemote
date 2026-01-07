@@ -14,7 +14,7 @@ import com.atharok.btremote.common.utils.DEFAULT_MUST_CLEAR_INPUT_FIELD
 import com.atharok.btremote.common.utils.DEFAULT_REMOTE_NAVIGATION
 import com.atharok.btremote.common.utils.DEFAULT_SHOULD_INVERT_MOUSE_SCROLLING_DIRECTION
 import com.atharok.btremote.common.utils.DEFAULT_THEME
-import com.atharok.btremote.common.utils.DEFAULT_TO_MOUSE_NAVIGATION
+import com.atharok.btremote.common.utils.USE_MOUSE_NAVIGATION_BY_DEFAULT
 import com.atharok.btremote.common.utils.DEFAULT_USE_ADVANCED_KEYBOARD
 import com.atharok.btremote.common.utils.DEFAULT_USE_ADVANCED_KEYBOARD_INTEGRATED
 import com.atharok.btremote.common.utils.DEFAULT_USE_BLACK_COLOR_FOR_DARK_THEME
@@ -57,7 +57,7 @@ class SettingsDataStore(private val context: Context) {
         private const val AUTO_CONNECT_DEVICE_ADDRESS_KEY = "auto_connect_device_address_key"
         private const val HIDE_BLUETOOTH_ACTIVATION_BUTTON_KEY = "hide_bluetooth_activation_button_key"
 
-        private const val DEFAULT_TO_MOUSE_NAVIGATION_KEY = "default_to_mouse_navigation_key"
+        private const val USE_MOUSE_NAVIGATION_BY_DEFAULT_KEY = "use_mouse_navigation_by_default_key"
     }
 
     private val themeKey = stringPreferencesKey(THEME_KEY)
@@ -77,7 +77,7 @@ class SettingsDataStore(private val context: Context) {
     private val favoriteDevicesKey = stringPreferencesKey(FAVORITE_DEVICES_KEY)
     private val autoConnectDeviceAddressKey = stringPreferencesKey(AUTO_CONNECT_DEVICE_ADDRESS_KEY)
     private val hideBluetoothActivationButtonKey = booleanPreferencesKey(HIDE_BLUETOOTH_ACTIVATION_BUTTON_KEY)
-    private val defaultToMouseNavigationKey = booleanPreferencesKey(DEFAULT_TO_MOUSE_NAVIGATION_KEY)
+    private val useMouseNavigationByDefaultKey = booleanPreferencesKey(USE_MOUSE_NAVIGATION_BY_DEFAULT_KEY)
 
     private fun Flow<Preferences>.catchException(): Flow<Preferences> = this.catch {
         if (it is IOException) {
@@ -158,7 +158,7 @@ class SettingsDataStore(private val context: Context) {
                 },
                 useMinimalistRemote = preferences[useMinimalistRemoteKey] ?: DEFAULT_USE_MINIMALIST_REMOTE,
                 useEnterForSelection = preferences[useEnterForSelectionKey] ?: DEFAULT_USE_ENTER_FOR_SELECTION,
-                defaultToMouseNavigation = preferences[defaultToMouseNavigationKey] ?: DEFAULT_TO_MOUSE_NAVIGATION
+                useMouseNavigationByDefault = preferences[useMouseNavigationByDefaultKey] ?: USE_MOUSE_NAVIGATION_BY_DEFAULT
             )
         }
 
@@ -228,9 +228,9 @@ class SettingsDataStore(private val context: Context) {
         }
     }
 
-    suspend fun saveDefaultToMouseNavigation(defaultToMouseNavigation: Boolean) {
+    suspend fun saveUseMouseNavigationByDefault(useMouseNavigationByDefault: Boolean) {
         context.dataStore.edit {
-            it[defaultToMouseNavigationKey] = defaultToMouseNavigation
+            it[useMouseNavigationByDefaultKey] = useMouseNavigationByDefault
         }
     }
 

@@ -201,6 +201,4 @@
     <string name="remove_from_favorites">Remover dos favoritos</string>
     <string name="connect">Conectar</string>
     <string name="media_controls">Controles de mídia</string>
-    <string name="default_to_mouse_navigation">Navegação por mouse como padrão</string>
-    <string name="default_to_mouse_navigation_info">Mostra a navegação por mouse como padrão no modo remoto</string>
 </resources>

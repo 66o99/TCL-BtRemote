@@ -193,6 +193,4 @@
     <string name="help_info_hid_service_not_initialized_message">Usługa HID nie została zainicjowana. Proszę zapoznać się z sekcją pomocy.</string>
     <string name="keyboard_persian">Perski</string>
     <string name="help_hid_service_not_initialized_message_1">Jeśli komunikat wskazuje, że usługa HID nie została zainicjowana, przejdź do opcji programistycznych urządzenia i poszukaj opcji „Wyłącz profil urządzenia Bluetooth HID”:</string>
-    <string name="default_to_mouse_navigation">Nawigacja myszą jako domyślna</string>
-    <string name="default_to_mouse_navigation_info">Domyślnie pokazuje nawigację myszą w trybie zdalnym</string>
 </resources>

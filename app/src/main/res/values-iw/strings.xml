@@ -199,6 +199,4 @@
     <string name="add_to_favorites">הוספה למועדפים</string>
     <string name="remove_from_favorites">הסרה מהמועדפים</string>
     <string name="hide_bluetooth_activation_button">הסתר לחצן הפעלת Bluetooth בעת פתיחת היישום</string>
-    <string name="default_to_mouse_navigation">ניווט בעזרת העכבר כברירת מחדל</string>
-    <string name="default_to_mouse_navigation_info">מציג ניווט בעזרת העכבר כברירת מחדל בחיבור מרוחק</string>
 </resources>

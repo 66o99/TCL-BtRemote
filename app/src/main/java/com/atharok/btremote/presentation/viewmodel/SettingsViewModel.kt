@@ -79,8 +79,8 @@ class SettingsViewModel(
         useCase.saveUseEnterForSelection(useEnterForSelection)
     }
 
-    fun saveDefaultToMouseNavigation(defaultToMouseNavigation: Boolean) = viewModelScope.launch {
-        useCase.saveDefaultToMouseNavigation(defaultToMouseNavigation)
+    fun saveUseMouseNavigationByDefault(useMouseNavigationByDefault: Boolean) = viewModelScope.launch {
+        useCase.saveUseMouseNavigationByDefault(useMouseNavigationByDefault)
     }
 
     // ---- Others ----
