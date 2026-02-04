@@ -61,10 +61,10 @@ android {
      
             isShrinkResources = true  
             isMinifyEnabled = true // 暂时改为 false 防止闪退！
-     //       proguardFiles(
-     //           getDefaultProguardFile("proguard-android-optimize.txt"),
-     //           "proguard-rules.pro"
-     //       )
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
 
