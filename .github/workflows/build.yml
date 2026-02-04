@@ -1,58 +1,42 @@
-# 工作流名称
-name: TCL-BtRemote 云编译
+name: Build APK
+on: [push, pull_request]
 
-# 触发条件：push代码/手动触发
-on:
-  push:
-    branches: [ main, master ]  # 替换为你的主分支名
-  workflow_dispatch:  # 手动触发开关
-
-# 工作流任务
 jobs:
   build:
-    # 运行环境：Ubuntu最新版
     runs-on: ubuntu-latest
-
     steps:
-      # 步骤1：拉取仓库代码
-      - name: 检出代码
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
         with:
-          fetch-depth: 0  # 拉取完整提交历史（按需开启）
+          distribution: 'zulu'
+          java-version: '17'
 
-      # 步骤2：安装编译依赖（核心！需根据你的项目修改）
-      - name: 安装基础编译环境
-        run: |
-          sudo apt update -y
-          sudo apt install -y \
-            gcc g++ make cmake \
-            libbluetooth-dev \  # 蓝牙开发库（推测依赖）
-            pkg-config git wget \
-            # 以下根据你的项目实际依赖补充，比如：
-            # python3 python3-pip \
-            # crossbuild-essential-armhf  # 若需交叉编译ARM架构
-          
-      # 步骤3：编译构建（核心！需替换为你的实际编译命令）
-      - name: 开始编译
-        run: |
-          # 示例命令（根据你的项目修改，比如cmake/make/make install等）
-          cd ${GITHUB_WORKSPACE}  # 进入代码根目录
-          mkdir -p build && cd build
-          cmake ..  # 若用cmake构建
-          make -j$(nproc)  # 多线程编译（nproc=CPU核心数）
-          
-          # 若你的项目是makefile直接编译，替换为：
-          # make clean  # 清理旧产物
-          # make -j$(nproc)
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.x'
+          # 注意：这里的 cache 如果报错可以先设为 false
+          cache: true
 
-      # 步骤4：上传编译产物（方便下载）
-      - name: 上传编译产物
+      - name: Set up Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: aarch64-linux-android, armv7-linux-androideabi
+
+      - name: Install dependencies
+        # 核心：直接告诉它去哪找 pubspec.yaml
+        working-directory: TCL-BtRemote/TCL-BtRemote/btremote_app
+        run: flutter pub get
+
+      - name: Build APK
+        # 核心：同样指定路径
+        working-directory: TCL-BtRemote/TCL-BtRemote/btremote_app
+        run: flutter build apk --release
+
+      - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: TCL-BtRemote-build
-          path: |
-            # 替换为你的编译产物路径，比如：
-            build/btremote  # 可执行文件
-            # dist/*.bin     # 固件文件
-            # *.zip          # 打包后的文件
-          retention-days: 7  # 产物保留7天
+          name: BtRemote-APK
+          path: "**/app-release.apk"
