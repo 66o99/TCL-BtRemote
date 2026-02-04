@@ -28,14 +28,16 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
-      # 执行 Release 编译
+      # 4. 执行 Release 编译
       - name: Build Release APK
         run: ./gradlew assembleRelease
 
-      # 上传 Release APK 产物
+      # 5. 上传 Release APK 产物
       - name: Upload Release APK
         uses: actions/upload-artifact@v4
         with:
-          name: BtRemote-Release-Signed
+          # name: BtRemote-Release-Signed
+          name: BtRemote-v${{ github.run_number }}
           # 这样写可以确保只上传 release 目录下的 apk
-          path: "**/app-gplay-release.apk"
+          # path: "**/app-gplay-release.apk"
+          path: app/build/outputs/apk/gplay/release/*.apk
