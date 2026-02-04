@@ -25,21 +25,16 @@ jobs:
           targets: aarch64-linux-android, armv7-linux-androideabi, x86_64-linux-android
 
       - name: Install dependencies
-        run: |
-          # 自动寻找 pubspec.yaml 所在的目录
-          APP_DIR=$(find . -name pubspec.yaml -exec dirname {} \;)
-          echo "APP_DIR=$APP_DIR" >> $GITHUB_ENV
-          cd $APP_DIR
-          flutter pub get
+        # 注意：这里的路径加上了 TCL-BtRemote/
+        run: flutter pub get
+        working-directory: TCL-BtRemote/app
         
       - name: Build APK
-        run: |
-          cd ${{ env.APP_DIR }}
-          flutter build apk --release
+        run: flutter build apk --release
+        working-directory: TCL-BtRemote/app
         
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: BtRemote-APK
-          # 这里的路径通过 find 动态获取，确保万无一失
-          path: "**/build/app/outputs/flutter-apk/app-release.apk"
+          path: TCL-BtRemote/app/build/app/outputs/flutter-apk/app-release.apk
