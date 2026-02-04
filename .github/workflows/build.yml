@@ -38,4 +38,4 @@ jobs:
         with:
           name: BtRemote-Release-Signed
           # 这样写可以确保只上传 release 目录下的 apk
-          path: "app/build/outputs/apk/release/*.apk"
+          path: "**/*.apk"
