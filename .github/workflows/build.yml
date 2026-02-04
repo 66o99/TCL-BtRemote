@@ -29,8 +29,9 @@ jobs:
         run: chmod +x gradlew
 
       # 4. 执行编译（生成 Debug 版本 APK）
-      - name: Build with Gradle
-        run: ./gradlew assembleDebug
+      # 尝试编译 Release 版本（通常体积更小）
+      - name: Build Release APK
+        run: ./gradlew assembleRelease
 
       # 修改后的第 5 步
       - name: Upload APK
