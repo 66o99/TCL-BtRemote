@@ -22,7 +22,7 @@ android {
         }
     }
 
-    signingConfigs {
+  //  signingConfigs {
         // create("release") {
         //    System.getenv("ANDROID_KEY_STORE_FILE")?.let { storeFile = file(it) }
         //    System.getenv("ANDROID_KEY_STORE_PASSWORD")?.let { storePassword = it }
