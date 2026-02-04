@@ -34,7 +34,7 @@ jobs:
       # 注意：工作目录切换到了 btremote_app
       - name: Install dependencies
         run: flutter pub get
-        working-directory: btremote_app
+        working-directory: TCL-BtRemote/btremote_app
         
       # 6. 生成 Rust 桥接代码 (如果源码中未包含已生成代码)
       - name: Run Codegen
@@ -44,7 +44,7 @@ jobs:
       # 7. 编译 APK
       - name: Build APK
         run: flutter build apk --release
-        working-directory: btremote_app
+        working-directory: TCL-BtRemote/btremote_app
         
       # 8. 上传产物
       - name: Upload Artifact
@@ -52,4 +52,4 @@ jobs:
         with:
           name: BtRemote-APK
           # 路径也需要加上前缀
-          path: btremote_app/build/app/outputs/flutter-apk/app-release.apk
+          path: TCL-BtRemote/btremote_app/build/app/outputs/flutter-apk/app-release.apk
