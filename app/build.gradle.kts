@@ -5,13 +5,14 @@ plugins {
 
 android {
     namespace = "com.atharok.btremote"
-    // 修正：compileSdk 直接赋值，建议使用 34 或 35。36 目前可能太新
-    compileSdk = 34
+    compileSdk {
+        version = release(36)
+    }
 
     defaultConfig {
         applicationId = "com.atharok.btremote"
         minSdk = 28
-        targetSdk = 34
+        targetSdk = 36
         versionCode = 21
         versionName = "1.9.1"
 
