@@ -5,9 +5,9 @@ plugins {
 
 android {
     namespace = "com.atharok.btremote"
-    
-    // 修正：直接赋值
-    compileSdk = 36 
+    compileSdk {
+        version = release(36)
+    }
 
     defaultConfig {
         applicationId = "com.atharok.btremote"
@@ -17,13 +17,10 @@ android {
         versionName = "1.9.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        
-        // 修正：必须用 } 闭合这个块
         vectorDrawables {
             useSupportLibrary = true
         }
-
-        // 修正：ndk 块应在 vectorDrawables 之外，defaultConfig 之内
+        
         ndk {
             abiFilters.add("arm64-v8a")
         }
@@ -55,18 +52,16 @@ android {
      
      // ---------------------------------------------------------------------------
         getByName("release") {
-            // 【关键点】如果你的 Secrets 没配，这里强制用 debug 签名避免报错
+     // 关键点，如果你的 Secrets 没配，这里强制用 debug 签名避免报错！
             signingConfig = signingConfigs.getByName("debug")
      // ---------------------------------------------------------------------------
      
-            isShrinkResources = true  
-            isMinifyEnabled = true // 暂时改为 false 防止闪退！
-
-            // 【关键修复】取消这里的注释！否则你的 proguard-rules.pro 不起作用
+            isShrinkResources = false  
+            isMinifyEnabled = false // false 防闪退,下面的保护清单三行也注释！
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+     //           getDefaultProguardFile("proguard-android-optimize.txt"),
+     //           "proguard-rules.pro"
+     //       )
         }
     }
 
