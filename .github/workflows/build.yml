@@ -1,6 +1,11 @@
 name: Build APK
 on: [push, pull_request]
 
+# 强制全局进入最深层的文件夹
+defaults:
+  run:
+    working-directory: TCL-BtRemote/TCL-BtRemote/btremote_app
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -25,16 +30,15 @@ jobs:
           targets: aarch64-linux-android, armv7-linux-androideabi, x86_64-linux-android
 
       - name: Install dependencies
-        # 注意：这里的路径加上了 TCL-BtRemote/
         run: flutter pub get
-        working-directory: app
         
       - name: Build APK
-        run: flutter build apk --release
-        working-directory: app
+        # 加上 --no-pub 是为了防止它再次回到根目录检测
+        run: flutter build apk --release --no-pub
         
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: BtRemote-APK
-          path: app/build/app/outputs/flutter-apk/app-release.apk
+          # 路径使用通配符，避开繁琐的层级
+          path: "**/build/app/outputs/flutter-apk/app-release.apk"
