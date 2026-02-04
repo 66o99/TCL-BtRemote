@@ -5,9 +5,9 @@ plugins {
 
 android {
     namespace = "com.atharok.btremote"
-    compileSdk {
-        version = release(36)
-    }
+    
+    // 修正：直接赋值
+    compileSdk = 36 
 
     defaultConfig {
         applicationId = "com.atharok.btremote"
@@ -17,11 +17,14 @@ android {
         versionName = "1.9.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        
+        // 修正：必须用 } 闭合这个块
         vectorDrawables {
             useSupportLibrary = true
+        }
 
+        // 修正：ndk 块应在 vectorDrawables 之外，defaultConfig 之内
         ndk {
-            // 在 Kotlin 中，abiFilters 需要使用 .add() 或者直接 listOf()
             abiFilters.add("arm64-v8a")
         }
     }
