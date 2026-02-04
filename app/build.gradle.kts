@@ -52,7 +52,7 @@ android {
             signingConfig = signingConfigs.getByName("debug")
      // ---------------------------------------------------------------------------
      
-            isShrinkResources = true  
+            isShrinkResources = false  
             isMinifyEnabled = false // 暂时改为 false 防止闪退！
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
