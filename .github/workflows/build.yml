@@ -1,11 +1,6 @@
 name: Build APK
 on: [push, pull_request]
 
-# 强制全局进入最深层的文件夹
-defaults:
-  run:
-    working-directory: TCL-BtRemote/TCL-BtRemote/btremote_app
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -22,23 +17,31 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.x'
-          cache: true
 
       - name: Set up Rust
         uses: dtolnay/rust-toolchain@stable
         with:
-          targets: aarch64-linux-android, armv7-linux-androideabi, x86_64-linux-android
+          # 必须安装 Android 对应的 Rust 目标，否则无法打包进 APK
+          targets: aarch64-linux-android, armv7-linux-androideabi
 
       - name: Install dependencies
-        run: flutter pub get
-        
+        run: |
+          # 动态定位到包含 pubspec.yaml 的最深层目录
+          TARGET_DIR=$(find . -name pubspec.yaml -exec dirname {} \;)
+          echo "PROJECT_DIR=$TARGET_DIR" >> $GITHUB_ENV
+          cd $TARGET_DIR
+          flutter pub get
+
       - name: Build APK
-        # 加上 --no-pub 是为了防止它再次回到根目录检测
-        run: flutter build apk --release --no-pub
-        
+        run: |
+          # 进入刚才记录的目录进行编译
+          cd ${{ env.PROJECT_DIR }}
+          # --no-pub 是为了防止它乱跳路径
+          flutter build apk --release --no-pub
+
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: BtRemote-APK
-          # 路径使用通配符，避开繁琐的层级
+          name: BtRemote-App
+          # 使用递归搜索，不管它在哪个 build 文件夹里都能找到
           path: "**/build/app/outputs/flutter-apk/app-release.apk"
