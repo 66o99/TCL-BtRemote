@@ -9,6 +9,20 @@ android {
         version = release(36)
     }
 
+buildTypes {
+        release {
+            // 【关键代码】强制让 release 模式使用自带的 debug 签名
+            signingConfig signingConfigs.debug
+
+            // 开启混淆压缩以大幅减小体积
+            minifyEnabled true
+            // 开启资源缩减（剔除未使用的图片、布局等）
+            shrinkResources true
+            
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
     defaultConfig {
         applicationId = "com.atharok.btremote"
         minSdk = 28
