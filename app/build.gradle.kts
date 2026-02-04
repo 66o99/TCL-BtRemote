@@ -28,7 +28,6 @@ android {
             abiFilters.add("arm64-v8a")
         }
     }
-}
 
     // signingConfigs {
         // create("release") {
